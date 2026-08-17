@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>SC KAKOMON｜情報処理安全確保支援士 過去問解説</title>
 <style>
 *{box-sizing:border-box}
@@ -28,21 +29,51 @@ iframe{width:100%;height:520px;border:0;background:#fff}
 footer{padding:28px 0;color:var(--muted)}
 .empty{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px}
 @media(max-width:760px){.grid{grid-template-columns:1fr}iframe{height:420px}}
+
+.mode-switch{display:flex;gap:8px;margin:18px 0 8px;flex-wrap:wrap}
+.mode-btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:900;cursor:pointer}
+.mode-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.filter-panel{display:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0 18px}
+.filter-panel.show{display:block}
+.filter-row{display:flex;gap:7px;overflow:auto;padding:5px 0}
+.fbtn{white-space:nowrap;border:1px solid var(--line);background:#f8fafc;color:#344054;border-radius:999px;padding:7px 10px;font-weight:800;cursor:pointer}
+.fbtn.active{background:#2457d6;color:#fff;border-color:#2457d6}
+.fbtn.security.active{background:#7b2940;border-color:#7b2940}
+.fbtn.general.active{background:#315f8c;border-color:#315f8c}
+.section-heading{display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
+.section-heading small{color:var(--muted)}
+.morning-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.qmini{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px;box-shadow:0 2px 8px #00000006}
+.qmini .top{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.qmini h3{margin:5px 0 7px}
+.qmini p{margin:7px 0;color:#475467;font-size:.92rem}
+.groupbadge{display:inline-block;border-radius:6px;padding:2px 7px;font-size:.7rem;font-weight:900}
+.groupbadge.security{background:#fde7ec;color:#85263d}
+.groupbadge.general{background:#e5f1fb;color:#245a87}
+.catbadge{display:inline-block;background:#f0f4f8;color:#475467;border-radius:999px;padding:2px 7px;font-size:.72rem}
+.qopen{display:inline-block;margin-top:5px;background:#173f6b;color:#fff;text-decoration:none;font-weight:800;padding:8px 11px;border-radius:8px}
+.hidden{display:none!important}
+@media(max-width:760px){.morning-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <div style="opacity:.8">SC KAKOMON</div>
-<h1>情報処理安全確保支援士<br>過去問解説</h1>
+<h1>情報処理安全確保支援士<br/>過去問解説</h1>
 <p class="sub">問題文を読み、自分で回答してから、図表の読み方・詳細解説・超深掘りまで学べる自分用サイト。</p>
-<input id="search" class="search" type="search" placeholder="年度・題材・用語で検索 例：DMARC / OAuth / クラウド">
+<input class="search" id="search" placeholder="年度・題材・用語で検索 例：DMARC / OAuth / クラウド" type="search"/>
 </div></header>
+<div class="wrap">
+<div class="mode-switch">
+<button class="mode-btn active" data-mode="pm">午後問題</button>
+<button class="mode-btn" data-mode="am">午前Ⅱ</button>
+</div>
+</div>
 
 <main class="wrap">
-<section class="section">
-<h2>収録問題</h2>
-<div id="cards" class="grid">
-
+<section class="section" id="pmSection">
+<h2>午後問題｜超深掘り</h2>
+<div class="grid" id="cards">
 <article class="card" data-search="令和3年 秋 午後1 問1 セキュリティインシデント SSH リモート保守 FW ファイアウォール ログ 公開鍵認証 秘密鍵 パスフレーズ ssh-agent Agent Forwarding VPN 送信元IP">
 <div class="meta">令和3年度 秋期｜午後Ⅰ 問1</div>
 <h2>セキュリティインシデント</h2>
@@ -58,9 +89,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r03_autumn_sc_pm1_q1_security_incident_ultradeep.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r03_autumn_sc_pm1_q1_security_incident_ultradeep.html" title="セキュリティインシデント 解説"></iframe></details>
 </article>
-
-
-
 <article class="card" data-search="令和7年 春 午後 問3 スマートフォン用アプリケーションプログラムの開発 TLS 証明書 SAN MITM 署名付きURL HMAC WebView getToken">
 <div class="meta">令和7年度 春期｜午後 問3</div>
 <h2>スマートフォン用アプリケーションプログラムの開発</h2>
@@ -70,7 +98,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r07_spring_sc_pm_q3_smartphone_standard.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r07_spring_sc_pm_q3_smartphone_standard.html" title="スマートフォン用アプリケーションプログラムの開発 解説"></iframe></details>
 </article>
-
 <article class="card" data-search="令和6年 春 午後 問1 APIセキュリティ REST RESTful HTTPメソッド JWT alg none BOLA IDOR Mass Assignment Log4Shell JNDI LDAP WAF">
 <div class="meta">令和6年度 春期｜午後 問1</div>
 <h2>APIセキュリティ</h2>
@@ -80,9 +107,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r06_spring_sc_pm_q1_standard_story.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r06_spring_sc_pm_q1_standard_story.html" title="APIセキュリティ 解説"></iframe></details>
 </article>
-
-
-
 <article class="card" data-search="令和5年 秋 午後 問3 継続的インテグレーションサービス CI CD CI/CD コンテナ TOTP WebAuthn Certificate Transparency CT ドメインフロンティング SNI Host CAA HSM コード署名 シークレット サプライチェーン">
 <div class="meta">令和5年度 秋期｜午後 問3</div>
 <h2>継続的インテグレーションサービス</h2>
@@ -98,7 +122,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r05_autumn_sc_pm_q3_ci_terms_enhanced.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r05_autumn_sc_pm_q3_ci_terms_enhanced.html" title="継続的インテグレーションサービス 解説"></iframe></details>
 </article>
-
 <article class="card" data-search="令和6年 秋 午後 問2 メールセキュリティ ドメイン変更 SPF DKIM DMARC SMTP ARC">
 <div class="meta">令和6年度 秋期｜午後 問2</div>
 <h2>メールセキュリティ</h2>
@@ -113,8 +136,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r06_aki_mailsecurity.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r06_aki_mailsecurity.html" title="メールセキュリティ解説"></iframe></details>
 </article>
-
-
 <article class="card" data-search="令和4年 春 午後2 午後Ⅱ 問1 Webサイトのセキュリティ XSS クロスサイトスクリプティング CSRF クリックジャッキング SSRF Authorization Basic認証 X-Frame-Options Content-Security-Policy CSP SCA SBOM 脆弱性診断 アジャイル">
 <div class="meta">令和4年度 春期｜午後Ⅱ 問1</div>
 <h2>Webサイトのセキュリティ</h2>
@@ -131,7 +152,6 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r04_spring_sc_pm2_q1_websecurity_ultradeep.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r04_spring_sc_pm2_q1_websecurity_ultradeep.html" title="Webサイトのセキュリティ 解説"></iframe></details>
 </article>
-
 <article class="card" data-search="令和4年 春 午後2 問2 クラウドサービスへの移行 CDN ドメインフロンティング Kerberos SAML OAuth OpenID Connect OIDC JWT">
 <div class="meta">令和4年度 春期｜午後Ⅱ 問2</div>
 <h2>クラウドサービスへの移行</h2>
@@ -146,31 +166,370 @@ footer{padding:28px 0;color:var(--muted)}
 <a class="open" href="r04_spring_cloud.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r04_spring_cloud.html" title="クラウドサービスへの移行解説"></iframe></details>
 </article>
-
 </div>
-<div id="empty" class="empty">該当する問題がありません。</div>
+<div class="empty" id="empty">該当する問題がありません。</div>
 </section>
 
+<section class="section hidden" id="amSection">
+<div class="section-heading">
+<div><h2>午前Ⅱ｜問題別</h2><small>年度・SECURITY / GENERAL IT・大分類で絞り込み</small></div>
+</div>
+<div class="filter-panel show">
+<b>大区分</b>
+<div class="filter-row" id="groupFilters">
+<button class="fbtn active" data-group="all">すべて</button>
+<button class="fbtn security" data-group="SECURITY">SECURITY</button>
+<button class="fbtn general" data-group="GENERAL IT">GENERAL IT</button>
+</div>
+<b>分類</b>
+<div class="filter-row" id="catFilters">
+<button class="fbtn active" data-cat="all">全分類</button>
+<button class="fbtn" data-cat="認証・認可">認証・認可</button>
+<button class="fbtn" data-cat="暗号・PKI">暗号・PKI</button>
+<button class="fbtn" data-cat="ネットワークセキュリティ">ネットワークセキュリティ</button>
+<button class="fbtn" data-cat="サーバセキュリティ">サーバセキュリティ</button>
+<button class="fbtn" data-cat="メールセキュリティ">メールセキュリティ</button>
+<button class="fbtn" data-cat="マルウェア・攻撃">マルウェア・攻撃</button>
+<button class="fbtn" data-cat="SOC・インシデント対応">SOC・インシデント対応</button>
+<button class="fbtn" data-cat="ネットワーク">ネットワーク</button>
+<button class="fbtn" data-cat="データベース">データベース</button>
+<button class="fbtn" data-cat="開発・設計">開発・設計</button>
+<button class="fbtn" data-cat="サービス管理・内部統制">サービス管理・内部統制</button>
+</div>
+</div>
+<div class="morning-grid" id="amCards">
+<article class="qmini" data-cat="認証・認可" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問1 RADIUS / AAA Authentication・Authorization・Accounting 認証・認可">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問1</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">認証・認可</span>
+</div>
+<h3>RADIUS / AAA</h3>
+<p>Authentication・Authorization・Accounting</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q1">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問2 Adversarial Examples AIへの敵対的入力 マルウェア・攻撃">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問2</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">マルウェア・攻撃</span>
+</div>
+<h3>Adversarial Examples</h3>
+<p>AIへの敵対的入力</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q2">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="SOC・インシデント対応" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問3 MITRE ATT&amp;CK Tactics / Techniques SOC・インシデント対応">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問3</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">SOC・インシデント対応</span>
+</div>
+<h3>MITRE ATT&amp;CK</h3>
+<p>Tactics / Techniques</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q3">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問4 NTPリフレクション 反射・増幅DDoS マルウェア・攻撃">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問4</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">マルウェア・攻撃</span>
+</div>
+<h3>NTPリフレクション</h3>
+<p>反射・増幅DDoS</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q4">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="暗号・PKI" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問5 PQC 耐量子計算機暗号 暗号・PKI">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問5</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">暗号・PKI</span>
+</div>
+<h3>PQC</h3>
+<p>耐量子計算機暗号</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q5">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問6 Smurf攻撃 ICMP・ブロードキャスト マルウェア・攻撃">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問6</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">マルウェア・攻撃</span>
+</div>
+<h3>Smurf攻撃</h3>
+<p>ICMP・ブロードキャスト</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q6">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="認証・認可" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問7 Passkey / FIDO 生体情報と公開鍵認証 認証・認可">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問7</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">認証・認可</span>
+</div>
+<h3>Passkey / FIDO</h3>
+<p>生体情報と公開鍵認証</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q7">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="認証・認可" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問8 SSO方式 リバースプロキシ方式 認証・認可">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問8</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">認証・認可</span>
+</div>
+<h3>SSO方式</h3>
+<p>リバースプロキシ方式</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q8">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="暗号・PKI" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問9 量子暗号 QKD・盗聴検知 暗号・PKI">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問9</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">暗号・PKI</span>
+</div>
+<h3>量子暗号</h3>
+<p>QKD・盗聴検知</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q9">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="メールセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問10 DMARC SPF / DKIM / Alignment メールセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問10</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">メールセキュリティ</span>
+</div>
+<h3>DMARC</h3>
+<p>SPF / DKIM / Alignment</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q10">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="SOC・インシデント対応" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問11 SOAR Orchestration / Automation SOC・インシデント対応">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問11</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">SOC・インシデント対応</span>
+</div>
+<h3>SOAR</h3>
+<p>Orchestration / Automation</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q11">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="サーバセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問12 WAF False Positive サーバセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問12</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">サーバセキュリティ</span>
+</div>
+<h3>WAF</h3>
+<p>False Positive</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q12">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問13 IPS インライン・アノマリ型 ネットワークセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問13</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">ネットワークセキュリティ</span>
+</div>
+<h3>IPS</h3>
+<p>インライン・アノマリ型</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q13">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="サーバセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問14 クリックジャッキング X-Frame-Options サーバセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問14</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">サーバセキュリティ</span>
+</div>
+<h3>クリックジャッキング</h3>
+<p>X-Frame-Options</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q14">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問15 DTLS UDP向け暗号通信 ネットワークセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問15</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">ネットワークセキュリティ</span>
+</div>
+<h3>DTLS</h3>
+<p>UDP向け暗号通信</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q15">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="認証・認可" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問16 OAuth 2.0 Access Token・認可 認証・認可">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問16</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">認証・認可</span>
+</div>
+<h3>OAuth 2.0</h3>
+<p>Access Token・認可</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q16">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前2 午前Ⅱ 問17 IEEE 802.1X Supplicant / Authenticator / RADIUS ネットワークセキュリティ">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問17</span>
+<span class="groupbadge security">SECURITY</span>
+<span class="catbadge">ネットワークセキュリティ</span>
+</div>
+<h3>IEEE 802.1X</h3>
+<p>Supplicant / Authenticator / RADIUS</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q17">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワーク" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問18 IPsec IPトンネリング ネットワーク">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問18</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">ネットワーク</span>
+</div>
+<h3>IPsec</h3>
+<p>IPトンネリング</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q18">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワーク" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問19 ICMP Redirect / Time Exceeded ネットワーク">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問19</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">ネットワーク</span>
+</div>
+<h3>ICMP</h3>
+<p>Redirect / Time Exceeded</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q19">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="ネットワーク" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問20 ネットワークTAP 監視用信号分岐 ネットワーク">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問20</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">ネットワーク</span>
+</div>
+<h3>ネットワークTAP</h3>
+<p>監視用信号分岐</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q20">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="データベース" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問21 関係モデル 外部キー・参照整合性 データベース">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問21</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">データベース</span>
+</div>
+<h3>関係モデル</h3>
+<p>外部キー・参照整合性</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q21">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="開発・設計" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問22 GoF 23のデザインパターン 開発・設計">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問22</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">開発・設計</span>
+</div>
+<h3>GoF</h3>
+<p>23のデザインパターン</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q22">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="開発・設計" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問23 XP / TDD Red → Green → Refactor 開発・設計">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問23</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">開発・設計</span>
+</div>
+<h3>XP / TDD</h3>
+<p>Red → Green → Refactor</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q23">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="サービス管理・内部統制" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問24 SMS 継続的改善 サービス管理・内部統制">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問24</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">サービス管理・内部統制</span>
+</div>
+<h3>SMS</h3>
+<p>継続的改善</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q24">この問題を解く →</a>
+</article>
+
+<article class="qmini" data-cat="サービス管理・内部統制" data-group="GENERAL IT" data-search="令和6年 秋 午前2 午前Ⅱ 問25 内部統制 IT業務処理統制 サービス管理・内部統制">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ 問25</span>
+<span class="groupbadge general">GENERAL IT</span>
+<span class="catbadge">サービス管理・内部統制</span>
+</div>
+<h3>内部統制</h3>
+<p>IT業務処理統制</p>
+<a class="qopen" href="r06_autumn_sc_am2_text_ultradeep_classified_deeper.html#q25">この問題を解く →</a>
+</article>
+</div>
+<div class="empty" id="amEmpty">該当する午前Ⅱ問題がありません。</div>
+</section>
 <section class="card section">
 <h2>今後の追加方針</h2>
-<p>新しい過去問も同じ型で追加していけます。ホームには「年度・試験区分・題材・重要用語」を表示し、各問題ページでは <b>全体像 → 公式問題文 → 自分で回答 → 詳細解説 → 超深掘り → 重要用語</b> の順で学習できる構成に統一します。</p>
+<p>午後は <b>全体像 → 問題文 → 自分で回答 → 詳細解説 → 超深掘り → 重要用語</b>、午前Ⅱは <b>問題文 → 4択 → 全選択肢解説 → さらに深掘り → 本番での見抜き方</b> に統一。午前Ⅱは <b>SECURITY / GENERAL IT</b> と大分類で検索できる構成にします。</p>
 </section>
 </main>
-
 <footer><div class="wrap">SC KAKOMON｜自分用学習サイト</div></footer>
 <script>
 const search=document.getElementById('search');
-const cards=[...document.querySelectorAll('.card[data-search]')];
-const empty=document.getElementById('empty');
-search.addEventListener('input',()=>{
+const pmCards=[...document.querySelectorAll('#pmSection .card[data-search]')];
+const amCards=[...document.querySelectorAll('#amSection .qmini[data-search]')];
+const pmEmpty=document.getElementById('empty');
+const amEmpty=document.getElementById('amEmpty');
+let mode='pm', group='all', cat='all';
+
+function applyFilters(){
  const q=search.value.trim().toLowerCase();
- let n=0;
- cards.forEach(c=>{
-   const ok=c.dataset.search.toLowerCase().includes(q);
-   c.style.display=ok?'':'none';
-   if(ok)n++;
- });
- empty.style.display=n?'none':'block';
+ if(mode==='pm'){
+   let n=0;
+   pmCards.forEach(c=>{
+     const ok=c.dataset.search.toLowerCase().includes(q);
+     c.style.display=ok?'':'none'; if(ok)n++;
+   });
+   pmEmpty.style.display=n?'none':'block';
+ }else{
+   let n=0;
+   amCards.forEach(c=>{
+     const okq=c.dataset.search.toLowerCase().includes(q);
+     const okg=group==='all'||c.dataset.group===group;
+     const okc=cat==='all'||c.dataset.cat===cat;
+     const ok=okq&&okg&&okc;
+     c.style.display=ok?'':'none'; if(ok)n++;
+   });
+   amEmpty.style.display=n?'none':'block';
+ }
+}
+search.addEventListener('input',applyFilters);
+
+document.querySelectorAll('.mode-btn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.mode-btn').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active'); mode=b.dataset.mode;
+ document.getElementById('pmSection').classList.toggle('hidden',mode!=='pm');
+ document.getElementById('amSection').classList.toggle('hidden',mode!=='am');
+ search.placeholder=mode==='pm'
+   ? '年度・題材・用語で検索 例：DMARC / OAuth / クラウド'
+   : '午前Ⅱを検索 例：Passkey / WAF / ICMP / GoF';
+ applyFilters();
+});
+
+document.querySelectorAll('#groupFilters .fbtn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('#groupFilters .fbtn').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active'); group=b.dataset.group; applyFilters();
+});
+document.querySelectorAll('#catFilters .fbtn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('#catFilters .fbtn').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active'); cat=b.dataset.cat; applyFilters();
 });
 </script>
 </body>
