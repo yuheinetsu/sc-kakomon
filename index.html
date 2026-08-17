@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SC KAKOMON｜情報処理安全確保支援士 過去問解説</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#eef1f5;--card:#fff;--ink:#172033;--muted:#667085;--line:#d8dee8;--blue:#2457d6;--green:#087443}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.7}
+header{background:linear-gradient(135deg,#101f44,#2457d6);color:#fff;padding:38px 16px}
+.wrap{max-width:1100px;margin:auto;padding:0 14px}
+h1{margin:4px 0;line-height:1.25;font-size:clamp(2rem,5vw,3.2rem)}
+.sub{opacity:.9}
+.search{width:100%;margin-top:18px;padding:14px 16px;border:0;border-radius:12px;font-size:1rem}
+.section{margin:22px 0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 3px 12px #00000008}
+.meta{font-size:.84rem;color:var(--muted);font-weight:700}
+.card h2{margin:7px 0 8px}
+.badge{display:inline-block;background:#edf2ff;color:var(--blue);padding:3px 9px;border-radius:999px;margin:2px;font-size:.78rem}
+.desc{color:#344054}
+.features{margin:12px 0;padding-left:20px}
+.open{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;padding:10px 14px;border-radius:10px}
+.preview{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fafbfc}
+.preview summary{cursor:pointer;padding:10px 12px;color:var(--blue);font-weight:800}
+iframe{width:100%;height:520px;border:0;background:#fff}
+footer{padding:28px 0;color:var(--muted)}
+.empty{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}iframe{height:420px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div style="opacity:.8">SC KAKOMON</div>
+<h1>情報処理安全確保支援士<br>過去問解説</h1>
+<p class="sub">問題文を読み、自分で回答してから、図表の読み方・詳細解説・超深掘りまで学べる自分用サイト。</p>
+<input id="search" class="search" type="search" placeholder="年度・題材・用語で検索 例：DMARC / OAuth / クラウド">
+</div></header>
+
+<main class="wrap">
+<section class="section">
+<h2>収録問題</h2>
+<div id="cards" class="grid">
+
+<article class="card" data-search="令和6年 秋 午後 問2 メールセキュリティ ドメイン変更 SPF DKIM DMARC SMTP ARC">
+<div class="meta">令和6年度 秋期｜午後 問2</div>
+<h2>メールセキュリティ</h2>
+<p class="desc">ドメイン名変更とメールサービス移行を題材に、SPF・DKIM・DMARC、旧ドメイン悪用、外部配信サービスまで学習。</p>
+<div><span class="badge">SPF</span><span class="badge">DKIM</span><span class="badge">DMARC</span><span class="badge">SMTPS</span><span class="badge">ARC</span></div>
+<ul class="features">
+<li>公式問題文を全量表示</li>
+<li>自分の回答欄＋自動保存</li>
+<li>図表の読み方と解答理由</li>
+<li>「🔬もっと深掘り」付き</li>
+</ul>
+<a class="open" href="r06_aki_mailsecurity.html">この問題を学習する →</a>
+<details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r06_aki_mailsecurity.html" title="メールセキュリティ解説"></iframe></details>
+</article>
+
+<article class="card" data-search="令和4年 春 午後2 問2 クラウドサービスへの移行 CDN ドメインフロンティング Kerberos SAML OAuth OpenID Connect OIDC JWT">
+<div class="meta">令和4年度 春期｜午後Ⅱ 問2</div>
+<h2>クラウドサービスへの移行</h2>
+<p class="desc">CDNからKerberos、SAML、OAuth 2.0、OpenID Connect、JWTまで、クラウド移行に伴う認証・認可を体系的に学習。</p>
+<div><span class="badge">CDN</span><span class="badge">Kerberos</span><span class="badge">SAML</span><span class="badge">OAuth 2.0</span><span class="badge">OIDC / JWT</span></div>
+<ul class="features">
+<li>ドメインフロンティングを通信レベルで解説</li>
+<li>認証フローを段階的に図解</li>
+<li>JWTのClaim・検証まで深掘り</li>
+<li>「🔬もっと深掘り」付き</li>
+</ul>
+<a class="open" href="r04_spring_cloud.html">この問題を学習する →</a>
+<details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r04_spring_cloud.html" title="クラウドサービスへの移行解説"></iframe></details>
+</article>
+
+</div>
+<div id="empty" class="empty">該当する問題がありません。</div>
+</section>
+
+<section class="card section">
+<h2>今後の追加方針</h2>
+<p>新しい過去問も同じ型で追加していけます。ホームには「年度・試験区分・題材・重要用語」を表示し、各問題ページでは <b>全体像 → 公式問題文 → 自分で回答 → 詳細解説 → 超深掘り → 重要用語</b> の順で学習できる構成に統一します。</p>
+</section>
+</main>
+
+<footer><div class="wrap">SC KAKOMON｜自分用学習サイト</div></footer>
+<script>
+const search=document.getElementById('search');
+const cards=[...document.querySelectorAll('.card[data-search]')];
+const empty=document.getElementById('empty');
+search.addEventListener('input',()=>{
+ const q=search.value.trim().toLowerCase();
+ let n=0;
+ cards.forEach(c=>{
+   const ok=c.dataset.search.toLowerCase().includes(q);
+   c.style.display=ok?'':'none';
+   if(ok)n++;
+ });
+ empty.style.display=n?'none':'block';
+});
+</script>
+</body>
+</html>
