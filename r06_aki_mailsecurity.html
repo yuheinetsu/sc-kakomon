@@ -104,6 +104,15 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 .protocol-map>div{border:1px solid #d9dfe8;border-radius:9px;padding:10px;background:#fff}
 .protocol-map b{color:#2457d6}
 @media(max-width:800px){.protocol-map{grid-template-columns:1fr}}
+
+.ultra2{margin-top:14px;border:2px solid #8ea9ef;border-radius:12px;overflow:hidden;background:#fff}
+.ultra2>summary{background:linear-gradient(90deg,#dfe8ff,#f6f8ff);padding:14px 15px;color:#153b9c;font-weight:900;cursor:pointer}
+.ultra2-body{padding:15px}
+.flow2{display:grid;gap:7px;margin:10px 0}.flow2>div{border:1px solid var(--line);border-radius:9px;padding:9px;background:#fbfcfe}
+.compare2{width:100%;border-collapse:collapse;margin:10px 0}.compare2 th,.compare2 td{border:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}.compare2 th{background:#f4f6f8}
+.trap2{background:#fff2f2;border-left:4px solid #c94a4a;padding:10px 12px;border-radius:8px;margin:10px 0}
+.memory2{background:#eefaf3;border-left:4px solid #16845b;padding:10px 12px;border-radius:8px;margin:10px 0}
+
 </style>
 </head>
 <body>
@@ -131,7 +140,7 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 <h2>参考になる解説動画</h2>
 <p>この問2は「ドメイン名変更＋メールセキュリティ」が中心です。特にSPF・DKIM・DMARCを動画で確認すると理解しやすいです。</p>
 
-<a class="video-card" href="https://www.youtube.com/watch?v=cEFrjfIibmU" target="_blank" rel="noopener">
+<a class="video-card" href="https://www.youtube.com/results?search_query=令和6年度+秋期+情報処理安全確保支援士+午後+問2+メールセキュリティ+解説" target="_blank" rel="noopener">
   <div class="play">▶</div>
   <div><b>令和6年度 秋期 情報処理安全確保支援士 午後 問2 解答解説</b>
   <small>YouTube｜過去問10年分 情報処理技術者試験解説チャンネル</small></div>
@@ -261,6 +270,17 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 <div class="warn">bを「A社ドメイン名」にすると、PC-LANから顧客など社外宛の正規メールまで転送できなくなります。</div>
 <h3>試験で覚えるポイント</h3>
 <p>第三者中継防止＝認証されていない外部利用者が、自社SMTPサーバを他ドメイン宛メールの中継に使うことを防ぐ。</p>
+
+<details class="ultra2"><summary>🧪 超深掘り標準｜SMTPを「Envelope」と「Header」に分解する</summary><div class="ultra2-body">
+<h3>1通のメールには“差出人”が複数ある</h3>
+<table class="compare2"><tr><th>場所</th><th>代表値</th><th>役割</th></tr>
+<tr><td>SMTP Envelope</td><td>MAIL FROM / RCPT TO</td><td>配送制御。SPFが主に見る送信者側情報。</td></tr>
+<tr><td>Message Header</td><td>From: / To: / Subject:</td><td>利用者がメールソフトで見る情報。</td></tr>
+<tr><td>Received</td><td>各MTAが追加</td><td>メールがどのサーバを通ったかを追跡。</td></tr></table>
+<div class="flow2"><div><b>① 接続：</b>送信MTAが受信MTAのTCP/25へ接続。</div><div><b>② EHLO：</b>対応機能を確認。</div><div><b>③ MAIL FROM：</b>Envelope-Fromを提示。</div><div><b>④ RCPT TO：</b>配送先を指定。</div><div><b>⑤ DATA：</b>From/To/Subject等のヘッダーと本文を送信。</div></div>
+<p>第三者中継の判定では、単に「メールを受け取る」ことと「外部→外部の配送を肩代わりする」ことを分けます。自組織宛メールの受信は必要ですが、認証されていない第三者の外部宛リレーは拒否するのが基本です。</p>
+<div class="trap2"><b>試験の罠：</b>画面に見える <code>From:</code> とSMTPの <code>MAIL FROM</code> は別物。SPF・DMARCの問題では、どちらのドメインを評価しているかを必ず確認します。</div>
+</div></details>
 <h3>関連用語</h3>
 <div class="tags"><span>SMTP Relay</span><span>DMZ</span><span>ACL</span><span>オープンリレー</span></div>
 
@@ -323,6 +343,16 @@ attacker@example.net → victim@example.org
 <p>表5の「メール転送」の欄だけを見るのではなく、「SMTPをTLSで暗号化」という記述をそのままプロトコル名へ変換します。</p>
 <h3>試験で覚えるポイント</h3>
 <p><b>SMTPS＝通信路</b>、<b>S/MIME＝メールデータ</b>。IPA採点講評でもこの混同が指摘されています。</p>
+
+<details class="ultra2"><summary>🧪 超深掘り標準｜SMTP over TLS・STARTTLS・証明書検証</summary><div class="ultra2-body">
+<table class="compare2"><tr><th>方式</th><th>開始時点</th><th>代表用途</th></tr>
+<tr><td>Implicit TLS</td><td>TCP接続直後からTLS</td><td>メール投稿では465番ポートが代表的</td></tr>
+<tr><td>STARTTLS</td><td>平文SMTP開始後、STARTTLSでTLSへ昇格</td><td>MTA間の25番、Submissionの587番など</td></tr>
+<tr><td>S/MIME</td><td>SMTP経路ではなくメール本文自体</td><td>エンドツーエンドの署名・暗号化</td></tr></table>
+<div class="flow2"><div><b>① TCP接続</b></div><div><b>② TLS Handshake：</b>サーバ証明書提示、証明書チェーン・ホスト名・有効期限等を検証。</div><div><b>③ セッション鍵確立</b></div><div><b>④ 暗号化されたSMTP：</b>認証情報やメール内容を保護。</div></div>
+<p>TLSは「通信路」を守ります。SPF/DKIM/DMARCは「送信ドメインの正当性」を扱います。TLSを導入しても、なりすましメールそのものが自動的に消えるわけではありません。</p>
+<div class="memory2"><b>覚え方：</b>TLS＝道を暗号化、S/MIME＝荷物そのものを暗号化、SPF/DKIM/DMARC＝送り主の正当性を評価。</div>
+</div></details>
 <h3>関連用語</h3>
 <div class="tags"><span>SMTP</span><span>TLS</span><span>SMTPS</span><span>S/MIME</span><span>STARTTLS</span></div>
 
@@ -379,6 +409,20 @@ attacker@example.net → victim@example.org
 <p>表6ではまず<b>s</b>と<b>d</b>を探します。DMARCレコードでは<b>p</b>タグを見る。図3の移行ステップと突き合わせて「監視→隔離→拒否」の強化順を判断します。</p>
 <h3>試験で覚えるポイント</h3>
 <p><b>SPF＝送信元IP</b>、<b>DKIM＝署名</b>、<b>DMARC＝認証結果＋Fromドメイン＋受信方針</b>。</p>
+
+<details class="ultra2"><summary>🧪 超深掘り標準｜SPF→DKIM→DMARCをDNS照会まで追う</summary><div class="ultra2-body">
+<h3>SPF</h3>
+<div class="flow2"><div><b>①</b>受信側がSMTP接続元IPを取得。</div><div><b>②</b>Envelope-From等から評価対象ドメインを決定。</div><div><b>③</b>DNSのTXTにあるSPFレコードを取得。</div><div><b>④</b>接続元IPが許可範囲か判定。</div></div>
+<p><code>ip4</code>、<code>include</code>、<code>all</code>等を左から評価します。<code>-all</code>は明示的なFail、<code>~all</code>はSoftFailです。</p>
+<h3>DKIM</h3>
+<p>送信側は選択したヘッダーと本文からハッシュを作り、秘密鍵で署名して <code>DKIM-Signature:</code> を付与します。受信側は <code>d=</code> の署名ドメインと <code>s=</code> のselectorから、概ね <code>selector._domainkey.example.jp</code> の公開鍵をDNSで取得して検証します。</p>
+<table class="compare2"><tr><th>タグ</th><th>意味</th></tr><tr><td>d=</td><td>署名ドメイン</td></tr><tr><td>s=</td><td>selector。公開鍵を選ぶ</td></tr><tr><td>h=</td><td>署名対象ヘッダー</td></tr><tr><td>bh=</td><td>本文ハッシュ</td></tr><tr><td>b=</td><td>署名値</td></tr></table>
+<h3>DMARC</h3>
+<p>DMARCは単なる「SPFとDKIMの合否」ではなく、利用者に見えるHeader Fromドメインとの<b>alignment（整合）</b>を見ます。SPFまたはDKIMの少なくとも一方がPassし、かつ整合すればDMARC Passになり得ます。</p>
+<table class="compare2"><tr><th>DMARC policy</th><th>意味</th></tr><tr><td>p=none</td><td>まず観測。通常は隔離・拒否を要求しない。</td></tr><tr><td>p=quarantine</td><td>迷惑メール扱い等を要求。</td></tr><tr><td>p=reject</td><td>受信拒否を要求。</td></tr></table>
+<p><code>rua=</code> は集約レポート送付先。段階導入ではレポートを見て正規メールの送信経路を洗い出してからpolicyを強めるのが重要です。</p>
+<div class="trap2"><b>重要：</b>SPF Passだけ、DKIM Passだけを見てDMARC Passと即断しない。「Header Fromと整合しているか」まで見る。</div>
+</div></details>
 <h3>関連用語</h3>
 <div class="tags"><span>DKIM</span><span>selector</span><span>_domainkey</span><span>DMARC</span><span>p=none</span><span>アラインメント</span></div>
 
@@ -454,6 +498,14 @@ z2024._domainkey.z-sha.co.jp</div>
 <div class="warn"><code>?all</code>はNeutralで、正当とも不正とも判断しません。旧ドメイン詐称を明確に拒否させる目的には弱すぎます。</div>
 <h3>試験で覚えるポイント</h3>
 <p>ドメイン移行では、新ドメインの設定だけでなく<b>旧ドメインを安全に保持する</b>ことが重要です。</p>
+
+<details class="ultra2"><summary>🧪 超深掘り標準｜旧ドメイン再取得から攻撃成立まで</summary><div class="ultra2-body">
+<div class="flow2"><div><b>① A社が旧ドメインを手放す</b></div><div><b>② 攻撃者が旧ドメインを再登録</b></div><div><b>③ DNS・Web・メールを攻撃者が自由に設定</b></div><div><b>④ 過去の利用者・取引先が旧URL/旧メールを信用</b></div><div><b>⑤ パスワードリセット、フィッシング、マルウェア配布などへ悪用</b></div></div>
+<p>危険なのはWebサイトだけではありません。旧メールアドレスが他サービスのアカウントIDやパスワードリセット先として残っていれば、ドメイン再取得者がメールを受信できることでアカウント乗っ取りにつながる可能性があります。</p>
+<h3>「メールを送らないドメイン」のSPF</h3>
+<p>そのドメインから正規メールを一切送らないなら、SPFで許可送信元を持たず <code>-all</code> とする考え方が使えます。受信側へ「このドメインを名乗る送信元は許可しない」という強い意思を示します。</p>
+<div class="memory2"><b>試験視点：</b>ドメインはブランド資産＋認証基盤の一部。移行終了＝即解約ではなく、過去のURL・メール・証明書・外部サービス登録まで棚卸しします。</div>
+</div></details>
 <h3>関連用語</h3>
 <div class="tags"><span>ドロップキャッチ</span><span>期限切れドメイン</span><span>SPF -all</span><span>フィッシング</span><span>アカウント乗っ取り</span></div>
 
@@ -513,6 +565,19 @@ z2024._domainkey.z-sha.co.jp</div>
 <div class="warn">「Subjectを変更したからSPFが失敗」は誤り。IPA採点講評でもこの誤答が多かったとされています。</div>
 <h3>試験で覚えるポイント</h3>
 <p>メーリングリストや転送サービスはSPF/DKIM/DMARCと相性問題が出やすい。ARCは転送前の認証情報を引き継ぐために利用されます。</p>
+
+<details class="ultra2"><summary>🧪 超深掘り標準｜転送・一斉配信・ML・SRS・ARCまで</summary><div class="ultra2-body">
+<h3>なぜ転送でSPFが壊れる？</h3>
+<p>SPFは受信側から見た<b>直前の接続元IP</b>を評価します。転送されると最終受信側が見る接続元は元送信サーバではなく転送サーバになるため、元ドメインのSPFで許可されずFailすることがあります。</p>
+<h3>SRS</h3>
+<p>Sender Rewriting Schemeは、転送時にEnvelope-Fromを書き換えて、転送サーバ自身のドメインとしてSPF評価できるようにする考え方です。</p>
+<h3>なぜMLでDKIMが壊れる？</h3>
+<p>DKIMは署名対象ヘッダーや本文が署名後に変更されると検証に失敗します。メーリングリストがSubjectへ件名タグを付ける、本文へフッターを追加する、といった加工が原因になります。</p>
+<h3>ARC</h3>
+<p>ARCは中継前に観測した認証結果などを、中継経路で連鎖的に保持するための仕組みです。転送やMLで最終地点のSPF/DKIMが崩れても、中継前の評価を判断材料として伝えられます。ただしARCそのものがDMARCを単純に「Passへ変える」技術ではありません。</p>
+<table class="compare2"><tr><th>ケース</th><th>壊れやすいもの</th><th>理由</th></tr><tr><td>単純転送</td><td>SPF</td><td>接続元IPが転送サーバへ変化</td></tr><tr><td>MLで件名変更</td><td>DKIM</td><td>署名対象ヘッダーが変化</td></tr><tr><td>MLで本文フッター追加</td><td>DKIM</td><td>本文ハッシュが変化</td></tr><tr><td>外部一斉配信</td><td>SPF</td><td>正規送信元IPが自社以外になる</td></tr></table>
+<div class="trap2"><b>解法：</b>「どのサービスを通ったか」→「接続元IPは変わったか」→「From系ドメインは何か」→「ヘッダー/本文は加工されたか」→「SPF/DKIM alignmentは保てるか」の順で追います。</div>
+</div></details>
 <h3>関連用語</h3>
 <div class="tags"><span>SPF</span><span>DKIM</span><span>DMARC</span><span>ARC</span><span>Envelope-From</span><span>Header-From</span><span>メーリングリスト</span></div>
 
