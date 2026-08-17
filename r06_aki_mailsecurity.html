@@ -113,6 +113,14 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 .trap2{background:#fff2f2;border-left:4px solid #c94a4a;padding:10px 12px;border-radius:8px;margin:10px 0}
 .memory2{background:#eefaf3;border-left:4px solid #16845b;padding:10px 12px;border-radius:8px;margin:10px 0}
 
+
+.termboost{margin:14px 0;border:2px solid #9fb4ea;border-radius:12px;overflow:hidden;background:#fff}
+.termboost>summary{cursor:pointer;padding:13px 14px;background:linear-gradient(90deg,#e7eeff,#f7f9ff);color:#173d9b;font-weight:900}
+.termboost-body{padding:14px}.termgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.termcard{border:1px solid var(--line);border-radius:10px;padding:11px;background:#fbfcfe}.termcard b{display:block;color:#173d9b;font-size:1.03rem;margin-bottom:4px}
+.termcard .one{font-weight:800}.termcard .why{margin-top:5px;color:#344054}.termcard .exam{margin-top:6px;background:#fff7df;border-left:3px solid var(--amber);padding:6px 8px;border-radius:5px}
+@media(max-width:700px){.termgrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -258,6 +266,7 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 <details class="solution-details">
   <summary>答え・詳細解説を開く</summary>
   <div class="solution-native">
+<details class="termboost" open><summary>📚 この設問の重要語句｜意味 → 本問での役割 → 試験ポイント</summary><div class="termboost-body"><div class="termgrid"><div class="termcard"><b>SMTP</b><div class="one">メールを送信・中継するためのプロトコル。</div><div class="why"><strong>この設問で重要：</strong>現行メールサーバが社内外のメールをどの条件で中継するかを読む土台。</div><div class="exam"><strong>試験ポイント：</strong>SMTPのMAIL FROM・RCPT TOと、メールヘッダーのFrom/Toを区別する。</div></div><div class="termcard"><b>第三者中継（Open Relay）</b><div class="one">正当な利用者でない第三者の外部宛メールまで中継してしまう状態。</div><div class="why"><strong>この設問で重要：</strong>A社メールサーバを迷惑メール送信の踏み台にされないための制御が設問の核心。</div><div class="exam"><strong>試験ポイント：</strong>外部→自社宛の受信は必要だが、外部→外部の無認証リレーは拒否する。</div></div><div class="termcard"><b>SMTP Envelope</b><div class="one">SMTP配送時のMAIL FROMとRCPT TOで表される配送用情報。</div><div class="why"><strong>この設問で重要：</strong>表の送信元・宛先条件を理解する基礎。</div><div class="exam"><strong>試験ポイント：</strong>画面表示のFrom/Toとは別物。SPFでも重要。</div></div><div class="termcard"><b>MTA</b><div class="one">Mail Transfer Agent。SMTPでメールをサーバ間転送するソフトウェア。</div><div class="why"><strong>この設問で重要：</strong>メールサーバ同士の配送処理を担う。</div><div class="exam"><strong>試験ポイント：</strong>MUA（利用者のメールソフト）との違いを押さえる。</div></div></div></div></details>
 <h2>設問1｜現行メールサーバと第三者中継防止</h2>
 <div class="answer"><b>答え</b><br>(1) a：A社ドメイン名<br>(2) b：全て</div>
 <h3>問題の背景・状況</h3>
@@ -331,6 +340,7 @@ attacker@example.net → victim@example.org
 <details class="solution-details">
   <summary>答え・詳細解説を開く</summary>
   <div class="solution-native">
+<details class="termboost" open><summary>📚 この設問の重要語句｜意味 → 本問での役割 → 試験ポイント</summary><div class="termboost-body"><div class="termgrid"><div class="termcard"><b>SMTPS / TLS</b><div class="one">SMTP通信をTLSで暗号化する仕組み。</div><div class="why"><strong>この設問で重要：</strong>Uサービスとの通信を盗聴・改ざんから守る。</div><div class="exam"><strong>試験ポイント：</strong>通信路暗号化とSPF/DKIMなどの送信ドメイン認証は別目的。</div></div><div class="termcard"><b>サーバ証明書</b><div class="one">TLSで接続先サーバの正当性を検証するための証明書。</div><div class="why"><strong>この設問で重要：</strong>偽サーバへの接続を防ぐために利用する。</div><div class="exam"><strong>試験ポイント：</strong>証明書のホスト名・期限・認証局署名を検証する。</div></div><div class="termcard"><b>STARTTLS</b><div class="one">平文で開始したSMTP接続をTLSへ切り替える方式。</div><div class="why"><strong>この設問で重要：</strong>SMTPで暗号化を開始する代表的方式。</div><div class="exam"><strong>試験ポイント：</strong>暗黙TLS型SMTPSとの違いを整理する。</div></div></div></div></details>
 <h2>設問2｜UサービスとSMTPS</h2>
 <div class="answer"><b>答え：SMTPS</b></div>
 <h3>問題の背景・状況</h3>
@@ -395,6 +405,7 @@ attacker@example.net → victim@example.org
 <details class="solution-details">
   <summary>答え・詳細解説を開く</summary>
   <div class="solution-native">
+<details class="termboost" open><summary>📚 この設問の重要語句｜意味 → 本問での役割 → 試験ポイント</summary><div class="termboost-body"><div class="termgrid"><div class="termcard"><b>SPF</b><div class="one">送信元IPが、そのドメインからの送信を許可されているかDNSで検証する方式。</div><div class="why"><strong>この設問で重要：</strong>A社ドメイン詐称メールを見分ける材料になる。</div><div class="exam"><strong>試験ポイント：</strong>SPF＝送信元IP。本文改ざんは検知しない。</div></div><div class="termcard"><b>DKIM</b><div class="one">メールへ電子署名を付け、受信側がDNS公開鍵で検証する方式。</div><div class="why"><strong>この設問で重要：</strong>正当な署名鍵による送信か、署名対象が途中で改ざんされていないか確認する。</div><div class="exam"><strong>試験ポイント：</strong>DKIM＝電子署名。ヘッダーや本文の書換えで失敗し得る。</div></div><div class="termcard"><b>DMARC</b><div class="one">SPF/DKIMとHeader Fromの整合性を評価し、失敗メールの扱いをDNSで宣言する仕組み。</div><div class="why"><strong>この設問で重要：</strong>A社がなりすまし対策を監視から拒否へ段階強化する中心技術。</div><div class="exam"><strong>試験ポイント：</strong>SPF/DKIMのpassだけでなくAlignmentを見る。</div></div><div class="termcard"><b>Alignment</b><div class="one">認証されたドメインと利用者に見えるFromドメインの整合。</div><div class="why"><strong>この設問で重要：</strong>DMARC passの条件を理解する鍵。</div><div class="exam"><strong>試験ポイント：</strong>SPF AlignmentとDKIM Alignmentのどちらかが成立すればDMARCは通り得る。</div></div><div class="termcard"><b>p=none / quarantine / reject</b><div class="one">DMARC失敗メールへの代表的ポリシー。</div><div class="why"><strong>この設問で重要：</strong>導入時に影響を観察しながら段階的に強化する。</div><div class="exam"><strong>試験ポイント：</strong>none＝監視、quarantine＝隔離、reject＝拒否。</div></div><div class="termcard"><b>DMARCレポート</b><div class="one">受信側から認証結果を集計してドメイン所有者へ報告する仕組み。</div><div class="why"><strong>この設問で重要：</strong>正規メールの認証失敗や未知の送信元を把握する。</div><div class="exam"><strong>試験ポイント：</strong>強いポリシーへ移行する前の可視化に使う。</div></div></div></div></details>
 <h2>設問3｜DKIM・DMARC</h2>
 <div class="answer"><b>答え</b><br>(1) エ：z2024._domainkey.z-sha.co.jp<br>(2) イ：none</div>
 <h3>問題の背景・状況</h3>
@@ -484,6 +495,7 @@ z2024._domainkey.z-sha.co.jp</div>
 <details class="solution-details">
   <summary>答え・詳細解説を開く</summary>
   <div class="solution-native">
+<details class="termboost" open><summary>📚 この設問の重要語句｜意味 → 本問での役割 → 試験ポイント</summary><div class="termboost-body"><div class="termgrid"><div class="termcard"><b>旧ドメインの再取得</b><div class="one">期限切れ等で手放したドメインを第三者が新たに登録すること。</div><div class="why"><strong>この設問で重要：</strong>攻撃者が旧A社ドメインの信用を利用して詐欺やマルウェア配布を行える危険がある。</div><div class="exam"><strong>試験ポイント：</strong>『もう使わない＝すぐ解約』とは限らない。</div></div><div class="termcard"><b>ドメイン名のブランド悪用</b><div class="one">過去に正規組織が使っていた名前への利用者の信頼を攻撃に利用すること。</div><div class="why"><strong>この設問で重要：</strong>旧URLや旧メールアドレスを知る顧客ほど騙される可能性がある。</div><div class="exam"><strong>試験ポイント：</strong>技術設定だけでなくドメイン保持・移行告知も対策になる。</div></div><div class="termcard"><b>フィッシング</b><div class="one">正規組織を装って認証情報などを盗む攻撃。</div><div class="why"><strong>この設問で重要：</strong>旧ドメインを取得されると正規らしいURL・メールを作られやすい。</div><div class="exam"><strong>試験ポイント：</strong>見た目だけでなくドメイン所有権そのものが重要。</div></div></div></div></details>
 <h2>設問4｜旧ドメインを第三者に取られるリスク</h2>
 <div class="answer"><b>答え</b><br>(1) 修正プログラムに見せかけたマルウェアをダウンロードさせる。<br>(2) パスワード再設定メールなどを受け取り、任意のパスワードへ変更してアカウントを乗っ取る。<br>(3) ア：-all</div>
 <h3>問題の背景・状況</h3>
@@ -549,6 +561,7 @@ z2024._domainkey.z-sha.co.jp</div>
 <details class="solution-details">
   <summary>答え・詳細解説を開く</summary>
   <div class="solution-native">
+<details class="termboost" open><summary>📚 この設問の重要語句｜意味 → 本問での役割 → 試験ポイント</summary><div class="termboost-body"><div class="termgrid"><div class="termcard"><b>Envelope-From</b><div class="one">SMTPのMAIL FROMで指定される配送上の送信者。</div><div class="why"><strong>この設問で重要：</strong>SPFが評価する送信者側ドメインを理解するために重要。</div><div class="exam"><strong>試験ポイント：</strong>Header Fromと区別する。</div></div><div class="termcard"><b>Header From</b><div class="one">利用者のメール画面に通常表示されるFromヘッダー。</div><div class="why"><strong>この設問で重要：</strong>DMARCではこのドメインとSPF/DKIM側のドメインのAlignmentを確認する。</div><div class="exam"><strong>試験ポイント：</strong>SPFが直接Header Fromを検証するわけではない。</div></div><div class="termcard"><b>外部配信サービス</b><div class="one">自社以外の事業者のサーバから一斉メールなどを送るサービス。</div><div class="why"><strong>この設問で重要：</strong>実際の送信元IPが変わるためSPF設定へ正規送信元を反映する必要がある。</div><div class="exam"><strong>試験ポイント：</strong>『誰のサーバから実際に出るか』を追う。</div></div><div class="termcard"><b>メーリングリスト</b><div class="one">受信メールを複数の参加者へ再配送する仕組み。</div><div class="why"><strong>この設問で重要：</strong>転送やSubject書換えによってSPF/DKIMが失敗する場合がある。</div><div class="exam"><strong>試験ポイント：</strong>送信元IP変化→SPF、署名対象変更→DKIMという対応を覚える。</div></div><div class="termcard"><b>DKIM署名対象</b><div class="one">DKIM-Signatureのh=等で署名対象に含めたヘッダーや本文。</div><div class="why"><strong>この設問で重要：</strong>YサービスがSubject等を書き換えると署名検証失敗につながり得る。</div><div class="exam"><strong>試験ポイント：</strong>『何が変更されたか』と署名対象を照合する。</div></div><div class="termcard"><b>ARC</b><div class="one">転送などの途中で得られた認証結果を署名付きで連鎖保存する仕組み。</div><div class="why"><strong>この設問で重要：</strong>メーリングリスト・転送で認証が崩れる問題を理解する発展用語。</div><div class="exam"><strong>試験ポイント：</strong>DMARCの代替ではなく、仲介経路での認証結果を補助する。</div></div></div></div></details>
 <h2>設問5｜外部配信サービスとSPF/DKIM</h2>
 <div class="answer"><b>答え</b><br>(1) SPFレコードにTサービスのメール送信元IPアドレスを追加する。<br>(2) SPF：Yサービスが送信元なのに、SPFレコードへYサービス情報がない。<br>(2) DKIM：hタグにSubjectが含まれているのに、YサービスがSubjectを変更する。</div>
 <h3>問題の背景・状況</h3>
