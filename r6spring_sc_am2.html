@@ -1,0 +1,229 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>令和6年度 春期 SC 午前Ⅱ</title><style>
+*{box-sizing:border-box}body{margin:0;background:#07111f;color:#edf5ff;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.75}header{background:linear-gradient(135deg,#10213b,#2457d6);padding:24px 16px}main{max-width:1000px;margin:auto;padding:16px}.intro,.qcard{background:#0d1b2a;border:1px solid #294158;border-radius:15px;margin:14px 0;overflow:hidden}.intro{padding:16px}.qhead{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 14px}.qhead span{color:#61dafb;font-weight:900}.qhead h2{font-size:1rem;flex:1;margin:0}.qhead em,.qhead b{font-size:.7rem;border-radius:999px;padding:3px 7px;background:#183651}.qimg{display:block;width:100%;background:white;border-top:1px solid #294158;border-bottom:1px solid #294158}.actions{padding:10px 14px}button{background:#245f92;color:white;border:1px solid #47749a;border-radius:9px;padding:9px 12px;font-weight:800}.detail{display:none;padding:14px;border-top:1px solid #294158}.qcard.show .detail{display:block}.answer{background:#113a25;border:1px solid #2d7650;color:#caffd7;padding:10px;border-radius:9px}h3{color:#c6e4ff;font-size:.98rem;margin-bottom:4px}.pending{background:#493712;border:1px solid #8b6b27;padding:9px;border-radius:8px;margin-bottom:10px}</style></head>
+<body><header><div style="max-width:1000px;margin:auto"><div>SC KAKOMON｜午前Ⅱ</div><h1>令和6年度 春期 午前Ⅱ</h1><p>問題 → 正解 → 30秒解説 → 選択肢の切り方 → さらに深掘り。</p></div></header><main><section class="intro"><b>25問通し演習</b><p>年度別では実際の25問をそのまま演習。分類別では別年度の同一問題を1問へ統合して表示します。</p></section><article class="qcard" id="q1" data-group="SECURITY" data-cat="マルウェア・攻撃">
+<div class="qhead"><span>問1</span><h2>CSRF対策</h2><em>SECURITY</em><b>マルウェア・攻撃</b></div>
+<img class="qimg" src="assets/R6春/q1.jpg" alt="令和6年度 春期 午前Ⅱ 問1">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>CSRFは利用者の認証済み状態を悪用し、意図しない状態変更要求を送らせる。CSRFトークンやSameSite、再認証などが対策で、HTMLエスケープはXSS対策。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>CSRF対策は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q2" data-group="SECURITY" data-cat="暗号・PKI">
+<div class="qhead"><span>問2</span><h2>MAC（Message Authentication Code）</h2><em>SECURITY</em><b>暗号・PKI</b></div>
+<img class="qimg" src="assets/R6春/q2.jpg" alt="令和6年度 春期 午前Ⅱ 問2">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>MACは送信者と受信者が共有する秘密情報を用いて生成・検証し、メッセージの改ざん検知と送信元の正当性確認に使う。公開鍵で生成する電子署名とは役割と鍵管理が異なる。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>MAC（Message Authentication Code）は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q3" data-group="SECURITY" data-cat="認証・認可">
+<div class="qhead"><span>問3</span><h2>PKIのRA（Registration Authority）</h2><em>SECURITY</em><b>認証・認可</b></div>
+<img class="qimg" src="assets/R6春/q3.jpg" alt="令和6年度 春期 午前Ⅱ 問3">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>RAは証明書申請者の本人確認や申請内容の確認を担い、CAによる証明書発行を支援する。証明書そのものへの署名・発行はCAの役割。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>PKIのRA（Registration Authority）は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q4" data-group="SECURITY" data-cat="認証・認可">
+<div class="qhead"><span>問4</span><h2>SAML</h2><em>SECURITY</em><b>認証・認可</b></div>
+<img class="qimg" src="assets/R6春/q4.jpg" alt="令和6年度 春期 午前Ⅱ 問4">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>SAMLはIdPで行った認証結果をAssertionとしてSPへ連携するフェデレーション認証の標準。『一度の認証で複数Webサービスへ』というSSO文脈で頻出。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>SAMLは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q5" data-group="SECURITY" data-cat="マルウェア・攻撃">
+<div class="qhead"><span>問5</span><h2>SYN/ACK観測とサービス妨害攻撃</h2><em>SECURITY</em><b>マルウェア・攻撃</b></div>
+<img class="qimg" src="assets/R6春/q5.jpg" alt="令和6年度 春期 午前Ⅱ 問5">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>未使用IP空間宛てのSYN/ACK大量観測は、送信元IP詐称を使うSYN系DoSのバック散乱（backscatter）を推定する材料になる。誰が攻撃元/攻撃先かをパケット方向から読む。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>SYN/ACK観測とサービス妨害攻撃は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q6" data-group="SECURITY" data-cat="暗号・PKI">
+<div class="qhead"><span>問6</span><h2>CRL</h2><em>SECURITY</em><b>暗号・PKI</b></div>
+<img class="qimg" src="assets/R6春/q6.jpg" alt="令和6年度 春期 午前Ⅱ 問6">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>CRLの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>CRLは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q7" data-group="SECURITY" data-cat="セキュリティ管理・標準">
+<div class="qhead"><span>問7</span><h2>ISMAP-LIU</h2><em>SECURITY</em><b>セキュリティ管理・標準</b></div>
+<img class="qimg" src="assets/R6春/q7.jpg" alt="令和6年度 春期 午前Ⅱ 問7">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ウ</strong></div>
+<h3>⚡ 30秒解説</h3><p>ISMAP-LIUの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>ISMAP-LIUは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q8" data-group="SECURITY" data-cat="セキュリティ管理・標準">
+<div class="qhead"><span>問8</span><h2>Open CSIRT Foundation成熟度モデル</h2><em>SECURITY</em><b>セキュリティ管理・標準</b></div>
+<img class="qimg" src="assets/R6春/q8.jpg" alt="令和6年度 春期 午前Ⅱ 問8">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>Open CSIRT Foundation成熟度モデルの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>Open CSIRT Foundation成熟度モデルは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q9" data-group="SECURITY" data-cat="セキュリティ管理・標準">
+<div class="qhead"><span>問9</span><h2>CWE</h2><em>SECURITY</em><b>セキュリティ管理・標準</b></div>
+<img class="qimg" src="assets/R6春/q9.jpg" alt="令和6年度 春期 午前Ⅱ 問9">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>CWEの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>CWEは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q10" data-group="SECURITY" data-cat="暗号・PKI">
+<div class="qhead"><span>問10</span><h2>FIPS PUB 140-3</h2><em>SECURITY</em><b>暗号・PKI</b></div>
+<img class="qimg" src="assets/R6春/q10.jpg" alt="令和6年度 春期 午前Ⅱ 問10">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>FIPS PUB 140-3の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>FIPS PUB 140-3は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q11" data-group="SECURITY" data-cat="サーバセキュリティ">
+<div class="qhead"><span>問11</span><h2>CASB</h2><em>SECURITY</em><b>サーバセキュリティ</b></div>
+<img class="qimg" src="assets/R6春/q11.jpg" alt="令和6年度 春期 午前Ⅱ 問11">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>イ</strong></div>
+<h3>⚡ 30秒解説</h3><p>CASBは利用者とクラウドサービスの間で可視化・制御・脅威防御・コンプライアンス支援を行う。DDoS専用防御や物理侵入防止とは役割が違う。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>CASBは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q12" data-group="SECURITY" data-cat="ネットワークセキュリティ">
+<div class="qhead"><span>問12</span><h2>Enhanced Open</h2><em>SECURITY</em><b>ネットワークセキュリティ</b></div>
+<img class="qimg" src="assets/R6春/q12.jpg" alt="令和6年度 春期 午前Ⅱ 問12">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>Enhanced Openの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>Enhanced Openは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q13" data-group="SECURITY" data-cat="サーバセキュリティ">
+<div class="qhead"><span>問13</span><h2>HSTS</h2><em>SECURITY</em><b>サーバセキュリティ</b></div>
+<img class="qimg" src="assets/R6春/q13.jpg" alt="令和6年度 春期 午前Ⅱ 問13">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>ブラウザに一定期間HTTPSのみを使わせ、HTTPへのダウングレードやSSL Strippingを防ぐ。証明書エラーを無視させる仕組みではない。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>HSTSは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q14" data-group="SECURITY" data-cat="認証・認可">
+<div class="qhead"><span>問14</span><h2>IEEE 802.1X Supplicant</h2><em>SECURITY</em><b>認証・認可</b></div>
+<img class="qimg" src="assets/R6春/q14.jpg" alt="令和6年度 春期 午前Ⅱ 問14">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>802.1Xでネットワーク接続を要求する端末側ソフトウェア/機能。AuthenticatorはAP/スイッチ、Authentication ServerはRADIUSサーバ。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>IEEE 802.1X Supplicantは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q15" data-group="SECURITY" data-cat="暗号・PKI">
+<div class="qhead"><span>問15</span><h2>CAAレコード</h2><em>SECURITY</em><b>暗号・PKI</b></div>
+<img class="qimg" src="assets/R6春/q15.jpg" alt="令和6年度 春期 午前Ⅱ 問15">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>CAAレコードの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>CAAレコードは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q16" data-group="SECURITY" data-cat="メールセキュリティ">
+<div class="qhead"><span>問16</span><h2>電子メール暗号化の公開鍵単位</h2><em>SECURITY</em><b>メールセキュリティ</b></div>
+<img class="qimg" src="assets/R6春/q16.jpg" alt="令和6年度 春期 午前Ⅱ 問16">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>電子メール暗号化の公開鍵単位の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>電子メール暗号化の公開鍵単位は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q17" data-group="SECURITY" data-cat="サーバセキュリティ">
+<div class="qhead"><span>問17</span><h2>SBOM</h2><em>SECURITY</em><b>サーバセキュリティ</b></div>
+<img class="qimg" src="assets/R6春/q17.jpg" alt="令和6年度 春期 午前Ⅱ 問17">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ウ</strong></div>
+<h3>⚡ 30秒解説</h3><p>ソフトウェアを構成するライブラリ・コンポーネント一覧。脆弱性影響調査やサプライチェーン管理の基礎になる。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>SBOMは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q18" data-group="GENERAL IT" data-cat="ネットワーク">
+<div class="qhead"><span>問18</span><h2>TCPヘッダ</h2><em>GENERAL IT</em><b>ネットワーク</b></div>
+<img class="qimg" src="assets/R6春/q18.jpg" alt="令和6年度 春期 午前Ⅱ 問18">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>TCPヘッダの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>TCPヘッダは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q19" data-group="GENERAL IT" data-cat="ネットワーク">
+<div class="qhead"><span>問19</span><h2>TCP 587 Submission</h2><em>GENERAL IT</em><b>ネットワーク</b></div>
+<img class="qimg" src="assets/R6春/q19.jpg" alt="令和6年度 春期 午前Ⅱ 問19">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>TCP 587 Submissionの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>TCP 587 Submissionは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q20" data-group="GENERAL IT" data-cat="ネットワーク">
+<div class="qhead"><span>問20</span><h2>Cache-Control</h2><em>GENERAL IT</em><b>ネットワーク</b></div>
+<img class="qimg" src="assets/R6春/q20.jpg" alt="令和6年度 春期 午前Ⅱ 問20">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>イ</strong></div>
+<h3>⚡ 30秒解説</h3><p>Cache-Controlの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>Cache-Controlは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q21" data-group="GENERAL IT" data-cat="データベース">
+<div class="qhead"><span>問21</span><h2>SQL条件式</h2><em>GENERAL IT</em><b>データベース</b></div>
+<img class="qimg" src="assets/R6春/q21.jpg" alt="令和6年度 春期 午前Ⅱ 問21">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>SQL条件式の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>SQL条件式は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q22" data-group="GENERAL IT" data-cat="開発・設計">
+<div class="qhead"><span>問22</span><h2>技術シミュレーション</h2><em>GENERAL IT</em><b>開発・設計</b></div>
+<img class="qimg" src="assets/R6春/q22.jpg" alt="令和6年度 春期 午前Ⅱ 問22">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ア</strong></div>
+<h3>⚡ 30秒解説</h3><p>技術シミュレーションの定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>技術シミュレーションは午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q23" data-group="GENERAL IT" data-cat="開発・設計">
+<div class="qhead"><span>問23</span><h2>形式手法</h2><em>GENERAL IT</em><b>開発・設計</b></div>
+<img class="qimg" src="assets/R6春/q23.jpg" alt="令和6年度 春期 午前Ⅱ 問23">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>エ</strong></div>
+<h3>⚡ 30秒解説</h3><p>形式手法の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>形式手法は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q24" data-group="GENERAL IT" data-cat="サービス管理・内部統制">
+<div class="qhead"><span>問24</span><h2>従量課金</h2><em>GENERAL IT</em><b>サービス管理・内部統制</b></div>
+<img class="qimg" src="assets/R6春/q24.jpg" alt="令和6年度 春期 午前Ⅱ 問24">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ウ</strong></div>
+<h3>⚡ 30秒解説</h3><p>従量課金の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>従量課金は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article><article class="qcard" id="q25" data-group="GENERAL IT" data-cat="サービス管理・内部統制">
+<div class="qhead"><span>問25</span><h2>IT全般統制</h2><em>GENERAL IT</em><b>サービス管理・内部統制</b></div>
+<img class="qimg" src="assets/R6春/q25.jpg" alt="令和6年度 春期 午前Ⅱ 問25">
+<div class="actions"><button onclick="this.closest('.qcard').classList.toggle('show')">答え・解説を見る</button></div>
+<div class="detail"><div class="answer">✅ 正解：<strong>ウ</strong></div>
+<h3>⚡ 30秒解説</h3><p>IT全般統制の定義・役割・似た用語との違いを問う問題。正解だけでなく、各選択肢がどの技術の説明なのかを切り分けることが重要。</p>
+<h3>🔍 選択肢を切る視点</h3><p>正解の用語だけを暗記せず、各選択肢が説明している技術を「目的」「主体」「鍵・資格情報」「通信レイヤ」「防げること」で比較します。</p>
+<h3>🔬 さらに深掘り</h3><p>IT全般統制は午後問題にもつながる基礎知識です。定義だけでなく、実際の通信や運用でどこに置かれ、誰が何を検証するのかまでイメージすると定着します。</p>
+<h3>🧠 本番での見抜き方</h3><p>問題文の固有語を2～3個拾い、その語が示す役割に一致する選択肢を優先します。似た選択肢が残ったら、処理する層・鍵の種類・通信方向で切り分けます。</p>
+</div></article></main></body></html>
