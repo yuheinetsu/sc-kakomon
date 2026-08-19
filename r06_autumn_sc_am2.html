@@ -1,1000 +1,214 @@
-<!DOCTYPE html>
-
-<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>令和6年度秋期 SC 午前Ⅱ｜大分類対応・超深掘り</title>
-<style>
-*{box-sizing:border-box}:root{--bg:#07111e;--panel:#0e1c2b;--line:#294158;--text:#edf5ff;--muted:#a9bfd5;--blue:#62dafb;--green:#82eda0;--red:#ff9b9b;--gold:#ffd27d}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.72}
-header{background:linear-gradient(135deg,#0c2035,#143b62);padding:25px 16px}.wrap{max-width:1050px;margin:auto}h1{font-size:clamp(1.45rem,4vw,2.45rem);margin:4px 0}.subtitle{color:#d0e4f6}
-.sticky{position:sticky;top:0;z-index:10;background:#07111ef4;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.toolbar{max-width:1050px;margin:auto;padding:9px 12px}.row{display:flex;gap:8px;overflow:auto}#search{width:100%;background:#10253b;color:white;border:1px solid #34516d;border-radius:10px;padding:11px;margin-bottom:8px}
-.filter{white-space:nowrap;border:1px solid #34516d;background:#10253b;color:white;padding:7px 10px;border-radius:999px}.filter.active{background:#28639b}
-main{max-width:1050px;margin:auto;padding:16px}.intro{background:#0d1d2d;border:1px solid var(--line);border-radius:15px;padding:16px}.progress{display:flex;gap:8px;align-items:center;margin-top:10px}.bar{height:8px;background:#142a40;border-radius:99px;flex:1;overflow:hidden}.fill{height:100%;width:0;background:var(--green)}
-.qcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;margin:15px 0;overflow:hidden}.qtop{padding:15px 16px 8px}.qtop h2{font-size:1.1rem;margin:5px 0}.qnum{color:var(--blue);font-weight:900;margin-right:8px}.cat{background:#15334e;color:#c9e6ff;border-radius:999px;padding:3px 8px;font-size:.76rem}
-.problemtext{margin:0 16px 12px;padding:14px;background:#091624;border:1px solid #263d54;border-radius:11px}.problemtext .label{color:var(--gold);font-weight:900}.problemtext p{margin:6px 0;font-weight:650}
-.choices{display:grid;gap:8px;padding:0 16px}.choice{display:flex;gap:10px;align-items:flex-start;border:1px solid #2c465f;background:#102236;border-radius:10px;padding:10px;cursor:pointer}.choice:has(input:checked){outline:2px solid var(--blue);background:#12304b}.letter{font-weight:900;color:var(--blue);min-width:18px}
-.qactions{display:flex;gap:8px;padding:12px 16px 16px}button{cursor:pointer}.reveal,.reset{border:1px solid #3c617f;border-radius:9px;padding:9px 12px;color:white}.reveal{background:#245f92;font-weight:800}.reset{background:#13283b}
-.explain{display:none;border-top:1px solid var(--line);padding:16px}.explain.open{display:block}.answerbox{background:#113a25;border:1px solid #2d7650;color:#caffd7;padding:11px;border-radius:10px}h3{font-size:1rem;color:#c6e4ff;margin:18px 0 7px}
-.whygrid{display:grid;gap:8px}.whyrow{border:1px solid #435162;background:#121f2c;border-radius:10px;padding:10px}.whyrow.correct{border-color:#3c8e5b;background:#10291b}.whyhead{display:flex;gap:8px;align-items:center}.whyhead span{font-weight:900;color:var(--blue)}.whyrow:not(.correct) .whyhead b{color:var(--red)}.whyrow.correct .whyhead b{color:var(--green)}.whyrow p{margin:5px 0}
-.deep{border:1px solid #355a79;border-radius:10px;margin-top:13px}.deep summary{padding:10px 12px;background:#102c46;color:#bfe1ff;font-weight:900;cursor:pointer}.deep ul{padding:4px 28px 10px}.exam{margin-top:12px;background:#2b2512;border-left:4px solid #d5a536;padding:10px;border-radius:8px}.exam p{margin:4px 0}
-textarea{width:100%;min-height:90px;background:#091624;color:white;border:1px solid #34516d;border-radius:9px;padding:9px;margin-top:12px;font:inherit}
-.result-correct{outline:2px solid var(--green)!important}.result-wrong{outline:2px solid #ef6d6d!important}footer{text-align:center;color:var(--muted);padding:28px}
-@media(max-width:650px){.qactions{flex-direction:column}}
-
-.groupfilters{margin-bottom:8px}
-.groupfilter{white-space:nowrap;border:1px solid #34516d;background:#10253b;color:white;padding:8px 13px;border-radius:9px;font-weight:900}
-.groupfilter.active[data-group="SECURITY"]{background:#7d2638;border-color:#e7657d}
-.groupfilter.active[data-group="GENERAL IT"]{background:#315b84;border-color:#6ca8df}
-.groupfilter.active[data-group="all"]{background:#28639b}
-.groupbadge{display:inline-block;border-radius:6px;padding:2px 7px;font-size:.68rem;font-weight:950;letter-spacing:.04em;margin-right:7px;vertical-align:middle}
-.groupbadge.security{background:#572130;color:#ffc6d1;border:1px solid #a9475d}
-.groupbadge.general{background:#183a59;color:#c7e7ff;border:1px solid #3978a8}
-.classnote{margin-top:13px;padding:11px;background:#091624;border:1px solid #294158;border-radius:10px;color:#cbdced}
-.catfilters{padding-bottom:2px}
-
-.superdeep{border-color:#66558f}
-.superdeep summary{background:#292046;color:#e0d5ff}
-.superdeep li{margin:8px 0}
-
-.category-study-banner{
-  margin:14px 0;padding:16px;border:1px solid #3d6283;border-radius:14px;
-  background:linear-gradient(135deg,#0d2439,#153a58);display:flex;gap:14px;
-  align-items:center;justify-content:space-between
-}
-.category-study-banner h2{margin:3px 0 4px;font-size:1.25rem}
-.category-study-banner p{margin:0;color:#c8dced}
-.study-kicker{display:inline-block;color:#8ce8ff;font-size:.78rem;font-weight:900;letter-spacing:.04em}
-#showAllBtn{white-space:nowrap;background:#173552;color:#fff;border:1px solid #5f82a0;border-radius:9px;padding:9px 12px}
-.category-summary{
-  margin:10px 0 18px;padding:14px;background:#0a1827;border:1px solid #294158;border-radius:12px
-}
-.category-summary b{color:#bfe1ff}
-@media(max-width:650px){.category-study-banner{align-items:flex-start;flex-direction:column}}
-
-.yearfilters{margin-top:8px}
-.yearfilter{white-space:nowrap;border:1px solid #34516d;background:#10253b;color:#fff;padding:7px 10px;border-radius:999px;font-weight:800}
-.yearfilter.active{background:#51418a;border-color:#7664bc}
-</style></head><body>
-<header><div class="wrap"><div>SC KAKOMON｜午前Ⅱ</div><h1>令和6年度 秋期 午前Ⅱ<br/>問題文内蔵・超深掘り版</h1><p class="subtitle">PDFを開かず、このページだけで問題 → 選択 → 全選択肢解説 → 深掘りまで完結。</p></div></header>
-<div class="sticky"><div class="toolbar"><input id="search" placeholder="問題・用語を検索：Passkey / WAF / OAuth / IPsec ..." type="search"/><div class="row groupfilters"><button class="groupfilter active" data-group="all">すべて</button><button class="groupfilter" data-group="SECURITY">SECURITY</button><button class="groupfilter" data-group="GENERAL IT">GENERAL IT</button></div><div class="row catfilters"><button class="filter active" data-cat="all">全分類</button><button class="filter" data-cat="認証・認可">認証・認可</button><button class="filter" data-cat="暗号・PKI">暗号・PKI</button><button class="filter" data-cat="ネットワークセキュリティ">ネットワークセキュリティ</button><button class="filter" data-cat="サーバセキュリティ">サーバセキュリティ</button><button class="filter" data-cat="メールセキュリティ">メールセキュリティ</button><button class="filter" data-cat="マルウェア・攻撃">マルウェア・攻撃</button><button class="filter" data-cat="SOC・インシデント対応">SOC・インシデント対応</button><button class="filter" data-cat="ネットワーク">ネットワーク</button><button class="filter" data-cat="データベース">データベース</button><button class="filter" data-cat="開発・設計">開発・設計</button><button class="filter" data-cat="サービス管理・内部統制">サービス管理・内部統制</button></div>
-<div class="row yearfilters" id="yearFilters">
-<button class="yearfilter active" data-year="all">全年度</button>
-<button class="yearfilter" data-year="R6秋">R6秋</button>
-</div>
-</div></div>
-<main>
-<section class="intro"><b>使い方</b><p>まずア〜エを選んでから「答え・解説を見る」。正解だけでなく、<b>他の3選択肢が何の技術なのか</b>まで回収するのが午前Ⅱの狙い。</p><div class="progress"><span id="pc">0 / 25 解説済み</span><div class="bar"><div class="fill" id="fill"></div></div></div><div class="classnote"><b>分類ルール：</b> <span class="groupbadge security">SECURITY</span> はセキュリティ本体、<span class="groupbadge general">GENERAL IT</span> はSC午前Ⅱで出題される周辺IT分野。<b>問18〜25は GENERAL IT</b> として明示しています。「ネットワークセキュリティ」と「ネットワーク」は別分類です。</div></section>
-<div class="category-study-banner" id="categoryStudyBanner" style="display:none">
-<div>
-<span class="study-kicker">分類別・連続演習モード</span>
-<h2 id="categoryStudyTitle">分類別演習</h2>
-<p id="categoryStudyDesc">この分類に属する問題だけを上から順に連続して解けます。indexへ戻る必要はありません。</p>
-</div>
-<button id="showAllBtn" type="button">25問すべてに戻す</button>
-</div>
-<div class="category-summary" id="categorySummary" style="display:none"></div><article class="qcard" data-cat="認証・認可" data-group="SECURITY" data-search="RADIUS / Diameter とAAA RADIUS や Diameter が提供する AAA フレームワークの構成要素は，認証（Authentication），認可（Authorization）と，もう一つはどれか。 認証・認可" data-year="R6秋" id="q1">
-<div class="qtop">
-<div><span class="qnum">問1</span><span class="groupbadge security">SECURITY</span><span class="cat">認証・認可</span></div>
-<h2>RADIUS / Diameter とAAA</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>RADIUS や Diameter が提供する AAA フレームワークの構成要素は，認証（Authentication），認可（Authorization）と，もう一つはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q1" type="radio" value="ア"/>
-<span class="letter">ア</span><span>Accounting</span></label><label class="choice" data-choice="イ"><input name="q1" type="radio" value="イ"/>
-<span class="letter">イ</span><span>Activation</span></label><label class="choice" data-choice="ウ"><input name="q1" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>Audit</span></label><label class="choice" data-choice="エ"><input name="q1" type="radio" value="エ"/>
-<span class="letter">エ</span><span>Augmented Reality</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(1,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(1)">選択をクリア</button>
-</div>
-<section class="explain" id="ex1">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>Accounting</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。Accounting は，利用開始・終了時刻，接続時間，通信量などの利用実績を記録する機能。AAAの3番目のA。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。Accounting は，利用開始・終了時刻，接続時間，通信量などの利用実績を記録する機能。AAAの3番目のA。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>Activation はAAAの構成要素ではない。『有効化』という一般語であり，RADIUS/DiameterのAAAを構成する用語ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>Audit（監査）はセキュリティ上重要だが，AAAの正式な三要素には含まれない。Accountingで残した利用記録は監査にも利用できる。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>Augmented Reality（拡張現実）は認証基盤とは無関係。頭文字Aを合わせたひっかけ。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Authentication＝誰かを確認</li><li>Authorization＝何を許可するか</li><li>Accounting＝誰がいつ何をどれだけ利用したかを記録</li><li>RADIUSはネットワークアクセス認証で広く利用。DiameterはRADIUSの後継的なAAAプロトコル。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>AAAを実際のネットワーク接続に当てはめると、①ID/パスワードや証明書で本人確認、②接続を許可するVLANや利用可能サービスを決定、③接続時間・通信量などを記録、という流れになる。</li><li>RADIUSではAccess-Request / Access-Accept / Access-Rejectなどのメッセージで認証・認可を行い、Accounting-Requestなどで利用記録を扱う。</li><li>試験ではAuthenticationとAuthorizationを逆にしない。Authenticationは『あなたは誰？』、Authorizationは『あなたに何をさせてよい？』。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>AAAは『本人確認 → 権限決定 → 利用記録』の順で覚える。</p></div>
-<textarea data-note="q1" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="Adversarial Examples AI による画像認識において，認識させる画像の中に人間には知覚できないノイズや微小な変化を含めることによって，AI アルゴリズムの特性を悪用し，誤認識させる攻撃はどれか。 AIセキュリティ" data-year="R6秋" id="q2">
-<div class="qtop">
-<div><span class="qnum">問2</span><span class="groupbadge security">SECURITY</span><span class="cat">マルウェア・攻撃</span></div>
-<h2>Adversarial Examples</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>AI による画像認識において，認識させる画像の中に人間には知覚できないノイズや微小な変化を含めることによって，AI アルゴリズムの特性を悪用し，誤認識させる攻撃はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q2" type="radio" value="ア"/>
-<span class="letter">ア</span><span>Adaptively Chosen Message 攻撃</span></label><label class="choice" data-choice="イ"><input name="q2" type="radio" value="イ"/>
-<span class="letter">イ</span><span>Adversarial Examples 攻撃</span></label><label class="choice" data-choice="ウ"><input name="q2" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>Distributed Reflection Denial of Service 攻撃</span></label><label class="choice" data-choice="エ"><input name="q2" type="radio" value="エ"/>
-<span class="letter">エ</span><span>Model Inversion 攻撃</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(2,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(2)">選択をクリア</button>
-</div>
-<section class="explain" id="ex2">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>Adversarial Examples 攻撃</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。Adversarial Examples は，入力へ人間には分かりにくい摂動を加え，モデルを意図した誤分類へ誘導する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。選択メッセージ攻撃は主に暗号・署名方式に対する攻撃モデルの用語で，画像へ微小摂動を加えてAIを誤分類させる説明ではない。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。Adversarial Examples は，入力へ人間には分かりにくい摂動を加え，モデルを意図した誤分類へ誘導する。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。DRDoSは第三者サーバを反射板として大量通信を被害者へ集中させる可用性攻撃で，AI推論とは無関係。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。Model Inversion はモデルの出力などから学習データや属性を推定する攻撃。入力画像を細工して誤分類させる攻撃ではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>推論時の入力を細工＝Adversarial Example</li><li>学習データを汚染＝Data Poisoning</li><li>モデルの情報を盗む＝Model Extraction</li><li>学習データの特徴を推定＝Model Inversion</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>Adversarial Exampleはモデルそのものを書き換える攻撃ではなく、主に推論時の『入力』を細工する攻撃。画像だけでなく音声やテキストでも考えられる。</li><li>Data Poisoningは学習段階、Adversarial Exampleは推論段階、Model Inversionはモデルから学習データの特徴を推定する攻撃、と攻撃する段階で整理すると混同しにくい。</li><li>対策には敵対的サンプルを学習へ混ぜるAdversarial Trainingなどがあるが、未知の摂動を完全に防げるとは限らない。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『人間には気付かない微小な変化』『誤分類』が出たらAdversarial Example。</p></div>
-<textarea data-note="q2" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="SOC・インシデント対応" data-group="SECURITY" data-search="MITRE ATT&amp;CK 様々なサイバー攻撃手法を分類したナレッジベースはどれか。 脅威インテリジェンス" data-year="R6秋" id="q3">
-<div class="qtop">
-<div><span class="qnum">問3</span><span class="groupbadge security">SECURITY</span><span class="cat">SOC・インシデント対応</span></div>
-<h2>MITRE ATT&amp;CK</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>様々なサイバー攻撃手法を分類したナレッジベースはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q3" type="radio" value="ア"/>
-<span class="letter">ア</span><span>CVSS</span></label><label class="choice" data-choice="イ"><input name="q3" type="radio" value="イ"/>
-<span class="letter">イ</span><span>MITRE ATT&amp;CK</span></label><label class="choice" data-choice="ウ"><input name="q3" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>STIX/TAXII</span></label><label class="choice" data-choice="エ"><input name="q3" type="radio" value="エ"/>
-<span class="letter">エ</span><span>サイバーキルチェーン</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(3,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(3)">選択をクリア</button>
-</div>
-<section class="explain" id="ex3">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>MITRE ATT&amp;CK</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。MITRE ATT&amp;CKは，実際に観測された攻撃者の戦術（Tactics）・技法（Techniques）等を体系化した知識ベース。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。CVSSは脆弱性の深刻度を評価するスコアリング方式。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。MITRE ATT&amp;CKは，実際に観測された攻撃者の戦術（Tactics）・技法（Techniques）等を体系化した知識ベース。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。STIXは脅威情報を構造化して表現する形式，TAXIIはその情報を交換するためのプロトコル。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。サイバーキルチェーンは攻撃活動を偵察・武器化・配送などの段階で捉えるモデルで，ATT&amp;CKのような技法カタログではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Tactic＝攻撃者の目的</li><li>Technique＝目的を達成する手法</li><li>Sub-technique＝Techniqueをさらに細分化</li><li>Detection/mitigationの検討にもATT&amp;CKマッピングが使われる。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>ATT&amp;CKは攻撃を単なる製品名やマルウェア名ではなく『攻撃者が何を達成したいか（Tactic）』『どう実現したか（Technique）』で整理できるのが強み。</li><li>SOCでは検知ルールをATT&amp;CKへマッピングすると、どの攻撃技法を検知できていて、どこが監視の穴なのかを可視化しやすい。</li><li>STIX/TAXIIは脅威情報の表現・交換、CVSSは脆弱性深刻度、ATT&amp;CKは攻撃者行動の知識ベース。この役割分担は頻出。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『攻撃手法を体系化したナレッジベース』はATT&amp;CK。『交換』ならSTIX/TAXII。</p></div>
-<textarea data-note="q3" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="NTPリフレクション攻撃 NTP リフレクション攻撃の特徴はどれか。 ネットワーク攻撃" data-year="R6秋" id="q4">
-<div class="qtop">
-<div><span class="qnum">問4</span><span class="groupbadge security">SECURITY</span><span class="cat">マルウェア・攻撃</span></div>
-<h2>NTPリフレクション攻撃</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>NTP リフレクション攻撃の特徴はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q4" type="radio" value="ア"/>
-<span class="letter">ア</span><span>攻撃対象である NTP サーバに高頻度で時刻を問い合わせる。</span></label><label class="choice" data-choice="イ"><input name="q4" type="radio" value="イ"/>
-<span class="letter">イ</span><span>攻撃対象である NTP サーバの時刻情報を書き換える。</span></label><label class="choice" data-choice="ウ"><input name="q4" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>送信元を偽って，NTP サーバに echo request を送信する。</span></label><label class="choice" data-choice="エ"><input name="q4" type="radio" value="エ"/>
-<span class="letter">エ</span><span>送信元を偽って，NTP サーバにレスポンスデータが大きくなるリクエストを送信する。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(4,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(4)">選択をクリア</button>
-</div>
-<section class="explain" id="ex4">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>送信元を偽って，NTP サーバにレスポンスデータが大きくなるリクエストを送信する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。被害者IPを送信元に詐称し，小さな要求に対して大きな応答を返すNTPサーバを利用すると，反射＋増幅が成立する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。単純な大量問い合わせならDoSにはなり得るが，『リフレクション』の本質である送信元IP詐称と反射がない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。時刻情報の改ざんではなく，NTPサーバを反射・増幅器としてDDoSに悪用する攻撃。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。echo request はICMPの用語で，NTPの要求ではない。Smurf攻撃との混同を狙った選択肢。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。被害者IPを送信元に詐称し，小さな要求に対して大きな応答を返すNTPサーバを利用すると，反射＋増幅が成立する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Reflection＝応答先を被害者にする</li><li>Amplification＝要求より応答を大きくする</li><li>UDPは送信元IPを詐称した反射型攻撃に悪用されやすい</li><li>DNS/NTP/CLDAP/Memcachedなども反射増幅の文脈で出る。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>反射型攻撃では攻撃者が被害者のIPアドレスを送信元に偽装する。NTPサーバは要求を被害者から来たものと思い、応答を被害者へ返す。</li><li>さらに要求サイズより応答サイズが大きければAmplification（増幅）が成立する。攻撃者自身の送信量以上のトラフィックを被害者へ集中させられる。</li><li>『Reflection』は宛先を反射させる仕組み、『Amplification』は通信量を増やす仕組み。両者は同じ意味ではない。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『送信元偽装』『第三者サーバ』『大きいレスポンス』の3点で反射増幅型DDoS。</p></div>
-<textarea data-note="q4" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="暗号・PKI" data-group="SECURITY" data-search="PQC PQC（Post-Quantum Cryptography）はどれか。 暗号" data-year="R6秋" id="q5">
-<div class="qtop">
-<div><span class="qnum">問5</span><span class="groupbadge security">SECURITY</span><span class="cat">暗号・PKI</span></div>
-<h2>PQC</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>PQC（Post-Quantum Cryptography）はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q5" type="radio" value="ア"/>
-<span class="letter">ア</span><span>量子アニーリングマシンを用いて，回路サイズ，消費電力，処理速度を飛躍的に向上させた実装性能をもつ暗号方式</span></label><label class="choice" data-choice="イ"><input name="q5" type="radio" value="イ"/>
-<span class="letter">イ</span><span>量子コンピュータを用いて効率的に素因数分解を行うアルゴリズムによって，暗号を解読する技術</span></label><label class="choice" data-choice="ウ"><input name="q5" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>量子コンピュータを用いても解読が困難であり，安全性を保つことができる暗号方式</span></label><label class="choice" data-choice="エ"><input name="q5" type="radio" value="エ"/>
-<span class="letter">エ</span><span>量子通信路を用いた鍵配送システムを利用し，大容量のデータを高速に送受信する技術</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(5,'ウ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(5)">選択をクリア</button>
-</div>
-<section class="explain" id="ex5">
-<div class="answerbox">✅ 正解：<strong>ウ</strong>　<span>量子コンピュータを用いても解読が困難であり，安全性を保つことができる暗号方式</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。将来の大規模量子計算機に対しても安全性を維持することを目指す暗号方式。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。PQCは量子アニーリングマシンで高速化する暗号方式という意味ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。量子計算機を利用して既存暗号を破る側の説明。PQCは破られにくい暗号を設計する側。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>ウ</span><b>○ 正解</b></div>
-<p>正解。将来の大規模量子計算機に対しても安全性を維持することを目指す暗号方式。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。量子通信路を用いるのは量子鍵配送（QKD）などの量子暗号の領域で，PQCとは別。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>PQCは通常のコンピュータ上で実装可能</li><li>RSA/ECCは大規模量子計算機とShorアルゴリズムの影響を受け得る</li><li>PQCでは格子問題など量子計算でも困難と考えられる問題を利用</li><li>PQCとQKDを混同しない。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>RSAやECCの安全性に関係する数学的問題は、大規模な量子コンピュータとShorのアルゴリズムによって脅かされる可能性がある。そこで量子計算機でも解くのが難しいと考えられる問題へ移行するのがPQCの考え方。</li><li>PQCは量子コンピュータを通信装置として必要としない。既存のコンピュータやネットワーク上で利用できる暗号アルゴリズムである点がQKDとの大きな違い。</li><li>試験では『量子通信路』が出ればQKD寄り、『量子コンピュータでも解読困難』ならPQC寄りと判断する。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>PQC＝『量子コンピュータを使う』ではなく『量子コンピュータでも破りにくい』。</p></div>
-<textarea data-note="q5" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="Smurf攻撃 Smurf 攻撃はどれか。 ネットワーク攻撃" data-year="R6秋" id="q6">
-<div class="qtop">
-<div><span class="qnum">問6</span><span class="groupbadge security">SECURITY</span><span class="cat">マルウェア・攻撃</span></div>
-<h2>Smurf攻撃</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>Smurf 攻撃はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q6" type="radio" value="ア"/>
-<span class="letter">ア</span><span>ICMP エコー要求パケットの送信元 IP アドレスに攻撃対象の IP アドレスを設定し，宛先にブロードキャストアドレスを設定して送信することによって攻撃対象を利用不能にさせる。</span></label><label class="choice" data-choice="イ"><input name="q6" type="radio" value="イ"/>
-<span class="letter">イ</span><span>送信元 IP アドレスに偽の IP アドレスを設定し，かつ，攻撃対象の受信可能範囲を超える大きなパケットを送信して攻撃対象を停止させる。</span></label><label class="choice" data-choice="ウ"><input name="q6" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>送信元 IP アドレスに偽の IP アドレスを設定した大量の SYN パケットを送信し，攻撃対象からの SYN-ACK パケットに対して応答を送信しないことによって攻撃対象のリソースを枯渇させる。</span></label><label class="choice" data-choice="エ"><input name="q6" type="radio" value="エ"/>
-<span class="letter">エ</span><span>ボットネットを使って多数の端末から攻撃対象のメールサーバに大量のなりすましメールを送信し，攻撃対象のメールサーバを停止させる。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(6,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(6)">選択をクリア</button>
-</div>
-<section class="explain" id="ex6">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>ICMP エコー要求パケットの送信元 IP アドレスに攻撃対象の IP アドレスを設定し，宛先にブロードキャストアドレスを設定して送信することによって攻撃対象を利用不能にさせる。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。被害者IPを送信元にしたICMP Echo Requestをブロードキャストへ送り，多数端末からEcho Replyを被害者へ返させる。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。被害者IPを送信元にしたICMP Echo Requestをブロードキャストへ送り，多数端末からEcho Replyを被害者へ返させる。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。巨大パケットによる異常系攻撃の説明で，Smurfの特徴であるブロードキャストとICMP反射がない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。これはSYN Floodの説明。TCPの半開き接続を大量に作り資源を枯渇させる。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。メールサーバへの大量送信によるDoSであり，Smurfではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>ICMP Echo Request/Reply＝pingで利用</li><li>Directed Broadcastを悪用して多数端末を反射器にする</li><li>送信元IP詐称＋ブロードキャスト＋ICMPがキーワード</li><li>ルータでDirected Broadcastを無効化することなどが対策になる。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>Smurfではブロードキャスト宛てのEcho Requestを多数ホストが受信し、それぞれがEcho Replyを被害者へ返すため、一つの要求が多数の応答へ増幅される。</li><li>SYN Floodとの違いは、SmurfがICMPとブロードキャストを悪用する反射型なのに対し、SYN FloodはTCPの3-way handshakeで半開き接続を大量に作る点。</li><li>送信元IP詐称だけではSmurfとは言えない。ICMP Echoとブロードキャストの組合せまで確認する。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>Smurf＝『ICMP』『送信元を被害者に偽装』『ブロードキャスト』。</p></div>
-<textarea data-note="q6" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="認証・認可" data-group="SECURITY" data-search="Passkeyと生体情報 ある IdP（Identity Provider）は，パスキー（Passkey）認証をサポートしており，利用者Aは，このIdPのFIDO認証器として，自分のスマートフォンの生体認証機能を登録してある。また，WebサーバBは，このIdPを使ってログインが可能である。利用者AのWebブラウザからWebサーバBにアクセスする際，利用者Aの生体情報を受信するもの，受信しないものの組合せのうち，適切なものはどれか。 認証" data-year="R6秋" id="q7">
-<div class="qtop">
-<div><span class="qnum">問7</span><span class="groupbadge security">SECURITY</span><span class="cat">認証・認可</span></div>
-<h2>Passkeyと生体情報</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>ある IdP（Identity Provider）は，パスキー（Passkey）認証をサポートしており，利用者Aは，このIdPのFIDO認証器として，自分のスマートフォンの生体認証機能を登録してある。また，WebサーバBは，このIdPを使ってログインが可能である。利用者AのWebブラウザからWebサーバBにアクセスする際，利用者Aの生体情報を受信するもの，受信しないものの組合せのうち，適切なものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q7" type="radio" value="ア"/>
-<span class="letter">ア</span><span>Webブラウザ：受信しない ／ WebサーバB：受信しない ／ IdP：受信しない</span></label><label class="choice" data-choice="イ"><input name="q7" type="radio" value="イ"/>
-<span class="letter">イ</span><span>Webブラウザ：受信しない ／ WebサーバB：受信する ／ IdP：受信する</span></label><label class="choice" data-choice="ウ"><input name="q7" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>Webブラウザ：受信する ／ WebサーバB：受信しない ／ IdP：受信しない</span></label><label class="choice" data-choice="エ"><input name="q7" type="radio" value="エ"/>
-<span class="letter">エ</span><span>Webブラウザ：受信する ／ WebサーバB：受信する ／ IdP：受信する</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(7,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(7)">選択をクリア</button>
-</div>
-<section class="explain" id="ex7">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>Webブラウザ：受信しない ／ WebサーバB：受信しない ／ IdP：受信しない</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。指紋・顔などの生体情報そのものはスマートフォン内でローカル認証に使われ，Webブラウザ，WebサーバB，IdPへ送られない。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。指紋・顔などの生体情報そのものはスマートフォン内でローカル認証に使われ，Webブラウザ，WebサーバB，IdPへ送られない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。WebサーバやIdPが生体情報そのものを受け取る必要はない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。Webブラウザにも生体情報そのものを渡す必要はない。ブラウザはWebAuthnのAPIを通じて認証器とのやり取りを仲介する。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。FIDO/Passkeyの重要なプライバシー特性に反する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>端末内の生体認証は秘密鍵を利用可能にするためのローカル認証</li><li>サービス側には公開鍵を登録し，秘密鍵は認証器側に保持</li><li>WebAuthnではchallengeに対して認証器が署名</li><li>生体テンプレートをサービスへ集約しないため漏えいリスクを抑えられる。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>Passkey/FIDOではサービスごとに公開鍵・秘密鍵ペアを利用し、サービス側には公開鍵を登録する。認証時はサーバからのchallengeへ秘密鍵で署名する。</li><li>指紋や顔は『秘密鍵を使ってよい利用者か』を端末内で確認するために使われる。生体情報そのものをサーバへ送って照合する方式ではない。</li><li>この設計により、サーバからパスワードが漏れるタイプの被害やフィッシングへの耐性を高められる。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>Passkey問題で『生体情報をサーバへ送信する』選択肢は基本的に疑う。</p></div>
-<textarea data-note="q7" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="認証・認可" data-group="SECURITY" data-search="SSO方式 シングルサインオン（SSO）に関する記述のうち，適切なものはどれか。 認証" data-year="R6秋" id="q8">
-<div class="qtop">
-<div><span class="qnum">問8</span><span class="groupbadge security">SECURITY</span><span class="cat">認証・認可</span></div>
-<h2>SSO方式</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>シングルサインオン（SSO）に関する記述のうち，適切なものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q8" type="radio" value="ア"/>
-<span class="letter">ア</span><span>SAML方式では，URL形式の1人一つの利用者IDをIdPで自動生成することによって，インターネット上の複数のWebサイトにおけるSSOを実現する。</span></label><label class="choice" data-choice="イ"><input name="q8" type="radio" value="イ"/>
-<span class="letter">イ</span><span>エージェント方式では，クライアントPCに導入したエージェントがSSO対象システムのログイン画面を監視し，認証情報を代行入力する。</span></label><label class="choice" data-choice="ウ"><input name="q8" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>代理認証方式では，SSO対象サーバにSSOのモジュールを組み込む必要があり，システムの改修が必要となる。</span></label><label class="choice" data-choice="エ"><input name="q8" type="radio" value="エ"/>
-<span class="letter">エ</span><span>リバースプロキシ方式では，SSOを利用する全てのトラフィックがリバースプロキシサーバに集中する。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(8,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(8)">選択をクリア</button>
-</div>
-<section class="explain" id="ex8">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>リバースプロキシ方式では，SSOを利用する全てのトラフィックがリバースプロキシサーバに集中する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。リバースプロキシ方式では利用者から対象Webシステムへの通信をプロキシが中継するため，SSO利用トラフィックが集中する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。SAMLの本質はIdPが認証結果をAssertionとしてSPへ連携すること。URL形式IDの自動生成がSSOの本質ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。ログイン画面を監視してID/パスワードを代行入力する説明は代理認証方式に近い。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。対象サーバへSSOモジュールを組み込む説明はエージェント方式に近い。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。リバースプロキシ方式では利用者から対象Webシステムへの通信をプロキシが中継するため，SSO利用トラフィックが集中する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>SAML＝IdPとSPで認証結果を連携</li><li>エージェント方式＝各対象サーバに専用モジュール</li><li>代理認証方式＝既存ログイン画面へ資格情報を代理入力</li><li>リバースプロキシ方式＝通信経路上のプロキシで認証を集約</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>SAMLでは利用者がIdPで認証され、IdPが認証結果をAssertionとしてSPへ伝える。SPごとにパスワードを入力させる必要を減らせる。</li><li>リバースプロキシ方式は既存Webシステムを大きく改修せず導入しやすい一方、通信が集中するので性能・可用性・冗長化設計が重要になる。</li><li>代理認証方式は既存のID/パスワード画面へ資格情報を代行入力する発想。方式ごとに『どこで認証を肩代わりするか』を見る。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>方式名より『SSO機能がどこに置かれるか』をイメージして解く。</p></div>
-<textarea data-note="q8" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="暗号・PKI" data-group="SECURITY" data-search="量子暗号 量子暗号の特徴として，適切なものはどれか。 暗号" data-year="R6秋" id="q9">
-<div class="qtop">
-<div><span class="qnum">問9</span><span class="groupbadge security">SECURITY</span><span class="cat">暗号・PKI</span></div>
-<h2>量子暗号</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>量子暗号の特徴として，適切なものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q9" type="radio" value="ア"/>
-<span class="letter">ア</span><span>暗号化と復号の処理を，量子コンピュータを用いて行うことができるので，従来のコンピュータでの処理に比べて大量のデータの秘匿を短時間で実現できる。</span></label><label class="choice" data-choice="イ"><input name="q9" type="radio" value="イ"/>
-<span class="letter">イ</span><span>共通鍵暗号方式であり，従来の情報の取扱量の最小単位であるビットの代わりに量子ビットを用いることによって，高速なデータ送受信が実現できる。</span></label><label class="choice" data-choice="ウ"><input name="q9" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>量子雑音を用いて共通鍵を生成し，公開鍵暗号方式で共有することによって，解読が困難な秘匿通信が実現できる。</span></label><label class="choice" data-choice="エ"><input name="q9" type="radio" value="エ"/>
-<span class="letter">エ</span><span>量子通信路を用いて安全に共有した乱数列を使い捨ての暗号鍵として用いることによって，原理的に第三者に解読されない秘匿通信が実現できる。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(9,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(9)">選択をクリア</button>
-</div>
-<section class="explain" id="ex9">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>量子通信路を用いて安全に共有した乱数列を使い捨ての暗号鍵として用いることによって，原理的に第三者に解読されない秘匿通信が実現できる。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。量子通信路で鍵情報を安全に共有し，ワンタイムパッドのような使い捨て鍵と組み合わせる考え方が量子暗号の特徴。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。量子暗号の目的は単純な高速化ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。量子ビットを使って高速なデータ送受信をする共通鍵暗号という説明ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。QKDでは公開鍵暗号で共通鍵を配送することを本質としていない。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。量子通信路で鍵情報を安全に共有し，ワンタイムパッドのような使い捨て鍵と組み合わせる考え方が量子暗号の特徴。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>量子鍵配送（QKD）は盗聴を検知できる性質を利用</li><li>量子暗号とPQCは別技術</li><li>ワンタイムパッドは鍵が完全にランダム・本文と同長・再利用しないなら情報理論的安全性を持つ</li><li>実運用では鍵配送・認証・装置安全性なども考慮が必要。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>量子鍵配送では量子状態を観測すると状態へ影響する性質を利用し、盗聴の存在を検知できるという考え方が中心になる。</li><li>QKDで安全に鍵を共有できても、実際の通信システム全体が自動的に完全安全になるわけではない。端末・認証・実装など別の攻撃面は残る。</li><li>PQCとの最大の違いは、PQCが数学的困難性を利用する暗号アルゴリズムなのに対し、QKDは量子通信の物理的性質を鍵配送へ利用する点。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>量子暗号＝量子通信路を使った安全な鍵共有，PQC＝耐量子計算機暗号。</p></div>
-<textarea data-note="q9" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="メールセキュリティ" data-group="SECURITY" data-search="DMARC 電子メールの受信者側のメールサーバでの送信ドメイン認証が失敗したときの処理方針を，送信側のドメイン管理者が指定するための仕組みはどれか。 メール" data-year="R6秋" id="q10">
-<div class="qtop">
-<div><span class="qnum">問10</span><span class="groupbadge security">SECURITY</span><span class="cat">メールセキュリティ</span></div>
-<h2>DMARC</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>電子メールの受信者側のメールサーバでの送信ドメイン認証が失敗したときの処理方針を，送信側のドメイン管理者が指定するための仕組みはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q10" type="radio" value="ア"/>
-<span class="letter">ア</span><span>DKIM</span></label><label class="choice" data-choice="イ"><input name="q10" type="radio" value="イ"/>
-<span class="letter">イ</span><span>DMARC</span></label><label class="choice" data-choice="ウ"><input name="q10" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>SMTP-AUTH</span></label><label class="choice" data-choice="エ"><input name="q10" type="radio" value="エ"/>
-<span class="letter">エ</span><span>SPF</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(10,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(10)">選択をクリア</button>
-</div>
-<section class="explain" id="ex10">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>DMARC</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。DMARCはSPF/DKIM結果とFromドメインの整合性を評価し，失敗時のnone/quarantine/rejectなどの方針をDNSで公開する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。DKIMはメールに電子署名し，署名対象が改ざんされていないことや署名ドメインを検証する。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。DMARCはSPF/DKIM結果とFromドメインの整合性を評価し，失敗時のnone/quarantine/rejectなどの方針をDNSで公開する。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。SMTP-AUTHはメール投稿時に送信利用者を認証する仕組み。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。SPFは送信元IPがそのドメインからの送信を許可されているかを検証する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>SPF＝IPベース</li><li>DKIM＝署名ベース</li><li>DMARC＝SPF/DKIM＋Alignment＋Policy＋Report</li><li>DMARCのp=none/quarantine/rejectを覚える。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>SPFは『このIPからこのドメインを名乗って送ってよいか』、DKIMは『この署名ドメインによる署名が正しく本文等が改ざんされていないか』を見る。</li><li>DMARCではFromに見えるドメインとSPF/DKIMで認証されたドメインのAlignmentも重要。単にSPFかDKIMが成功すれば何でもよいわけではない。</li><li>p=noneは監視、quarantineは隔離等、rejectは拒否を受信側へ要求する方針。レポート機能もDMARC運用の重要要素。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『認証失敗時の処理方針をドメイン管理者が指定』＝DMARC。</p></div>
-<textarea data-note="q10" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="SOC・インシデント対応" data-group="SECURITY" data-search="SOAR SOAR（Security Orchestration, Automation and Response）の説明はどれか。 SOC" data-year="R6秋" id="q11">
-<div class="qtop">
-<div><span class="qnum">問11</span><span class="groupbadge security">SECURITY</span><span class="cat">SOC・インシデント対応</span></div>
-<h2>SOAR</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>SOAR（Security Orchestration, Automation and Response）の説明はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q11" type="radio" value="ア"/>
-<span class="letter">ア</span><span>脅威インテリジェンスの活用，セキュリティ運用の自動化及びインシデント対応の効率化を行う技術</span></label><label class="choice" data-choice="イ"><input name="q11" type="radio" value="イ"/>
-<span class="letter">イ</span><span>全ての利用者，デバイス，接続元を信頼できないものとして捉え，重要な情報資産やシステムに対するアクセスの正当性や安全性の検証を自動化することによって脅威を防ぐ考え方</span></label><label class="choice" data-choice="ウ"><input name="q11" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>組織間でサイバー攻撃に関する情報を効率的に交換するために，脅威情報構造化記述形式で記述された情報の交換を自動化するためのプロトコル仕様</span></label><label class="choice" data-choice="エ"><input name="q11" type="radio" value="エ"/>
-<span class="letter">エ</span><span>ファイアウォール，マルウェア対策製品，侵入検知製品など複数のセキュリティ製品のログの集約及び相関分析を自動化するための専用装置</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(11,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(11)">選択をクリア</button>
-</div>
-<section class="explain" id="ex11">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>脅威インテリジェンスの活用，セキュリティ運用の自動化及びインシデント対応の効率化を行う技術</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。SOARは製品連携（Orchestration），自動化（Automation），対応（Response）を組み合わせSOC運用を効率化する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。SOARは製品連携（Orchestration），自動化（Automation），対応（Response）を組み合わせSOC運用を効率化する。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。これはZero Trustの説明。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。脅威情報を交換するプロトコルはTAXII，構造化記述はSTIX。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。ログの集約・相関分析はSIEMの説明に近い。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>SIEM＝ログを集めて相関分析</li><li>SOAR＝アラートを受けて調査・遮断・チケット作成などを自動化</li><li>Playbook＝SOARで定型化した対応手順</li><li>EDRやFW，脅威Intelサービス等を連携可能。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>SIEMが『集める・見つける』側なら、SOARは検知後の『調べる・判断を補助する・動かす』側と捉えると分かりやすい。</li><li>例えばSIEMのアラートを起点に、脅威IntelでIPを照会→EDRで端末隔離→FWへ遮断登録→チケット作成、という一連の処理をPlaybook化できる。</li><li>自動化し過ぎると誤検知から正規通信を遮断する危険もあるため、重要処理では人の承認を途中に入れる設計もある。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『複数ツールを動かして対応を自動化』ならSOAR，『ログを集めて相関』ならSIEM。</p></div>
-<textarea data-note="q11" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="サーバセキュリティ" data-group="SECURITY" data-search="WAFのフォールスポジティブ WAF におけるフォールスポジティブに該当するものはどれか。 Web" data-year="R6秋" id="q12">
-<div class="qtop">
-<div><span class="qnum">問12</span><span class="groupbadge security">SECURITY</span><span class="cat">サーバセキュリティ</span></div>
-<h2>WAFのフォールスポジティブ</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>WAF におけるフォールスポジティブに該当するものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q12" type="radio" value="ア"/>
-<span class="letter">ア</span><span>HTMLの特殊文字“&lt;”を検出したときに通信を遮断するようにWAFを設定した場合，数式を入力するWebサイトに“&lt;”を数式の一部として含んだHTTPリクエストが送信されたとき，WAFが攻撃として検知し，遮断する。</span></label><label class="choice" data-choice="イ"><input name="q12" type="radio" value="イ"/>
-<span class="letter">イ</span><span>HTTPリクエストのうち，RFCなどに定義されておらず，Webアプリケーションソフトウェアの開発者が独自に追加したフィールドについてはWAFが検査しないという仕様を悪用して，攻撃の命令を埋め込んだHTTPリクエストが送信されたとき，WAFが遮断しない。</span></label><label class="choice" data-choice="ウ"><input name="q12" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>HTTPリクエストのパラメータ中に許可しない文字列を検出したときに通信を遮断するようにWAFを設定した場合，許可しない文字列をパラメータ中に含んだ不正なHTTPリクエストが送信されたとき，WAFが攻撃として検知し，遮断する。</span></label><label class="choice" data-choice="エ"><input name="q12" type="radio" value="エ"/>
-<span class="letter">エ</span><span>悪意のある通信を正常な通信と見せかけ，HTTPリクエストを分割して送信されたとき，WAFが遮断しない。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(12,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(12)">選択をクリア</button>
-</div>
-<section class="explain" id="ex12">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>HTMLの特殊文字“&lt;”を検出したときに通信を遮断するようにWAFを設定した場合，数式を入力するWebサイトに“&lt;”を数式の一部として含んだHTTPリクエストが送信されたとき，WAFが攻撃として検知し，遮断する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。正常な数式入力を攻撃と誤判定して遮断しているのでFalse Positive。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。正常な数式入力を攻撃と誤判定して遮断しているのでFalse Positive。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。攻撃通信を検査できず通しているのでFalse Negative。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。攻撃を正しく攻撃と判定して遮断しているのでTrue Positive。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。攻撃通信を正常と誤認して通しているのでFalse Negative。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Positive＝装置が『攻撃』と判定</li><li>Negative＝装置が『正常』と判定</li><li>True＝判定が正しい</li><li>False＝判定が誤り</li><li>可用性への影響はFalse Positive，見逃しリスクはFalse Negative。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>False Positiveは『本当は正常なのに攻撃と判定』。WAFでは正規ユーザのリクエストを止めるため、セキュリティだけでなくサービス可用性にも影響する。</li><li>False Negativeは『本当は攻撃なのに正常と判定』で、攻撃を通過させる。検知率を上げようと閾値を厳しくするとFalse Positiveが増えるなど、調整にはトレードオフがある。</li><li>WAFのルール調整では正常通信の特徴を理解し、例外設定を増やし過ぎて防御を弱めないことも重要。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>まず『実際は正常か攻撃か』，次に『WAFはどう判定したか』の2軸で解く。</p></div>
-<textarea data-note="q12" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="インライン型アノマリIPS インラインモードで動作するアノマリ型 IPS はどれか。 ネットワーク防御" data-year="R6秋" id="q13">
-<div class="qtop">
-<div><span class="qnum">問13</span><span class="groupbadge security">SECURITY</span><span class="cat">ネットワークセキュリティ</span></div>
-<h2>インライン型アノマリIPS</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>インラインモードで動作するアノマリ型 IPS はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q13" type="radio" value="ア"/>
-<span class="letter">ア</span><span>IPSが監視対象の通信経路を流れる全ての通信パケットを経路外からキャプチャできるようにスイッチのミラーポートに接続される。異常な通信を定義し，それと合致する通信を不正と判断して遮断する。</span></label><label class="choice" data-choice="イ"><input name="q13" type="radio" value="イ"/>
-<span class="letter">イ</span><span>IPSが監視対象の通信経路を流れる全ての通信パケットを経路外からキャプチャできるようにスイッチのミラーポートに接続される。通常時の通信を定義し，それから外れた通信を不正と判断して遮断する。</span></label><label class="choice" data-choice="ウ"><input name="q13" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>IPSが監視対象の通信を通過させるように通信経路上に設置される。異常な通信を定義し，それと合致する通信を不正と判断して遮断する。</span></label><label class="choice" data-choice="エ"><input name="q13" type="radio" value="エ"/>
-<span class="letter">エ</span><span>IPSが監視対象の通信を通過させるように通信経路上に設置される。通常時の通信を定義し，それから外れた通信を不正と判断して遮断する。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(13,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(13)">選択をクリア</button>
-</div>
-<section class="explain" id="ex13">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>IPSが監視対象の通信を通過させるように通信経路上に設置される。通常時の通信を定義し，それから外れた通信を不正と判断して遮断する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。通信経路上に置く＝インライン，通常時の通信から外れたものを異常とする＝アノマリ型。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。ミラーポートで経路外に置くのでインラインではない。さらに『異常な通信を定義』はシグネチャ型の説明。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。通常状態からの逸脱を見る点はアノマリ型だが，ミラーポート接続なのでインラインではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。通信経路上なのでインラインだが，既知の異常パターンと照合する説明はシグネチャ型。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。通信経路上に置く＝インライン，通常時の通信から外れたものを異常とする＝アノマリ型。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>インライン/アウトオブバンド＝設置方法</li><li>シグネチャ/アノマリ＝検知ロジック</li><li>この2軸を混ぜずに判断する</li><li>アノマリ型は未知攻撃に強い可能性がある一方，誤検知調整が課題。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>インラインIPSは通信経路上に存在するので、検知したパケットをその場で破棄できる。一方、障害時に通信経路へ影響し得るため冗長化やFail-open/Fail-closeの設計も重要。</li><li>アノマリ型は正常状態のベースラインとの差を検知するので未知攻撃にも反応できる可能性があるが、業務通信の変化を攻撃と誤認することもある。</li><li>シグネチャ型は既知パターンとの照合が得意。『配置方式』と『検知方式』は独立した軸なので4択ではまず分解する。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>①経路上か，②通常からの逸脱か。この2チェックで即決。</p></div>
-<textarea data-note="q13" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="サーバセキュリティ" data-group="SECURITY" data-search="クリックジャッキング対策 クリックジャッキング攻撃に有効な対策はどれか。 Web" data-year="R6秋" id="q14">
-<div class="qtop">
-<div><span class="qnum">問14</span><span class="groupbadge security">SECURITY</span><span class="cat">サーバセキュリティ</span></div>
-<h2>クリックジャッキング対策</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>クリックジャッキング攻撃に有効な対策はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q14" type="radio" value="ア"/>
-<span class="letter">ア</span><span>cookie に，HttpOnly 属性を設定する。</span></label><label class="choice" data-choice="イ"><input name="q14" type="radio" value="イ"/>
-<span class="letter">イ</span><span>cookie に，Secure 属性を設定する。</span></label><label class="choice" data-choice="ウ"><input name="q14" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>HTTP レスポンスヘッダーに，Strict-Transport-Security を設定する。</span></label><label class="choice" data-choice="エ"><input name="q14" type="radio" value="エ"/>
-<span class="letter">エ</span><span>HTTP レスポンスヘッダーに，X-Frame-Options を設定する。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(14,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(14)">選択をクリア</button>
-</div>
-<section class="explain" id="ex14">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>HTTP レスポンスヘッダーに，X-Frame-Options を設定する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。X-Frame-Optionsで他サイトからiframeなどに埋め込まれることを制限し，クリックジャッキングを防止する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。HttpOnlyはJavaScriptからCookieを読み取られにくくし，XSS時のCookie窃取リスクを下げる対策。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。SecureはCookieをHTTPS通信時だけ送信させる属性。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。HSTSはブラウザにHTTPS通信を強制し，HTTPへのダウングレードを防ぐ。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。X-Frame-Optionsで他サイトからiframeなどに埋め込まれることを制限し，クリックジャッキングを防止する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>X-Frame-Options: DENY / SAMEORIGIN</li><li>CSP frame-ancestorsでもフレーム埋込み元を制御可能</li><li>クリックジャッキングは透明iframe等で利用者のクリックを奪う攻撃</li><li>画面表示の制御なのでCookie属性とは直接の対策領域が違う。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>クリックジャッキングでは攻撃者サイト上に正規サイトを透明・半透明のiframe等で重ね、利用者が見えているボタンとは別の正規サイト上の操作をクリックさせる。</li><li>X-Frame-OptionsのDENYはフレーム表示を禁止、SAMEORIGINは同一オリジンからの表示を許可する。より柔軟な制御にはCSPのframe-ancestorsが使われる。</li><li>HttpOnly・Secure・SameSiteはCookieの保護、HSTSはHTTPS強制。『何を守る設定か』でHTTPヘッダを分類すると解きやすい。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>クリックジャッキング＝frame/iframeを連想 → X-Frame-OptionsまたはCSP frame-ancestors。</p></div>
-<textarea data-note="q14" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="DTLS DTLS の特徴はどれか。 暗号通信" data-year="R6秋" id="q15">
-<div class="qtop">
-<div><span class="qnum">問15</span><span class="groupbadge security">SECURITY</span><span class="cat">ネットワークセキュリティ</span></div>
-<h2>DTLS</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>DTLS の特徴はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q15" type="radio" value="ア"/>
-<span class="letter">ア</span><span>IP パケットの暗号化を可能としている。</span></label><label class="choice" data-choice="イ"><input name="q15" type="radio" value="イ"/>
-<span class="letter">イ</span><span>PPP で接続する際のチャレンジレスポンス認証機能をイーサネット上の通信に提供している。</span></label><label class="choice" data-choice="ウ"><input name="q15" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>TCP のペイロードデータの暗号強度を TLS よりも強化している。</span></label><label class="choice" data-choice="エ"><input name="q15" type="radio" value="エ"/>
-<span class="letter">エ</span><span>UDP のペイロードデータの暗号化を可能としている。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(15,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(15)">選択をクリア</button>
-</div>
-<section class="explain" id="ex15">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>UDP のペイロードデータの暗号化を可能としている。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。DTLSはUDPなどデータグラム型通信でTLSに近い暗号化・完全性・認証を提供する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。IPパケットをネットワーク層で保護する代表技術はIPsec。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。PPPの認証機能をイーサネットへ提供する説明ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。DTLSはTLSより暗号強度を強化したTCP用プロトコルではない。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。DTLSはUDPなどデータグラム型通信でTLSに近い暗号化・完全性・認証を提供する。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>DTLS＝Datagram Transport Layer Security</li><li>UDPは順序保証・再送を持たないため，DTLSはデータグラム通信の性質を考慮</li><li>WebRTCなどリアルタイム通信でも関連する</li><li>TLSとDTLSは保護対象のトランスポート特性が違う。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>TLSは信頼性のあるストリーム型のTCP上で使うことを前提とする。一方DTLSはUDPのようなデータグラム型通信でも暗号化・完全性・認証を提供できるよう設計される。</li><li>UDPではパケットの欠落・順序入替えが起こり得るため、DTLSはTLSをそのままUDPへ載せるだけではなくデータグラム特性を考慮している。</li><li>『IPを守る』ならIPsec、『TCP上の代表的な暗号通信』ならTLS、『UDP』ならDTLSという層の整理が有効。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>D＝Datagram → UDP，で覚える。</p></div>
-<textarea data-note="q15" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="認証・認可" data-group="SECURITY" data-search="OAuth 2.0 利用者Aが所有するリソースBが，WebサービスC上にある。OAuth 2.0において，利用者Aの認可の下，WebサービスDからリソースBへの限定されたアクセスを可能にするときのプロトコルの動作はどれか。ここでWebサービスCは，認可サーバを兼ねているものとする。 認可" data-year="R6秋" id="q16">
-<div class="qtop">
-<div><span class="qnum">問16</span><span class="groupbadge security">SECURITY</span><span class="cat">認証・認可</span></div>
-<h2>OAuth 2.0</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>利用者Aが所有するリソースBが，WebサービスC上にある。OAuth 2.0において，利用者Aの認可の下，WebサービスDからリソースBへの限定されたアクセスを可能にするときのプロトコルの動作はどれか。ここでWebサービスCは，認可サーバを兼ねているものとする。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q16" type="radio" value="ア"/>
-<span class="letter">ア</span><span>WebサービスCが，アクセストークンを発行する。</span></label><label class="choice" data-choice="イ"><input name="q16" type="radio" value="イ"/>
-<span class="letter">イ</span><span>WebサービスCが，利用者Aのデジタル証明書をWebサービスDに送信する。</span></label><label class="choice" data-choice="ウ"><input name="q16" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>WebサービスDが，アクセストークンを発行する。</span></label><label class="choice" data-choice="エ"><input name="q16" type="radio" value="エ"/>
-<span class="letter">エ</span><span>WebサービスDが，利用者Aのデジタル証明書をWebサービスCに送信する。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(16,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(16)">選択をクリア</button>
-</div>
-<section class="explain" id="ex16">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>WebサービスCが，アクセストークンを発行する。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。認可サーバを兼ねるCが，利用者Aの認可に基づきDへアクセストークンを発行し，Dはそれを使ってC上のリソースへアクセスする。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。認可サーバを兼ねるCが，利用者Aの認可に基づきDへアクセストークンを発行し，Dはそれを使ってC上のリソースへアクセスする。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。OAuthの基本動作は利用者のデジタル証明書をクライアントへ配布することではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。クライアントD自身がアクセストークンを勝手に発行しては認可にならない。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。利用者のデジタル証明書をDがCへ送る方式ではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Resource Owner＝利用者A</li><li>Resource Server＝リソースBを持つC</li><li>Client＝WebサービスD</li><li>Authorization Server＝本問ではCが兼務</li><li>Access Tokenは『限定されたアクセス権』をAPIへ提示する資格情報。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>OAuth 2.0は認証そのものではなく、基本的には第三者アプリへ限定的なアクセス権を委譲するための認可フレームワーク。</li><li>Resource OwnerがClientへパスワードを直接渡すのではなく、Authorization ServerがAccess Tokenを発行し、ClientはそれをResource Serverへ提示する。</li><li>OpenID ConnectはOAuth 2.0を土台に認証（ログイン）情報を扱えるよう拡張した仕組み。OAuth＝認可、OIDC＝認証を含む、という区別は重要。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>OAuthは『誰がトークンを発行するか』を役割図にすると簡単。発行するのは認可サーバ。</p></div>
-<textarea data-note="q16" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="IEEE 802.1X と RADIUS 利用者認証情報を管理するサーバ1台と複数のアクセスポイントで構成された無線LAN環境を実現したい。PCが無線LAN環境に接続するときの利用者認証とアクセス制御に，IEEE 802.1XとRADIUSを利用する場合の標準的な方法はどれか。 LAN認証" data-year="R6秋" id="q17">
-<div class="qtop">
-<div><span class="qnum">問17</span><span class="groupbadge security">SECURITY</span><span class="cat">ネットワークセキュリティ</span></div>
-<h2>IEEE 802.1X と RADIUS</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>利用者認証情報を管理するサーバ1台と複数のアクセスポイントで構成された無線LAN環境を実現したい。PCが無線LAN環境に接続するときの利用者認証とアクセス制御に，IEEE 802.1XとRADIUSを利用する場合の標準的な方法はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q17" type="radio" value="ア"/>
-<span class="letter">ア</span><span>PCにはIEEE 802.1Xのサプリカントを実装し，かつ，RADIUSクライアントの機能をもたせる。</span></label><label class="choice" data-choice="イ"><input name="q17" type="radio" value="イ"/>
-<span class="letter">イ</span><span>アクセスポイントにはIEEE 802.1Xのオーセンティケータを実装し，かつ，RADIUSクライアントの機能をもたせる。</span></label><label class="choice" data-choice="ウ"><input name="q17" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>アクセスポイントにはIEEE 802.1Xのサプリカントを実装し，かつ，RADIUSサーバの機能をもたせる。</span></label><label class="choice" data-choice="エ"><input name="q17" type="radio" value="エ"/>
-<span class="letter">エ</span><span>サーバにはIEEE 802.1Xのオーセンティケータを実装し，かつ，RADIUSサーバの機能をもたせる。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(17,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(17)">選択をクリア</button>
-</div>
-<section class="explain" id="ex17">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>アクセスポイントにはIEEE 802.1Xのオーセンティケータを実装し，かつ，RADIUSクライアントの機能をもたせる。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。APがAuthenticatorとして端末のアクセスを制御し，RADIUSクライアントとして認証サーバへ認証要求を中継する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。PCはSupplicantだが，通常RADIUSクライアントはAP/スイッチ側。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。APがAuthenticatorとして端末のアクセスを制御し，RADIUSクライアントとして認証サーバへ認証要求を中継する。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。APはSupplicantではなくAuthenticator。RADIUSサーバも中央の認証サーバ側。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。中央サーバはRADIUSサーバとして認証を行うが，AuthenticatorはAP側。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Supplicant＝接続を要求するPC</li><li>Authenticator＝接続可否を制御するAP/スイッチ</li><li>Authentication Server＝RADIUSサーバ</li><li>端末とAPのEAPを，APがRADIUSで認証サーバへ中継する。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>802.1Xでは端末（Supplicant）がAP/スイッチ（Authenticator）へ接続を要求し、Authenticatorが認証サーバとの間を中継する。</li><li>端末とAuthenticatorの間ではEAPOL、AuthenticatorとRADIUSサーバの間ではRADIUSを使う構成が典型的。</li><li>Authenticator自身が利用者パスワードを中央管理するのではなく、接続ポートを制御しながら認証処理をRADIUSサーバへ中継する役割と捉える。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>802.1Xの3役を図で暗記：PC(Supplicant) → AP(Authenticator/RADIUS Client) → RADIUS Server。</p></div>
-<textarea data-note="q17" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワーク" data-group="GENERAL IT" data-search="IPsec ネットワーク層のパケットを対象として IP パケットでカプセル化し，トンネリングを行えるプロトコルはどれか。 VPN" data-year="R6秋" id="q18">
-<div class="qtop">
-<div><span class="qnum">問18</span><span class="groupbadge general">GENERAL IT</span><span class="cat">ネットワーク</span></div>
-<h2>IPsec</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>ネットワーク層のパケットを対象として IP パケットでカプセル化し，トンネリングを行えるプロトコルはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q18" type="radio" value="ア"/>
-<span class="letter">ア</span><span>IPsec</span></label><label class="choice" data-choice="イ"><input name="q18" type="radio" value="イ"/>
-<span class="letter">イ</span><span>L2TP</span></label><label class="choice" data-choice="ウ"><input name="q18" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>PPTP</span></label><label class="choice" data-choice="エ"><input name="q18" type="radio" value="エ"/>
-<span class="letter">エ</span><span>RSTP</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(18,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(18)">選択をクリア</button>
-</div>
-<section class="explain" id="ex18">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>IPsec</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。IPsecのトンネルモードでは元IPパケットを新しいIPパケットにカプセル化し，VPNなどで利用する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。IPsecのトンネルモードでは元IPパケットを新しいIPパケットにカプセル化し，VPNなどで利用する。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。L2TPもトンネリングに使われるが，レイヤ2トンネリングのプロトコル。本問の『ネットワーク層のパケットをIPパケットで』がIPsecの決め手。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。PPTPはPPPをIPネットワーク上でトンネルする旧来のVPN方式。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。RSTPはスパニングツリーの高速収束版で，VPNトンネリングとは無関係。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>IPsec AH＝認証・完全性</li><li>IPsec ESP＝暗号化＋認証/完全性を提供可能</li><li>Transport Mode＝IPペイロード中心に保護</li><li>Tunnel Mode＝元IPパケット全体をカプセル化。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>IPsecはネットワーク層で動作するため、上位のTCP/UDPやアプリケーションを意識せずIP通信を保護できる。VPNでサイト間をまとめて保護できる理由でもある。</li><li>トンネルモードでは元のIPパケット全体を保護対象として新しいIPヘッダを付ける。拠点間VPNなどで理解しやすい。</li><li>問18以降はGENERAL ITとして分類しているが、IPsec自体はセキュリティにも深く関係する。ここでは午前Ⅱ後半の周辺IT問題群としてindex上の分類を優先している。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『ネットワーク層』『IPでIPを包む』→IPsecトンネルモード。</p></div>
-<textarea data-note="q18" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワーク" data-group="GENERAL IT" data-search="ICMPメッセージ IPv4 における ICMP のメッセージに関する説明として，適切なものはどれか。 ネットワーク" data-year="R6秋" id="q19">
-<div class="qtop">
-<div><span class="qnum">問19</span><span class="groupbadge general">GENERAL IT</span><span class="cat">ネットワーク</span></div>
-<h2>ICMPメッセージ</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>IPv4 における ICMP のメッセージに関する説明として，適切なものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q19" type="radio" value="ア"/>
-<span class="letter">ア</span><span>送信元が設定したソースルーティングが失敗した場合は，Echo Reply を返す。</span></label><label class="choice" data-choice="イ"><input name="q19" type="radio" value="イ"/>
-<span class="letter">イ</span><span>転送されてきたデータグラムを受信したルータが，そのネットワークの最適なルータを送信元に通知して経路の変更を要請するには，Redirect を返す。</span></label><label class="choice" data-choice="ウ"><input name="q19" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>フラグメントの再組立て中にタイムアウトが発生した場合は，データグラムを破棄して Parameter Problem を返す。</span></label><label class="choice" data-choice="エ"><input name="q19" type="radio" value="エ"/>
-<span class="letter">エ</span><span>ルータでメッセージを転送する際に，送信元が設定した TTL が 0 になった場合は，Destination Unreachable を返す。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(19,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(19)">選択をクリア</button>
-</div>
-<section class="explain" id="ex19">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>転送されてきたデータグラムを受信したルータが，そのネットワークの最適なルータを送信元に通知して経路の変更を要請するには，Redirect を返す。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。より適切な次ホップがあることをホストへ知らせるためにICMP Redirectを使う。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。Echo ReplyはEcho Request（ping）への応答。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。より適切な次ホップがあることをホストへ知らせるためにICMP Redirectを使う。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。フラグメント再構成タイムアウトなどではTime Exceededが関係し，Parameter Problemではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。TTLが0になるとTime Exceededを返す。Destination Unreachableではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Echo Request/Reply＝疎通確認</li><li>Redirect＝より適切なルータを通知</li><li>Destination Unreachable＝到達不能</li><li>Time Exceeded＝TTL超過/再構成タイムアウト</li><li>Parameter Problem＝IPヘッダなどの処理不能な問題。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>TTLはルータを1台通過するごとに減少し、0になるとパケットを破棄してICMP Time Exceededを返す。tracerouteはこの性質を利用して経路上のルータを調べる。</li><li>ICMP Redirectは、ホストが遠回りなルータへ送ったときなどに『次からはこちらのルータを使う方が適切』と知らせるメッセージ。</li><li>ICMPはエラー通知だけでなく診断にも利用される。メッセージ名を暗記するより、発生場面とセットで覚える。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>ICMPはメッセージ名と『いつ返すか』をペアで覚える。</p></div>
-<textarea data-note="q19" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="ネットワーク" data-group="GENERAL IT" data-search="ネットワークタップ ネットワーク機器間の光ファイバを使った通信を分岐させてネットワーク上のトラフィックを取り出し，セキュリティ装置で監視したい。ネットワークから信号を光学的に分岐させて取り出す装置はどれか。 ネットワーク監視" data-year="R6秋" id="q20">
-<div class="qtop">
-<div><span class="qnum">問20</span><span class="groupbadge general">GENERAL IT</span><span class="cat">ネットワーク</span></div>
-<h2>ネットワークタップ</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>ネットワーク機器間の光ファイバを使った通信を分岐させてネットワーク上のトラフィックを取り出し，セキュリティ装置で監視したい。ネットワークから信号を光学的に分岐させて取り出す装置はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q20" type="radio" value="ア"/>
-<span class="letter">ア</span><span>ネットワークタップ</span></label><label class="choice" data-choice="イ"><input name="q20" type="radio" value="イ"/>
-<span class="letter">イ</span><span>波長分割多重装置</span></label><label class="choice" data-choice="ウ"><input name="q20" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>ルータ</span></label><label class="choice" data-choice="エ"><input name="q20" type="radio" value="エ"/>
-<span class="letter">エ</span><span>レイヤー2スイッチ</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(20,'ア')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(20)">選択をクリア</button>
-</div>
-<section class="explain" id="ex20">
-<div class="answerbox">✅ 正解：<strong>ア</strong>　<span>ネットワークタップ</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。ネットワークTAPは通信路から監視用に信号を分岐し，IDS/NDR等へコピーを提供する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow correct">
-<div class="whyhead"><span>ア</span><b>○ 正解</b></div>
-<p>正解。ネットワークTAPは通信路から監視用に信号を分岐し，IDS/NDR等へコピーを提供する。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。WDMは異なる波長を使って複数信号を一本の光ファイバへ多重化する技術。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。ルータはIPパケットを異なるネットワーク間で転送する。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。L2スイッチはMACアドレスに基づいてフレーム転送する。ポートミラー機能を持つことはあるが，設問は光学的に分岐する専用装置を聞いている。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Passive TAPは本番通信へ影響しにくい監視方法</li><li>SPAN/port mirroringはスイッチ側の機能</li><li>高速通信ではミラーの取りこぼしや設定ミスも考慮</li><li>TAP→Packet Broker→IDS/NDRのような構成もある。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>ネットワークTAPは本番通信を監視装置へコピーするための観測ポイント。インラインで通信を処理するIPSとは役割が異なり、監視装置側が落ちても本番通信を直接止めにくい構成を作れる。</li><li>スイッチのSPAN/ポートミラーでもコピーは可能だが、設定やスイッチ負荷の影響を受ける。TAPは監視専用の安定した取得経路を作る目的で利用される。</li><li>『通信を転送する装置』ではなく『通信を観測するために複製する装置』という役割を押さえる。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『光学的に分岐』『監視用コピー』＝ネットワークTAP。</p></div>
-<textarea data-note="q20" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="データベース" data-group="GENERAL IT" data-search="関係モデルの外部キー 関係モデルにおける外部キーに関する記述のうち，適切なものはどれか。 データベース" data-year="R6秋" id="q21">
-<div class="qtop">
-<div><span class="qnum">問21</span><span class="groupbadge general">GENERAL IT</span><span class="cat">データベース</span></div>
-<h2>関係モデルの外部キー</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>関係モデルにおける外部キーに関する記述のうち，適切なものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q21" type="radio" value="ア"/>
-<span class="letter">ア</span><span>外部キーの値は，その関係の中で一意でなければならない。</span></label><label class="choice" data-choice="イ"><input name="q21" type="radio" value="イ"/>
-<span class="letter">イ</span><span>外部キーは，それが参照する候補キーと比較可能でなくてもよい。</span></label><label class="choice" data-choice="ウ"><input name="q21" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>参照先の関係に，参照元の外部キーの値と一致する候補キーが存在しなくてもよい。</span></label><label class="choice" data-choice="エ"><input name="q21" type="radio" value="エ"/>
-<span class="letter">エ</span><span>一つの関係に外部キーが複数存在してもよい。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(21,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(21)">選択をクリア</button>
-</div>
-<section class="explain" id="ex21">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>一つの関係に外部キーが複数存在してもよい。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。一つの表が複数の別表/別キーを参照することは普通にあるため，複数の外部キーを持てる。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。外部キーは同じ参照先を複数行が指すことがあるため，一意である必要はない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。参照先キーと比較可能な型・ドメインである必要がある。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。NULLを許す場合などを除き，参照整合性のため参照先に対応する候補キー値が存在する必要がある。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。一つの表が複数の別表/別キーを参照することは普通にあるため，複数の外部キーを持てる。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>主キー＝選択された候補キー</li><li>候補キー＝一意性＋極小性</li><li>外部キー＝他の関係の候補キー等を参照</li><li>参照整合性＝存在しない親レコードを指さないようにする。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>外部キーは親表と子表の関係を表現する。例えば部署表の部署IDを社員表が外部キーとして持てば、多数の社員が同じ部署IDを持てるので外部キーは一意でなくてよい。</li><li>参照整合性によって、存在しない部署IDを社員表へ登録するような孤児参照を防ぐ。削除・更新時にはCASCADEやRESTRICT等の扱いも設計事項になる。</li><li>主キー・候補キーは『行を識別』、外部キーは『別の行を参照』という役割の違いを押さえる。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>外部キーは『一意にするキー』ではなく『別のキーを参照するキー』。</p></div>
-<textarea data-note="q21" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="開発・設計" data-group="GENERAL IT" data-search="GoFデザインパターン ソフトウェアパターンのうち，GoF のデザインパターンの説明はどれか。 ソフトウェア設計" data-year="R6秋" id="q22">
-<div class="qtop">
-<div><span class="qnum">問22</span><span class="groupbadge general">GENERAL IT</span><span class="cat">開発・設計</span></div>
-<h2>GoFデザインパターン</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>ソフトウェアパターンのうち，GoF のデザインパターンの説明はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q22" type="radio" value="ア"/>
-<span class="letter">ア</span><span>Java のパターンとして，引数オブジェクト，オブジェクトの可変性などで構成される。</span></label><label class="choice" data-choice="イ"><input name="q22" type="radio" value="イ"/>
-<span class="letter">イ</span><span>オブジェクト指向開発のためのパターンであって，生成，構造，振る舞いの三つのカテゴリに分類される。</span></label><label class="choice" data-choice="ウ"><input name="q22" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>構造，分散システム，対話型システム及び適合型システムの四つのカテゴリに分類される。</span></label><label class="choice" data-choice="エ"><input name="q22" type="radio" value="エ"/>
-<span class="letter">エ</span><span>抽象度が異なる要素を分割して階層化するための Layers，コンポーネント分割のための Broker などで構成される。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(22,'イ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(22)">選択をクリア</button>
-</div>
-<section class="explain" id="ex22">
-<div class="answerbox">✅ 正解：<strong>イ</strong>　<span>オブジェクト指向開発のためのパターンであって，生成，構造，振る舞いの三つのカテゴリに分類される。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。GoFの23パターンは生成（Creational），構造（Structural），振る舞い（Behavioral）に分類される。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。GoFはJava固有のパターン集ではない。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>イ</span><b>○ 正解</b></div>
-<p>正解。GoFの23パターンは生成（Creational），構造（Structural），振る舞い（Behavioral）に分類される。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。これはGoFの分類ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。LayersやBrokerはアーキテクチャパターンの例で，GoFの23デザインパターンとは別。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>生成：Factory Method / Abstract Factory / Builder / Prototype / Singleton</li><li>構造：Adapter / Bridge / Composite / Decorator / Facade / Flyweight / Proxy</li><li>振る舞い：Observer / Strategy / Command / State / Template Methodなど</li><li>GoFは設計上の再利用可能な解決パターンを体系化。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>GoFのデザインパターンは完成したコードをコピーするものではなく、繰り返し現れる設計上の問題と解決の考え方を名前付きで共有するもの。</li><li>例えばStrategyはアルゴリズムを交換可能にし、Observerは状態変化を複数オブジェクトへ通知し、Factory Methodは生成処理を分離する。</li><li>アーキテクチャパターンはシステム全体に近い大きな構造、GoFは主にクラス・オブジェクト間の設計という抽象度の違いも意識する。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>GoF＝23個＝生成・構造・振る舞い。</p></div>
-<textarea data-note="q22" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="開発・設計" data-group="GENERAL IT" data-search="XPのテスト駆動開発 エクストリームプログラミング（XP：Extreme Programming）における“テスト駆動開発”の特徴はどれか。 開発手法" data-year="R6秋" id="q23">
-<div class="qtop">
-<div><span class="qnum">問23</span><span class="groupbadge general">GENERAL IT</span><span class="cat">開発・設計</span></div>
-<h2>XPのテスト駆動開発</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>エクストリームプログラミング（XP：Extreme Programming）における“テスト駆動開発”の特徴はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q23" type="radio" value="ア"/>
-<span class="letter">ア</span><span>最初のテストで，なるべく多くのバグを摘出する。</span></label><label class="choice" data-choice="イ"><input name="q23" type="radio" value="イ"/>
-<span class="letter">イ</span><span>テストケースの改善を繰り返す。</span></label><label class="choice" data-choice="ウ"><input name="q23" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>テストでのカバレージを高めることを目的とする。</span></label><label class="choice" data-choice="エ"><input name="q23" type="radio" value="エ"/>
-<span class="letter">エ</span><span>プログラムコードを書く前にテストコードを書く。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(23,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(23)">選択をクリア</button>
-</div>
-<section class="explain" id="ex23">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>プログラムコードを書く前にテストコードを書く。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。まず失敗するテストを書き，テストを通す最小コードを書き，その後リファクタリングする。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。TDDは最初のテストで大量のバグ検出を狙う手法ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。テスト改善も起こるが，TDDを特徴付ける本質ではない。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。高いカバレージは結果として得られることがあるが，TDDの直接の定義ではない。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。まず失敗するテストを書き，テストを通す最小コードを書き，その後リファクタリングする。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>Red＝失敗するテストを書く</li><li>Green＝最小実装で通す</li><li>Refactor＝振る舞いを変えず設計改善</li><li>小さいサイクルを繰り返すことで変更へのフィードバックを高速化。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>TDDでは仕様を小さなテストとして先に表現するため、『何を満たせば完成か』がコードを書く前に明確になる。</li><li>Red→Greenではまず必要最小限の実装を行い、Refactorで重複や設計上の問題を整理する。機能追加と設計改善を小刻みに分離するのがポイント。</li><li>単にテストコードが存在するだけではTDDではない。『実装より先にテストを書くサイクル』が本質。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>TDD＝テストを『先に』書く。Red→Green→Refactor。</p></div>
-<textarea data-note="q23" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="サービス管理・内部統制" data-group="GENERAL IT" data-search="SMSの継続的改善 JIS Q 20000-1:2020（サービスマネジメントシステム要求事項）によれば，サービスマネジメントシステム（SMS）における継続的改善の定義はどれか。 サービス管理" data-year="R6秋" id="q24">
-<div class="qtop">
-<div><span class="qnum">問24</span><span class="groupbadge general">GENERAL IT</span><span class="cat">サービス管理・内部統制</span></div>
-<h2>SMSの継続的改善</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>JIS Q 20000-1:2020（サービスマネジメントシステム要求事項）によれば，サービスマネジメントシステム（SMS）における継続的改善の定義はどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q24" type="radio" value="ア"/>
-<span class="letter">ア</span><span>意図した結果を得るためにインプットを使用する，相互に関連する又は相互に作用する一連の活動</span></label><label class="choice" data-choice="イ"><input name="q24" type="radio" value="イ"/>
-<span class="letter">イ</span><span>価値を提供するため，サービスの計画立案，設計，移行，提供及び改善のための組織の活動及び資源を，指揮し，管理する，一連の能力及びプロセス</span></label><label class="choice" data-choice="ウ"><input name="q24" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>サービスを中断なしに，又は合意した可用性を一貫して提供する能力</span></label><label class="choice" data-choice="エ"><input name="q24" type="radio" value="エ"/>
-<span class="letter">エ</span><span>パフォーマンスを向上するために繰り返し行われる活動</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(24,'エ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(24)">選択をクリア</button>
-</div>
-<section class="explain" id="ex24">
-<div class="answerbox">✅ 正解：<strong>エ</strong>　<span>パフォーマンスを向上するために繰り返し行われる活動</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。継続的改善はパフォーマンス向上を目的として反復的に実施される活動。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。一般的な『プロセス』の定義に相当する。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。サービスマネジメントそのものの説明に近い。</p></div><div class="whyrow">
-<div class="whyhead"><span>ウ</span><b>× 不正解</b></div>
-<p>不正解。サービス継続/可用性に関する能力の説明。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>エ</span><b>○ 正解</b></div>
-<p>正解。継続的改善はパフォーマンス向上を目的として反復的に実施される活動。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>継続的改善は一回限りのプロジェクトではない</li><li>測定→評価→改善→再評価の循環</li><li>SMSそのものの有効性・サービス品質を継続的に高める</li><li>PDCAの考え方と結び付けると理解しやすい。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>継続的改善では現状のパフォーマンスを測定し、改善機会を特定し、変更を実施し、その効果を再び評価する。この循環を繰り返す。</li><li>『継続的』は毎日必ず変更するという意味ではなく、改善を一回で終わらせず仕組みとして反復することが重要。</li><li>サービスマネジメントではサービスそのものだけでなく、SMSのプロセスや運用方法も改善対象になり得る。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『継続的』＝繰り返し。『改善』＝パフォーマンス向上。</p></div>
-<textarea data-note="q24" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-<article class="qcard" data-cat="サービス管理・内部統制" data-group="GENERAL IT" data-search="アクセス管理の業務処理統制 アクセス管理に関する内部統制のうち，金融庁“財務報告に係る内部統制の評価及び監査に関する実施基準（令和5年）”における IT に係る業務処理統制に該当するものはどれか。 内部統制" data-year="R6秋" id="q25">
-<div class="qtop">
-<div><span class="qnum">問25</span><span class="groupbadge general">GENERAL IT</span><span class="cat">サービス管理・内部統制</span></div>
-<h2>アクセス管理の業務処理統制</h2>
-</div>
-<div class="problemtext"><div class="label">📘 問題</div><p>アクセス管理に関する内部統制のうち，金融庁“財務報告に係る内部統制の評価及び監査に関する実施基準（令和5年）”における IT に係る業務処理統制に該当するものはどれか。</p></div>
-<div class="choices"><label class="choice" data-choice="ア"><input name="q25" type="radio" value="ア"/>
-<span class="letter">ア</span><span>組織としてアクセス管理規程を定め，統一的なアクセス管理を行う。</span></label><label class="choice" data-choice="イ"><input name="q25" type="radio" value="イ"/>
-<span class="letter">イ</span><span>組織としてアクセス権限の設定方針を定め，周知徹底を図る。</span></label><label class="choice" data-choice="ウ"><input name="q25" type="radio" value="ウ"/>
-<span class="letter">ウ</span><span>組織内のアプリケーションシステムに，利用者 ID とパスワードによって利用者を認証する機能を設ける。</span></label><label class="choice" data-choice="エ"><input name="q25" type="radio" value="エ"/>
-<span class="letter">エ</span><span>組織内の全ての利用者に対して，アクセス管理の重要性についての教育を行う。</span></label></div>
-<div class="qactions">
-<button class="reveal" onclick="reveal(25,'ウ')">答え・解説を見る</button>
-<button class="reset" onclick="resetQ(25)">選択をクリア</button>
-</div>
-<section class="explain" id="ex25">
-<div class="answerbox">✅ 正解：<strong>ウ</strong>　<span>組織内のアプリケーションシステムに，利用者 ID とパスワードによって利用者を認証する機能を設ける。</span></div>
-<h3>⚡ 30秒で理解</h3><p>正解。個々のアプリケーションに組み込まれた認証機能は，業務処理に直接組み込まれたIT業務処理統制に該当する。</p>
-<h3>🔍 選択肢を1つずつ解説</h3><div class="whygrid"><div class="whyrow">
-<div class="whyhead"><span>ア</span><b>× 不正解</b></div>
-<p>不正解。組織全体の方針・規程はIT全般統制に近い。</p></div><div class="whyrow">
-<div class="whyhead"><span>イ</span><b>× 不正解</b></div>
-<p>不正解。アクセス権限設定方針の策定・周知は組織レベルの全般統制に近い。</p></div><div class="whyrow correct">
-<div class="whyhead"><span>ウ</span><b>○ 正解</b></div>
-<p>正解。個々のアプリケーションに組み込まれた認証機能は，業務処理に直接組み込まれたIT業務処理統制に該当する。</p></div><div class="whyrow">
-<div class="whyhead"><span>エ</span><b>× 不正解</b></div>
-<p>不正解。教育は組織全体の管理活動であり，個別業務処理に組み込まれた自動統制ではない。</p></div></div>
-<details class="deep" open=""><summary>🔬 もっと深掘り｜関連知識</summary><ul><li>IT全般統制＝開発・変更管理，アクセス管理，運用管理などIT環境全体を支える統制</li><li>IT業務処理統制＝個別アプリの入力・処理・出力に組み込まれた自動/半自動統制</li><li>認証・入力チェック・計算チェックなどは業務処理統制になり得る</li><li>試験では『組織全体の方針』か『アプリに組み込まれた機能』かを切り分ける。</li></ul></details>
-<details class="deep superdeep" open=""><summary>🧩 さらに一段深掘り｜仕組み・違い・実務イメージ</summary><ul><li>IT全般統制は個々の業務アプリが正しく動くための土台を整える統制。アクセス管理方針、システム変更管理、運用管理など組織横断の仕組みが該当する。</li><li>IT業務処理統制は個別業務処理へ直接組み込まれる。認証、入力値チェック、処理結果の照合、自動計算などをイメージするとよい。</li><li>4択では『組織として規程・方針・教育』なら全般統制寄り、『アプリケーションに具体的な機能』なら業務処理統制寄りと切り分ける。</li></ul></details><div class="exam"><b>🧠 本番での見抜き方</b><p>『アプリケーションシステムに機能を設ける』は業務処理統制を疑う。</p></div>
-<textarea data-note="q25" placeholder="自分のメモ・間違えた理由を書く…"></textarea>
-</section>
-</article>
-</main><footer>令和6年度秋期 情報処理安全確保支援士 午前Ⅱ 学習用ページ</footer>
-<script>
-const viewed=new Set();
-function reveal(n,ans){
- const ex=document.getElementById('ex'+n);ex.classList.add('open');
- const selected=document.querySelector('input[name="q'+n+'"]:checked');
- document.querySelectorAll('#q'+n+' .choice').forEach(x=>x.classList.remove('result-correct','result-wrong'));
- if(selected){
-   const lab=selected.closest('.choice');
-   lab.classList.add(selected.value===ans?'result-correct':'result-wrong');
- }
- viewed.add(n);updateProgress();
-}
-function resetQ(n){document.querySelectorAll('input[name="q'+n+'"]').forEach(x=>x.checked=false);document.querySelectorAll('#q'+n+' .choice').forEach(x=>x.classList.remove('result-correct','result-wrong'));}
-function updateProgress(){document.getElementById('pc').textContent=viewed.size+' / 25 解説済み';document.getElementById('fill').style.width=(viewed.size/25*100)+'%';}
-const search=document.getElementById('search');let currentCat='all',currentGroup='all';
-function filter(){
- const q=search.value.toLowerCase();
- document.querySelectorAll('.qcard').forEach(c=>{
-   const okq=(c.innerText+c.dataset.search).toLowerCase().includes(q);
-   const okc=currentCat==='all'||c.dataset.cat===currentCat;
-   const okg=currentGroup==='all'||c.dataset.group===currentGroup;
-   c.style.display=okq&&okc&&okg?'block':'none';
- });
-}
-search.oninput=filter;
-document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
- b.classList.add('active');currentCat=b.dataset.cat;filter();
-});
-document.querySelectorAll('.groupfilter').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('.groupfilter').forEach(x=>x.classList.remove('active'));
- b.classList.add('active');currentGroup=b.dataset.group;filter();
-});
-document.querySelectorAll('textarea[data-note]').forEach(t=>{const k='r6am2-'+t.dataset.note;try{t.value=localStorage.getItem(k)||''}catch(e){};t.oninput=()=>{try{localStorage.setItem(k,t.value)}catch(e){}}});
-
-
-// --- index連携：分類別・連続演習モード ---
-(function(){
-  const params = new URLSearchParams(location.search);
-  const urlCat = params.get('cat');
-  const urlGroup = params.get('group');
-
-  const catTitles = {
-    '認証・認可':'RADIUS / AAA・Passkey / FIDO・SSO・OAuth 2.0をまとめて演習',
-    '暗号・PKI':'PQC・量子暗号をまとめて演習',
-    'ネットワークセキュリティ':'IPS・DTLS・IEEE 802.1Xをまとめて演習',
-    'サーバセキュリティ':'WAF・クリックジャッキングをまとめて演習',
-    'メールセキュリティ':'DMARCを中心にメール認証を演習',
-    'マルウェア・攻撃':'Adversarial Examples・NTP反射・Smurfをまとめて演習',
-    'SOC・インシデント対応':'MITRE ATT&CK・SOARをまとめて演習',
-    'ネットワーク':'IPsec・ICMP・ネットワークTAPをまとめて演習',
-    'データベース':'関係モデル・外部キーを演習',
-    '開発・設計':'GoF・XP / TDDをまとめて演習',
-    'サービス管理・内部統制':'SMSの継続的改善・IT内部統制をまとめて演習'
-  };
-
-  function activateButton(selector, attr, value){
-    if(!value) return;
-    document.querySelectorAll(selector).forEach(b=>{
-      b.classList.toggle('active', b.dataset[attr] === value);
-    });
-  }
-
-  if(urlGroup || urlCat){
-    if(urlGroup){ currentGroup = urlGroup; activateButton('.groupfilter','group',urlGroup); }
-    if(urlCat){ currentCat = urlCat; activateButton('.filter','cat',urlCat); }
-    filter();
-
-    const visible=[...document.querySelectorAll('.qcard')].filter(x=>x.style.display!=='none');
-    const banner=document.getElementById('categoryStudyBanner');
-    const title=document.getElementById('categoryStudyTitle');
-    const desc=document.getElementById('categoryStudyDesc');
-    const sum=document.getElementById('categorySummary');
-    banner.style.display='flex';
-    title.textContent=(urlCat || urlGroup) + '｜連続演習';
-    desc.textContent=catTitles[urlCat] || 'この条件に属する問題を上から順に連続して解けます。';
-    sum.style.display='block';
-    sum.innerHTML='<b>このセット：</b> '+visible.length+'問　' +
-      visible.map(x=>'問'+x.id.replace('q','')+' '+(x.querySelector('h2')?.textContent||'')).join(' ／ ');
-
-    if(visible.length){
-      setTimeout(()=>visible[0].scrollIntoView({behavior:'smooth',block:'start'}),100);
-    }
-  }
-
-  document.getElementById('showAllBtn')?.addEventListener('click',()=>{
-    history.replaceState(null,'',location.pathname);
-    currentGroup='all'; currentCat='all';
-    activateButton('.groupfilter','group','all');
-    activateButton('.filter','cat','all');
-    filter();
-    document.getElementById('categoryStudyBanner').style.display='none';
-    document.getElementById('categorySummary').style.display='none';
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
-})();
-
-
-// --- future-proof: 年度横断・分類横断 ---
-(function(){
-  let year='all';
-  const originalFilter = window.filter;
-  window.filter = function(){
-    const q=search.value.toLowerCase();
-    document.querySelectorAll('.qcard').forEach(c=>{
-      const okq=(c.innerText+c.dataset.search).toLowerCase().includes(q);
-      const okc=currentCat==='all'||c.dataset.cat===currentCat;
-      const okg=currentGroup==='all'||c.dataset.group===currentGroup;
-      const oky=year==='all'||c.dataset.year===year;
-      c.style.display=okq&&okc&&okg&&oky?'block':'none';
-    });
-  };
-  document.querySelectorAll('.yearfilter').forEach(b=>b.onclick=()=>{
-    document.querySelectorAll('.yearfilter').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');year=b.dataset.year;window.filter();
-  });
-
-  const p=new URLSearchParams(location.search);
-  const y=p.get('year');
-  if(y){
-    year=y;
-    document.querySelectorAll('.yearfilter').forEach(x=>x.classList.toggle('active',x.dataset.year===y));
-    window.filter();
-  }
-})();
-</script></body></html>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>令和6年度 秋期 午前Ⅱ</title><style>
+*{box-sizing:border-box}body{margin:0;background:#06111f;color:#edf5ff;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.7}
+header{position:sticky;top:0;z-index:20;background:#071525f5;border-bottom:1px solid #294158;padding:12px}.wrap{max-width:1500px;margin:auto}
+header a{color:#bfe4ff;text-decoration:none;font-weight:800}.qcard{max-width:1500px;margin:14px auto;border:1px solid #294158;border-radius:13px;overflow:hidden;background:#0b1b2d}
+.qhead{display:flex;gap:8px;align-items:center;padding:12px 15px;flex-wrap:wrap}.qhead h2{margin:0;flex:1;font-size:1.08rem}.qhead .num{color:#67dcff;font-weight:900}.badge{background:#183c5d;padding:3px 8px;border-radius:999px;font-size:.75rem}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:0;background:#fff}.problem{background:#fff;color:#111827;padding:16px;border-right:1px solid #cbd5e1}
+.problem h3{color:#153c68}.qtext{font-weight:700}.options{border:1px solid #9aa8b7;border-radius:8px;overflow:hidden}.option{display:flex;gap:12px;padding:10px;border-bottom:1px solid #d8dee7}.option:last-child{border-bottom:0}.option b{min-width:22px}
+.expl{background:#f7f9fc;color:#111827;padding:16px}.answer{background:#e7f8ef;border:1px solid #40ad71;padding:11px;border-radius:8px;color:#123b25;font-weight:900}
+.expl h3,.expl h4{color:#173f6b}.why{display:grid;grid-template-columns:48px 95px 1fr;border:1px solid #cbd5e1;border-bottom:0;background:#fff}.why:last-of-type{border-bottom:1px solid #cbd5e1}
+.why>div,.why>p{margin:0;padding:10px;border-right:1px solid #cbd5e1}.why p{border-right:0}.why.ok{background:#fff5f5}.why.ok .judge{color:#c92525;font-weight:900}.why.ng .judge{color:#2464d8;font-weight:900}
+.ultradeep{margin-top:15px;border:1px solid #8da7d7;border-radius:10px;padding:13px;background:#fff}.ultradeep h3{border-bottom:1px solid #9fb3d4;padding-bottom:7px}.trap{background:#fff4d7;border-left:4px solid #d09b24;padding:9px;border-radius:6px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.problem{border-right:0;border-bottom:1px solid #cbd5e1}.why{grid-template-columns:38px 82px 1fr}}
+</style></head>
+<body><header><div class="wrap"><b>SC 午前Ⅱ｜令和6年度 秋期</b>　<a href="index.html">⌂ ホームに戻る</a><p>問題 → 正解 → ア〜エ全選択肢の理由 → 超深掘り。ほかの年度と同じ型に統一。</p></div></header><article class="qcard" id="q1">
+    <div class="qhead"><span class="num">問1</span><h2>RADIUS / Diameter とAAA</h2><span class="badge">SECURITY</span><span class="badge">認証・認可</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">RADIUS や Diameter が提供する AAA フレームワークの構成要素は，認証（Authentication），認可（Authorization）と，もう一つはどれか。</p><div class="options"><div class="option"><b>ア</b><span>Accounting</span></div><div class="option"><b>イ</b><span>Activation</span></div><div class="option"><b>ウ</b><span>Audit</span></div><div class="option"><b>エ</b><span>Augmented Reality</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。Accounting は，利用開始・終了時刻，接続時間，通信量などの利用実績を記録する機能。AAAの3番目のA。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 Activation はAAAの構成要素ではない。『有効化』という一般語であり，RADIUS/DiameterのAAAを構成する用語ではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 Audit（監査）はセキュリティ上重要だが，AAAの正式な三要素には含まれない。Accountingで残した利用記録は監査にも利用できる。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 Augmented Reality（拡張現実）は認証基盤とは無関係。頭文字Aを合わせたひっかけ。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>RADIUS / Diameter とAAAの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>認証（Authentication）は『誰か』、認可（Authorization）は『何を許すか』を扱います。RADIUS、Passkey、SSO、OAuth、802.1Xは同じ認証系でも、認証主体と資格情報の流れが異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>実務ではIdP・SP・認可サーバ・RADIUSサーバなどの役割分離、失効、セッション管理、フィッシング耐性まで含めて設計します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では『誰が認証するか』『認証結果を誰へ渡すか』『認証後にどの権限が付与されるか』まで問われるので、通信フローに変換して理解します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q2">
+    <div class="qhead"><span class="num">問2</span><h2>Adversarial Examples</h2><span class="badge">SECURITY</span><span class="badge">マルウェア・攻撃</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">AI による画像認識において，認識させる画像の中に人間には知覚できないノイズや微小な変化を含めることによって，AI アルゴリズムの特性を悪用し，誤認識させる攻撃はどれか。</p><div class="options"><div class="option"><b>ア</b><span>Adaptively Chosen Message 攻撃</span></div><div class="option"><b>イ</b><span>Adversarial Examples 攻撃</span></div><div class="option"><b>ウ</b><span>Distributed Reflection Denial of Service 攻撃</span></div><div class="option"><b>エ</b><span>Model Inversion 攻撃</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。選択メッセージ攻撃は主に暗号・署名方式に対する攻撃モデルの用語で，画像へ微小摂動を加えてAIを誤分類させる説明ではない。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。Adversarial Examples は，入力へ人間には分かりにくい摂動を加え，モデルを意図した誤分類へ誘導する。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。DRDoSは第三者サーバを反射板として大量通信を被害者へ集中させる可用性攻撃で，AI推論とは無関係。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。Model Inversion はモデルの出力などから学習データや属性を推定する攻撃。入力画像を細工して誤分類させる攻撃ではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>Adversarial Examplesの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>攻撃問題は『攻撃前提』『攻撃経路』『悪用する仕組み』『最終的な影響』の4段で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>NTP Reflection、Smurf、Adversarial Examplesなどは、攻撃者が何を偽装・再利用・細工するかが異なります。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では攻撃手順の空欄補充が多いため、攻撃者→中継先→被害者の通信順序を文章で再現できるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q3">
+    <div class="qhead"><span class="num">問3</span><h2>MITRE ATT&amp;CK</h2><span class="badge">SECURITY</span><span class="badge">SOC・インシデント対応</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">様々なサイバー攻撃手法を分類したナレッジベースはどれか。</p><div class="options"><div class="option"><b>ア</b><span>CVSS</span></div><div class="option"><b>イ</b><span>MITRE ATT&amp;CK</span></div><div class="option"><b>ウ</b><span>STIX/TAXII</span></div><div class="option"><b>エ</b><span>サイバーキルチェーン</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。CVSSは脆弱性の深刻度を評価するスコアリング方式。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。MITRE ATT&amp;CKは，実際に観測された攻撃者の戦術（Tactics）・技法（Techniques）等を体系化した知識ベース。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。STIXは脅威情報を構造化して表現する形式，TAXIIはその情報を交換するためのプロトコル。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。サイバーキルチェーンは攻撃活動を偵察・武器化・配送などの段階で捉えるモデルで，ATT&amp;CKのような技法カタログではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>MITRE ATT&amp;CKの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>SOC系は検知・分析・対応・復旧のどこを支援する技術かで分類します。SIEM、SOAR、ATT&amp;CKは目的が異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>ログを集めて相関するのがSIEM、対応を自動化するのがSOAR、攻撃者行動を体系化するのがATT&amp;CKです。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後では『どのログを見るか』『次に何を確認するか』『封じ込めをどう行うか』が問われるため、用語を運用手順へつなげます。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q4">
+    <div class="qhead"><span class="num">問4</span><h2>NTPリフレクション攻撃</h2><span class="badge">SECURITY</span><span class="badge">マルウェア・攻撃</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">NTP リフレクション攻撃の特徴はどれか。</p><div class="options"><div class="option"><b>ア</b><span>攻撃対象である NTP サーバに高頻度で時刻を問い合わせる。</span></div><div class="option"><b>イ</b><span>攻撃対象である NTP サーバの時刻情報を書き換える。</span></div><div class="option"><b>ウ</b><span>送信元を偽って，NTP サーバに echo request を送信する。</span></div><div class="option"><b>エ</b><span>送信元を偽って，NTP サーバにレスポンスデータが大きくなるリクエストを送信する。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。単純な大量問い合わせならDoSにはなり得るが，『リフレクション』の本質である送信元IP詐称と反射がない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。時刻情報の改ざんではなく，NTPサーバを反射・増幅器としてDDoSに悪用する攻撃。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。echo request はICMPの用語で，NTPの要求ではない。Smurf攻撃との混同を狙った選択肢。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。被害者IPを送信元に詐称し，小さな要求に対して大きな応答を返すNTPサーバを利用すると，反射＋増幅が成立する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>NTPリフレクション攻撃の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>攻撃問題は『攻撃前提』『攻撃経路』『悪用する仕組み』『最終的な影響』の4段で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>NTP Reflection、Smurf、Adversarial Examplesなどは、攻撃者が何を偽装・再利用・細工するかが異なります。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では攻撃手順の空欄補充が多いため、攻撃者→中継先→被害者の通信順序を文章で再現できるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q5">
+    <div class="qhead"><span class="num">問5</span><h2>PQC</h2><span class="badge">SECURITY</span><span class="badge">暗号・PKI</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">PQC（Post-Quantum Cryptography）はどれか。</p><div class="options"><div class="option"><b>ア</b><span>量子アニーリングマシンを用いて，回路サイズ，消費電力，処理速度を飛躍的に向上させた実装性能をもつ暗号方式</span></div><div class="option"><b>イ</b><span>量子コンピュータを用いて効率的に素因数分解を行うアルゴリズムによって，暗号を解読する技術</span></div><div class="option"><b>ウ</b><span>量子コンピュータを用いても解読が困難であり，安全性を保つことができる暗号方式</span></div><div class="option"><b>エ</b><span>量子通信路を用いた鍵配送システムを利用し，大容量のデータを高速に送受信する技術</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ウ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。PQCは量子アニーリングマシンで高速化する暗号方式という意味ではない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。量子計算機を利用して既存暗号を破る側の説明。PQCは破られにくい暗号を設計する側。</p></div><div class="why ok"><div>ウ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。将来の大規模量子計算機に対しても安全性を維持することを目指す暗号方式。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。量子通信路を用いるのは量子鍵配送（QKD）などの量子暗号の領域で，PQCとは別。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>PQCの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>暗号分野は『機密性・完全性・真正性・否認防止』のどれを実現する技術かを最初に分けます。共通鍵・公開鍵・ハッシュ・MAC・電子署名は鍵の持ち方と検証主体が異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>PKIではCA・RA・証明書・失効確認を役割ごとに分離し、秘密鍵を持つ主体と本人確認をする主体を混ぜないことが重要です。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではTLS、証明書チェーン、鍵交換までつながるため、『何の鍵で何を署名/暗号化/検証するか』を言葉で説明できる状態を目指します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q6">
+    <div class="qhead"><span class="num">問6</span><h2>Smurf攻撃</h2><span class="badge">SECURITY</span><span class="badge">マルウェア・攻撃</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">Smurf 攻撃はどれか。</p><div class="options"><div class="option"><b>ア</b><span>ICMP エコー要求パケットの送信元 IP アドレスに攻撃対象の IP アドレスを設定し，宛先にブロードキャストアドレスを設定して送信することによって攻撃対象を利用不能にさせる。</span></div><div class="option"><b>イ</b><span>送信元 IP アドレスに偽の IP アドレスを設定し，かつ，攻撃対象の受信可能範囲を超える大きなパケットを送信して攻撃対象を停止させる。</span></div><div class="option"><b>ウ</b><span>送信元 IP アドレスに偽の IP アドレスを設定した大量の SYN パケットを送信し，攻撃対象からの SYN-ACK パケットに対して応答を送信しないことによって攻撃対象のリソースを枯渇させる。</span></div><div class="option"><b>エ</b><span>ボットネットを使って多数の端末から攻撃対象のメールサーバに大量のなりすましメールを送信し，攻撃対象のメールサーバを停止させる。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。被害者IPを送信元にしたICMP Echo Requestをブロードキャストへ送り，多数端末からEcho Replyを被害者へ返させる。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。巨大パケットによる異常系攻撃の説明で，Smurfの特徴であるブロードキャストとICMP反射がない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。これはSYN Floodの説明。TCPの半開き接続を大量に作り資源を枯渇させる。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。メールサーバへの大量送信によるDoSであり，Smurfではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>Smurf攻撃の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>攻撃問題は『攻撃前提』『攻撃経路』『悪用する仕組み』『最終的な影響』の4段で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>NTP Reflection、Smurf、Adversarial Examplesなどは、攻撃者が何を偽装・再利用・細工するかが異なります。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では攻撃手順の空欄補充が多いため、攻撃者→中継先→被害者の通信順序を文章で再現できるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q7">
+    <div class="qhead"><span class="num">問7</span><h2>Passkeyと生体情報</h2><span class="badge">SECURITY</span><span class="badge">認証・認可</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">ある IdP（Identity Provider）は，パスキー（Passkey）認証をサポートしており，利用者Aは，このIdPのFIDO認証器として，自分のスマートフォンの生体認証機能を登録してある。また，WebサーバBは，このIdPを使ってログインが可能である。利用者AのWebブラウザからWebサーバBにアクセスする際，利用者Aの生体情報を受信するもの，受信しないものの組合せのうち，適切なものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>Webブラウザ：受信しない ／ WebサーバB：受信しない ／ IdP：受信しない</span></div><div class="option"><b>イ</b><span>Webブラウザ：受信しない ／ WebサーバB：受信する ／ IdP：受信する</span></div><div class="option"><b>ウ</b><span>Webブラウザ：受信する ／ WebサーバB：受信しない ／ IdP：受信しない</span></div><div class="option"><b>エ</b><span>Webブラウザ：受信する ／ WebサーバB：受信する ／ IdP：受信する</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。指紋・顔などの生体情報そのものはスマートフォン内でローカル認証に使われ，Webブラウザ，WebサーバB，IdPへ送られない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。WebサーバやIdPが生体情報そのものを受け取る必要はない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。Webブラウザにも生体情報そのものを渡す必要はない。ブラウザはWebAuthnのAPIを通じて認証器とのやり取りを仲介する。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。FIDO/Passkeyの重要なプライバシー特性に反する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>Passkeyと生体情報の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>認証（Authentication）は『誰か』、認可（Authorization）は『何を許すか』を扱います。RADIUS、Passkey、SSO、OAuth、802.1Xは同じ認証系でも、認証主体と資格情報の流れが異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>実務ではIdP・SP・認可サーバ・RADIUSサーバなどの役割分離、失効、セッション管理、フィッシング耐性まで含めて設計します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では『誰が認証するか』『認証結果を誰へ渡すか』『認証後にどの権限が付与されるか』まで問われるので、通信フローに変換して理解します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q8">
+    <div class="qhead"><span class="num">問8</span><h2>SSO方式</h2><span class="badge">SECURITY</span><span class="badge">認証・認可</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">シングルサインオン（SSO）に関する記述のうち，適切なものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>SAML方式では，URL形式の1人一つの利用者IDをIdPで自動生成することによって，インターネット上の複数のWebサイトにおけるSSOを実現する。</span></div><div class="option"><b>イ</b><span>エージェント方式では，クライアントPCに導入したエージェントがSSO対象システムのログイン画面を監視し，認証情報を代行入力する。</span></div><div class="option"><b>ウ</b><span>代理認証方式では，SSO対象サーバにSSOのモジュールを組み込む必要があり，システムの改修が必要となる。</span></div><div class="option"><b>エ</b><span>リバースプロキシ方式では，SSOを利用する全てのトラフィックがリバースプロキシサーバに集中する。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。SAMLの本質はIdPが認証結果をAssertionとしてSPへ連携すること。URL形式IDの自動生成がSSOの本質ではない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。ログイン画面を監視してID/パスワードを代行入力する説明は代理認証方式に近い。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。対象サーバへSSOモジュールを組み込む説明はエージェント方式に近い。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。リバースプロキシ方式では利用者から対象Webシステムへの通信をプロキシが中継するため，SSO利用トラフィックが集中する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>SSO方式の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>認証（Authentication）は『誰か』、認可（Authorization）は『何を許すか』を扱います。RADIUS、Passkey、SSO、OAuth、802.1Xは同じ認証系でも、認証主体と資格情報の流れが異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>実務ではIdP・SP・認可サーバ・RADIUSサーバなどの役割分離、失効、セッション管理、フィッシング耐性まで含めて設計します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では『誰が認証するか』『認証結果を誰へ渡すか』『認証後にどの権限が付与されるか』まで問われるので、通信フローに変換して理解します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q9">
+    <div class="qhead"><span class="num">問9</span><h2>量子暗号</h2><span class="badge">SECURITY</span><span class="badge">暗号・PKI</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">量子暗号の特徴として，適切なものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>暗号化と復号の処理を，量子コンピュータを用いて行うことができるので，従来のコンピュータでの処理に比べて大量のデータの秘匿を短時間で実現できる。</span></div><div class="option"><b>イ</b><span>共通鍵暗号方式であり，従来の情報の取扱量の最小単位であるビットの代わりに量子ビットを用いることによって，高速なデータ送受信が実現できる。</span></div><div class="option"><b>ウ</b><span>量子雑音を用いて共通鍵を生成し，公開鍵暗号方式で共有することによって，解読が困難な秘匿通信が実現できる。</span></div><div class="option"><b>エ</b><span>量子通信路を用いて安全に共有した乱数列を使い捨ての暗号鍵として用いることによって，原理的に第三者に解読されない秘匿通信が実現できる。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。量子暗号の目的は単純な高速化ではない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。量子ビットを使って高速なデータ送受信をする共通鍵暗号という説明ではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。QKDでは公開鍵暗号で共通鍵を配送することを本質としていない。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。量子通信路で鍵情報を安全に共有し，ワンタイムパッドのような使い捨て鍵と組み合わせる考え方が量子暗号の特徴。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>量子暗号の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>暗号分野は『機密性・完全性・真正性・否認防止』のどれを実現する技術かを最初に分けます。共通鍵・公開鍵・ハッシュ・MAC・電子署名は鍵の持ち方と検証主体が異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>PKIではCA・RA・証明書・失効確認を役割ごとに分離し、秘密鍵を持つ主体と本人確認をする主体を混ぜないことが重要です。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではTLS、証明書チェーン、鍵交換までつながるため、『何の鍵で何を署名/暗号化/検証するか』を言葉で説明できる状態を目指します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q10">
+    <div class="qhead"><span class="num">問10</span><h2>DMARC</h2><span class="badge">SECURITY</span><span class="badge">メールセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">電子メールの受信者側のメールサーバでの送信ドメイン認証が失敗したときの処理方針を，送信側のドメイン管理者が指定するための仕組みはどれか。</p><div class="options"><div class="option"><b>ア</b><span>DKIM</span></div><div class="option"><b>イ</b><span>DMARC</span></div><div class="option"><b>ウ</b><span>SMTP-AUTH</span></div><div class="option"><b>エ</b><span>SPF</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。DKIMはメールに電子署名し，署名対象が改ざんされていないことや署名ドメインを検証する。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。DMARCはSPF/DKIM結果とFromドメインの整合性を評価し，失敗時のnone/quarantine/rejectなどの方針をDNSで公開する。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。SMTP-AUTHはメール投稿時に送信利用者を認証する仕組み。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。SPFは送信元IPがそのドメインからの送信を許可されているかを検証する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>DMARCの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>メールは『送信者本人の認証』『送信ドメイン認証』『通信路暗号化』『メール本文の署名/暗号化』を分けます。</p>
+    <h4>3. 似た技術との違い</h4><p>SPFは送信元IP、DKIMは署名、DMARCはFrom整合性と処理方針、SMTP-AUTHは投稿者認証です。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではDNSレコードやメールヘッダを読ませる問題につながるため、どの情報をどこから検証するかまで押さえます。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q11">
+    <div class="qhead"><span class="num">問11</span><h2>SOAR</h2><span class="badge">SECURITY</span><span class="badge">SOC・インシデント対応</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">SOAR（Security Orchestration, Automation and Response）の説明はどれか。</p><div class="options"><div class="option"><b>ア</b><span>脅威インテリジェンスの活用，セキュリティ運用の自動化及びインシデント対応の効率化を行う技術</span></div><div class="option"><b>イ</b><span>全ての利用者，デバイス，接続元を信頼できないものとして捉え，重要な情報資産やシステムに対するアクセスの正当性や安全性の検証を自動化することによって脅威を防ぐ考え方</span></div><div class="option"><b>ウ</b><span>組織間でサイバー攻撃に関する情報を効率的に交換するために，脅威情報構造化記述形式で記述された情報の交換を自動化するためのプロトコル仕様</span></div><div class="option"><b>エ</b><span>ファイアウォール，マルウェア対策製品，侵入検知製品など複数のセキュリティ製品のログの集約及び相関分析を自動化するための専用装置</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。SOARは製品連携（Orchestration），自動化（Automation），対応（Response）を組み合わせSOC運用を効率化する。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。これはZero Trustの説明。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。脅威情報を交換するプロトコルはTAXII，構造化記述はSTIX。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。ログの集約・相関分析はSIEMの説明に近い。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>SOARの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>SOC系は検知・分析・対応・復旧のどこを支援する技術かで分類します。SIEM、SOAR、ATT&amp;CKは目的が異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>ログを集めて相関するのがSIEM、対応を自動化するのがSOAR、攻撃者行動を体系化するのがATT&amp;CKです。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後では『どのログを見るか』『次に何を確認するか』『封じ込めをどう行うか』が問われるため、用語を運用手順へつなげます。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q12">
+    <div class="qhead"><span class="num">問12</span><h2>WAFのフォールスポジティブ</h2><span class="badge">SECURITY</span><span class="badge">サーバセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">WAF におけるフォールスポジティブに該当するものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>HTMLの特殊文字“&lt;”を検出したときに通信を遮断するようにWAFを設定した場合，数式を入力するWebサイトに“&lt;”を数式の一部として含んだHTTPリクエストが送信されたとき，WAFが攻撃として検知し，遮断する。</span></div><div class="option"><b>イ</b><span>HTTPリクエストのうち，RFCなどに定義されておらず，Webアプリケーションソフトウェアの開発者が独自に追加したフィールドについてはWAFが検査しないという仕様を悪用して，攻撃の命令を埋め込んだHTTPリクエストが送信されたとき，WAFが遮断しない。</span></div><div class="option"><b>ウ</b><span>HTTPリクエストのパラメータ中に許可しない文字列を検出したときに通信を遮断するようにWAFを設定した場合，許可しない文字列をパラメータ中に含んだ不正なHTTPリクエストが送信されたとき，WAFが攻撃として検知し，遮断する。</span></div><div class="option"><b>エ</b><span>悪意のある通信を正常な通信と見せかけ，HTTPリクエストを分割して送信されたとき，WAFが遮断しない。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。正常な数式入力を攻撃と誤判定して遮断しているのでFalse Positive。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。攻撃通信を検査できず通しているのでFalse Negative。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。攻撃を正しく攻撃と判定して遮断しているのでTrue Positive。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。攻撃通信を正常と誤認して通しているのでFalse Negative。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>WAFのフォールスポジティブの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>Web/サーバ系は『入力値をどこへ渡すか』『ブラウザで動くかサーバで動くか』『HTTPヘッダ/Cookie/アプリ実装のどこで防ぐか』を分けます。</p>
+    <h4>3. 似た技術との違い</h4><p>WAF、クリックジャッキング、XSS、CSRFなどは似て見えても、攻撃コードが実行される場所と被害の起点が異なります。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではHTTPリクエスト、脆弱なコード、対策ヘッダを組み合わせて問われるため、攻撃成立条件→影響→具体的対策の3段で説明できるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q13">
+    <div class="qhead"><span class="num">問13</span><h2>インライン型アノマリIPS</h2><span class="badge">SECURITY</span><span class="badge">ネットワークセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">インラインモードで動作するアノマリ型 IPS はどれか。</p><div class="options"><div class="option"><b>ア</b><span>IPSが監視対象の通信経路を流れる全ての通信パケットを経路外からキャプチャできるようにスイッチのミラーポートに接続される。異常な通信を定義し，それと合致する通信を不正と判断して遮断する。</span></div><div class="option"><b>イ</b><span>IPSが監視対象の通信経路を流れる全ての通信パケットを経路外からキャプチャできるようにスイッチのミラーポートに接続される。通常時の通信を定義し，それから外れた通信を不正と判断して遮断する。</span></div><div class="option"><b>ウ</b><span>IPSが監視対象の通信を通過させるように通信経路上に設置される。異常な通信を定義し，それと合致する通信を不正と判断して遮断する。</span></div><div class="option"><b>エ</b><span>IPSが監視対象の通信を通過させるように通信経路上に設置される。通常時の通信を定義し，それから外れた通信を不正と判断して遮断する。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。ミラーポートで経路外に置くのでインラインではない。さらに『異常な通信を定義』はシグネチャ型の説明。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。通常状態からの逸脱を見る点はアノマリ型だが，ミラーポート接続なのでインラインではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。通信経路上なのでインラインだが，既知の異常パターンと照合する説明はシグネチャ型。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。通信経路上に置く＝インライン，通常時の通信から外れたものを異常とする＝アノマリ型。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>インライン型アノマリIPSの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワークセキュリティは『どのレイヤで』『通信経路上か経路外か』『検知だけか遮断までか』で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>IPS、DTLS、802.1X、IPsecなどは守る対象が異なります。端末・AP/スイッチ・認証サーバの3者関係や、TCP/UDP/IPのレイヤを図にすると理解が安定します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図から通信可否を読むことが多いので、送信元/宛先・プロトコル・認証主体を追います。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q14">
+    <div class="qhead"><span class="num">問14</span><h2>クリックジャッキング対策</h2><span class="badge">SECURITY</span><span class="badge">サーバセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">クリックジャッキング攻撃に有効な対策はどれか。</p><div class="options"><div class="option"><b>ア</b><span>cookie に，HttpOnly 属性を設定する。</span></div><div class="option"><b>イ</b><span>cookie に，Secure 属性を設定する。</span></div><div class="option"><b>ウ</b><span>HTTP レスポンスヘッダーに，Strict-Transport-Security を設定する。</span></div><div class="option"><b>エ</b><span>HTTP レスポンスヘッダーに，X-Frame-Options を設定する。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。HttpOnlyはJavaScriptからCookieを読み取られにくくし，XSS時のCookie窃取リスクを下げる対策。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。SecureはCookieをHTTPS通信時だけ送信させる属性。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。HSTSはブラウザにHTTPS通信を強制し，HTTPへのダウングレードを防ぐ。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。X-Frame-Optionsで他サイトからiframeなどに埋め込まれることを制限し，クリックジャッキングを防止する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>クリックジャッキング対策の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>Web/サーバ系は『入力値をどこへ渡すか』『ブラウザで動くかサーバで動くか』『HTTPヘッダ/Cookie/アプリ実装のどこで防ぐか』を分けます。</p>
+    <h4>3. 似た技術との違い</h4><p>WAF、クリックジャッキング、XSS、CSRFなどは似て見えても、攻撃コードが実行される場所と被害の起点が異なります。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではHTTPリクエスト、脆弱なコード、対策ヘッダを組み合わせて問われるため、攻撃成立条件→影響→具体的対策の3段で説明できるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q15">
+    <div class="qhead"><span class="num">問15</span><h2>DTLS</h2><span class="badge">SECURITY</span><span class="badge">ネットワークセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">DTLS の特徴はどれか。</p><div class="options"><div class="option"><b>ア</b><span>IP パケットの暗号化を可能としている。</span></div><div class="option"><b>イ</b><span>PPP で接続する際のチャレンジレスポンス認証機能をイーサネット上の通信に提供している。</span></div><div class="option"><b>ウ</b><span>TCP のペイロードデータの暗号強度を TLS よりも強化している。</span></div><div class="option"><b>エ</b><span>UDP のペイロードデータの暗号化を可能としている。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。IPパケットをネットワーク層で保護する代表技術はIPsec。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。PPPの認証機能をイーサネットへ提供する説明ではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。DTLSはTLSより暗号強度を強化したTCP用プロトコルではない。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。DTLSはUDPなどデータグラム型通信でTLSに近い暗号化・完全性・認証を提供する。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>DTLSの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワークセキュリティは『どのレイヤで』『通信経路上か経路外か』『検知だけか遮断までか』で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>IPS、DTLS、802.1X、IPsecなどは守る対象が異なります。端末・AP/スイッチ・認証サーバの3者関係や、TCP/UDP/IPのレイヤを図にすると理解が安定します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図から通信可否を読むことが多いので、送信元/宛先・プロトコル・認証主体を追います。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q16">
+    <div class="qhead"><span class="num">問16</span><h2>OAuth 2.0</h2><span class="badge">SECURITY</span><span class="badge">認証・認可</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">利用者Aが所有するリソースBが，WebサービスC上にある。OAuth 2.0において，利用者Aの認可の下，WebサービスDからリソースBへの限定されたアクセスを可能にするときのプロトコルの動作はどれか。ここでWebサービスCは，認可サーバを兼ねているものとする。</p><div class="options"><div class="option"><b>ア</b><span>WebサービスCが，アクセストークンを発行する。</span></div><div class="option"><b>イ</b><span>WebサービスCが，利用者Aのデジタル証明書をWebサービスDに送信する。</span></div><div class="option"><b>ウ</b><span>WebサービスDが，アクセストークンを発行する。</span></div><div class="option"><b>エ</b><span>WebサービスDが，利用者Aのデジタル証明書をWebサービスCに送信する。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。認可サーバを兼ねるCが，利用者Aの認可に基づきDへアクセストークンを発行し，Dはそれを使ってC上のリソースへアクセスする。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。OAuthの基本動作は利用者のデジタル証明書をクライアントへ配布することではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。クライアントD自身がアクセストークンを勝手に発行しては認可にならない。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。利用者のデジタル証明書をDがCへ送る方式ではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>OAuth 2.0の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>認証（Authentication）は『誰か』、認可（Authorization）は『何を許すか』を扱います。RADIUS、Passkey、SSO、OAuth、802.1Xは同じ認証系でも、認証主体と資格情報の流れが異なります。</p>
+    <h4>3. 似た技術との違い</h4><p>実務ではIdP・SP・認可サーバ・RADIUSサーバなどの役割分離、失効、セッション管理、フィッシング耐性まで含めて設計します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題では『誰が認証するか』『認証結果を誰へ渡すか』『認証後にどの権限が付与されるか』まで問われるので、通信フローに変換して理解します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q17">
+    <div class="qhead"><span class="num">問17</span><h2>IEEE 802.1X と RADIUS</h2><span class="badge">SECURITY</span><span class="badge">ネットワークセキュリティ</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">利用者認証情報を管理するサーバ1台と複数のアクセスポイントで構成された無線LAN環境を実現したい。PCが無線LAN環境に接続するときの利用者認証とアクセス制御に，IEEE 802.1XとRADIUSを利用する場合の標準的な方法はどれか。</p><div class="options"><div class="option"><b>ア</b><span>PCにはIEEE 802.1Xのサプリカントを実装し，かつ，RADIUSクライアントの機能をもたせる。</span></div><div class="option"><b>イ</b><span>アクセスポイントにはIEEE 802.1Xのオーセンティケータを実装し，かつ，RADIUSクライアントの機能をもたせる。</span></div><div class="option"><b>ウ</b><span>アクセスポイントにはIEEE 802.1Xのサプリカントを実装し，かつ，RADIUSサーバの機能をもたせる。</span></div><div class="option"><b>エ</b><span>サーバにはIEEE 802.1Xのオーセンティケータを実装し，かつ，RADIUSサーバの機能をもたせる。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。PCはSupplicantだが，通常RADIUSクライアントはAP/スイッチ側。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。APがAuthenticatorとして端末のアクセスを制御し，RADIUSクライアントとして認証サーバへ認証要求を中継する。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。APはSupplicantではなくAuthenticator。RADIUSサーバも中央の認証サーバ側。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。中央サーバはRADIUSサーバとして認証を行うが，AuthenticatorはAP側。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>IEEE 802.1X と RADIUSの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワークセキュリティは『どのレイヤで』『通信経路上か経路外か』『検知だけか遮断までか』で整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>IPS、DTLS、802.1X、IPsecなどは守る対象が異なります。端末・AP/スイッチ・認証サーバの3者関係や、TCP/UDP/IPのレイヤを図にすると理解が安定します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図から通信可否を読むことが多いので、送信元/宛先・プロトコル・認証主体を追います。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q18">
+    <div class="qhead"><span class="num">問18</span><h2>IPsec</h2><span class="badge">GENERAL IT</span><span class="badge">ネットワーク</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">ネットワーク層のパケットを対象として IP パケットでカプセル化し，トンネリングを行えるプロトコルはどれか。</p><div class="options"><div class="option"><b>ア</b><span>IPsec</span></div><div class="option"><b>イ</b><span>L2TP</span></div><div class="option"><b>ウ</b><span>PPTP</span></div><div class="option"><b>エ</b><span>RSTP</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。IPsecのトンネルモードでは元IPパケットを新しいIPパケットにカプセル化し，VPNなどで利用する。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。L2TPもトンネリングに使われるが，レイヤ2トンネリングのプロトコル。本問の『ネットワーク層のパケットをIPパケットで』がIPsecの決め手。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。PPTPはPPPをIPネットワーク上でトンネルする旧来のVPN方式。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。RSTPはスパニングツリーの高速収束版で，VPNトンネリングとは無関係。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>IPsecの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワーク基礎はアドレス、経路、TCP/IP、監視の仕組みを正確に読む分野です。セキュリティ問題の前提になるためGENERAL ITでも重要です。</p>
+    <h4>3. 似た技術との違い</h4><p>IPsec、ICMP、ネットワークTAPなどは『どの層で何を解決するか』で整理します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図を読む土台になるため、パケットがどの装置を通るかを追えるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q19">
+    <div class="qhead"><span class="num">問19</span><h2>ICMPメッセージ</h2><span class="badge">GENERAL IT</span><span class="badge">ネットワーク</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">IPv4 における ICMP のメッセージに関する説明として，適切なものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>送信元が設定したソースルーティングが失敗した場合は，Echo Reply を返す。</span></div><div class="option"><b>イ</b><span>転送されてきたデータグラムを受信したルータが，そのネットワークの最適なルータを送信元に通知して経路の変更を要請するには，Redirect を返す。</span></div><div class="option"><b>ウ</b><span>フラグメントの再組立て中にタイムアウトが発生した場合は，データグラムを破棄して Parameter Problem を返す。</span></div><div class="option"><b>エ</b><span>ルータでメッセージを転送する際に，送信元が設定した TTL が 0 になった場合は，Destination Unreachable を返す。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。Echo ReplyはEcho Request（ping）への応答。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。より適切な次ホップがあることをホストへ知らせるためにICMP Redirectを使う。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。フラグメント再構成タイムアウトなどではTime Exceededが関係し，Parameter Problemではない。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。TTLが0になるとTime Exceededを返す。Destination Unreachableではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>ICMPメッセージの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワーク基礎はアドレス、経路、TCP/IP、監視の仕組みを正確に読む分野です。セキュリティ問題の前提になるためGENERAL ITでも重要です。</p>
+    <h4>3. 似た技術との違い</h4><p>IPsec、ICMP、ネットワークTAPなどは『どの層で何を解決するか』で整理します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図を読む土台になるため、パケットがどの装置を通るかを追えるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q20">
+    <div class="qhead"><span class="num">問20</span><h2>ネットワークタップ</h2><span class="badge">GENERAL IT</span><span class="badge">ネットワーク</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">ネットワーク機器間の光ファイバを使った通信を分岐させてネットワーク上のトラフィックを取り出し，セキュリティ装置で監視したい。ネットワークから信号を光学的に分岐させて取り出す装置はどれか。</p><div class="options"><div class="option"><b>ア</b><span>ネットワークタップ</span></div><div class="option"><b>イ</b><span>波長分割多重装置</span></div><div class="option"><b>ウ</b><span>ルータ</span></div><div class="option"><b>エ</b><span>レイヤー2スイッチ</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ア</div><h3>🔍 選択肢ごとの解説</h3><div class="why ok"><div>ア</div><div class="judge">○ 正しい</div><p>○ 正解 正解。ネットワークTAPは通信路から監視用に信号を分岐し，IDS/NDR等へコピーを提供する。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。WDMは異なる波長を使って複数信号を一本の光ファイバへ多重化する技術。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。ルータはIPパケットを異なるネットワーク間で転送する。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。L2スイッチはMACアドレスに基づいてフレーム転送する。ポートミラー機能を持つことはあるが，設問は光学的に分岐する専用装置を聞いている。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>ネットワークタップの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>ネットワーク基礎はアドレス、経路、TCP/IP、監視の仕組みを正確に読む分野です。セキュリティ問題の前提になるためGENERAL ITでも重要です。</p>
+    <h4>3. 似た技術との違い</h4><p>IPsec、ICMP、ネットワークTAPなどは『どの層で何を解決するか』で整理します。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後問題ではネットワーク図を読む土台になるため、パケットがどの装置を通るかを追えるようにします。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q21">
+    <div class="qhead"><span class="num">問21</span><h2>関係モデルの外部キー</h2><span class="badge">GENERAL IT</span><span class="badge">データベース</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">関係モデルにおける外部キーに関する記述のうち，適切なものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>外部キーの値は，その関係の中で一意でなければならない。</span></div><div class="option"><b>イ</b><span>外部キーは，それが参照する候補キーと比較可能でなくてもよい。</span></div><div class="option"><b>ウ</b><span>参照先の関係に，参照元の外部キーの値と一致する候補キーが存在しなくてもよい。</span></div><div class="option"><b>エ</b><span>一つの関係に外部キーが複数存在してもよい。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。外部キーは同じ参照先を複数行が指すことがあるため，一意である必要はない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。参照先キーと比較可能な型・ドメインである必要がある。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。NULLを許す場合などを除き，参照整合性のため参照先に対応する候補キー値が存在する必要がある。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。一つの表が複数の別表/別キーを参照することは普通にあるため，複数の外部キーを持てる。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>関係モデルの外部キーの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>DBはキー、参照整合性、SQL、権限管理を分けて理解します。候補キー・主キー・外部キーの役割を曖昧にしないことが基本です。</p>
+    <h4>3. 似た技術との違い</h4><p>外部キーは行を一意に識別するためではなく、別の関係のキーを参照して整合性を保つために使います。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後ではSQLインジェクションや監査ログと結び付くため、DBの通常動作を理解していることが前提になります。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q22">
+    <div class="qhead"><span class="num">問22</span><h2>GoFデザインパターン</h2><span class="badge">GENERAL IT</span><span class="badge">開発・設計</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">ソフトウェアパターンのうち，GoF のデザインパターンの説明はどれか。</p><div class="options"><div class="option"><b>ア</b><span>Java のパターンとして，引数オブジェクト，オブジェクトの可変性などで構成される。</span></div><div class="option"><b>イ</b><span>オブジェクト指向開発のためのパターンであって，生成，構造，振る舞いの三つのカテゴリに分類される。</span></div><div class="option"><b>ウ</b><span>構造，分散システム，対話型システム及び適合型システムの四つのカテゴリに分類される。</span></div><div class="option"><b>エ</b><span>抽象度が異なる要素を分割して階層化するための Layers，コンポーネント分割のための Broker などで構成される。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：イ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。GoFはJava固有のパターン集ではない。</p></div><div class="why ok"><div>イ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。GoFの23パターンは生成（Creational），構造（Structural），振る舞い（Behavioral）に分類される。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。これはGoFの分類ではない。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。LayersやBrokerはアーキテクチャパターンの例で，GoFの23デザインパターンとは別。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>GoFデザインパターンの定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>開発系は設計パターン、テスト、アジャイルなど『何を改善する手法か』を整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>TDDはRed→Green→Refactor、GoFは生成・構造・振る舞いという核を押さえます。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後ではセキュア開発・CI/CD・レビューにもつながるため、工程のどこで使うかまで意識します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q23">
+    <div class="qhead"><span class="num">問23</span><h2>XPのテスト駆動開発</h2><span class="badge">GENERAL IT</span><span class="badge">開発・設計</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">エクストリームプログラミング（XP：Extreme Programming）における“テスト駆動開発”の特徴はどれか。</p><div class="options"><div class="option"><b>ア</b><span>最初のテストで，なるべく多くのバグを摘出する。</span></div><div class="option"><b>イ</b><span>テストケースの改善を繰り返す。</span></div><div class="option"><b>ウ</b><span>テストでのカバレージを高めることを目的とする。</span></div><div class="option"><b>エ</b><span>プログラムコードを書く前にテストコードを書く。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。TDDは最初のテストで大量のバグ検出を狙う手法ではない。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。テスト改善も起こるが，TDDを特徴付ける本質ではない。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。高いカバレージは結果として得られることがあるが，TDDの直接の定義ではない。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。まず失敗するテストを書き，テストを通す最小コードを書き，その後リファクタリングする。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>XPのテスト駆動開発の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>開発系は設計パターン、テスト、アジャイルなど『何を改善する手法か』を整理します。</p>
+    <h4>3. 似た技術との違い</h4><p>TDDはRed→Green→Refactor、GoFは生成・構造・振る舞いという核を押さえます。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後ではセキュア開発・CI/CD・レビューにもつながるため、工程のどこで使うかまで意識します。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q24">
+    <div class="qhead"><span class="num">問24</span><h2>SMSの継続的改善</h2><span class="badge">GENERAL IT</span><span class="badge">サービス管理・内部統制</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">JIS Q 20000-1:2020（サービスマネジメントシステム要求事項）によれば，サービスマネジメントシステム（SMS）における継続的改善の定義はどれか。</p><div class="options"><div class="option"><b>ア</b><span>意図した結果を得るためにインプットを使用する，相互に関連する又は相互に作用する一連の活動</span></div><div class="option"><b>イ</b><span>価値を提供するため，サービスの計画立案，設計，移行，提供及び改善のための組織の活動及び資源を，指揮し，管理する，一連の能力及びプロセス</span></div><div class="option"><b>ウ</b><span>サービスを中断なしに，又は合意した可用性を一貫して提供する能力</span></div><div class="option"><b>エ</b><span>パフォーマンスを向上するために繰り返し行われる活動</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：エ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。一般的な『プロセス』の定義に相当する。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。サービスマネジメントそのものの説明に近い。</p></div><div class="why ng"><div>ウ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。サービス継続/可用性に関する能力の説明。</p></div><div class="why ok"><div>エ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。継続的改善はパフォーマンス向上を目的として反復的に実施される活動。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>SMSの継続的改善の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>管理系は『組織全体の統制』と『個別業務処理に組み込まれた統制』を区別します。サービス管理では継続的改善の反復性も重要です。</p>
+    <h4>3. 似た技術との違い</h4><p>方針・規程・教育は全般統制寄り、アプリに組み込まれた認証や入力チェックは業務処理統制寄りです。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後では監査・リスク・運用改善の記述問題につながるので、誰がどの証跡を確認するかまで考えます。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article><article class="qcard" id="q25">
+    <div class="qhead"><span class="num">問25</span><h2>アクセス管理の業務処理統制</h2><span class="badge">GENERAL IT</span><span class="badge">サービス管理・内部統制</span></div>
+    <div class="grid"><div class="problem"><h3>📘 問題</h3><p class="qtext">アクセス管理に関する内部統制のうち，金融庁“財務報告に係る内部統制の評価及び監査に関する実施基準（令和5年）”における IT に係る業務処理統制に該当するものはどれか。</p><div class="options"><div class="option"><b>ア</b><span>組織としてアクセス管理規程を定め，統一的なアクセス管理を行う。</span></div><div class="option"><b>イ</b><span>組織としてアクセス権限の設定方針を定め，周知徹底を図る。</span></div><div class="option"><b>ウ</b><span>組織内のアプリケーションシステムに，利用者 ID とパスワードによって利用者を認証する機能を設ける。</span></div><div class="option"><b>エ</b><span>組織内の全ての利用者に対して，アクセス管理の重要性についての教育を行う。</span></div></div></div>
+    <div class="expl"><div class="answer">✅ 正解：ウ</div><h3>🔍 選択肢ごとの解説</h3><div class="why ng"><div>ア</div><div class="judge">× 誤り</div><p>× 不正解 不正解。組織全体の方針・規程はIT全般統制に近い。</p></div><div class="why ng"><div>イ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。アクセス権限設定方針の策定・周知は組織レベルの全般統制に近い。</p></div><div class="why ok"><div>ウ</div><div class="judge">○ 正しい</div><p>○ 正解 正解。個々のアプリケーションに組み込まれた認証機能は，業務処理に直接組み込まれたIT業務処理統制に該当する。</p></div><div class="why ng"><div>エ</div><div class="judge">× 誤り</div><p>× 不正解 不正解。教育は組織全体の管理活動であり，個別業務処理に組み込まれた自動統制ではない。</p></div><section class="ultradeep"><h3>🔬 超深掘り解説</h3>
+    <h4>1. この論点の核</h4><p>アクセス管理の業務処理統制の定義と役割を確認します。</p>
+    <h4>2. 仕組み・実務イメージ</h4><p>管理系は『組織全体の統制』と『個別業務処理に組み込まれた統制』を区別します。サービス管理では継続的改善の反復性も重要です。</p>
+    <h4>3. 似た技術との違い</h4><p>方針・規程・教育は全般統制寄り、アプリに組み込まれた認証や入力チェックは業務処理統制寄りです。</p>
+    <h4>4. 午後問題へのつながり</h4><p>午後では監査・リスク・運用改善の記述問題につながるので、誰がどの証跡を確認するかまで考えます。</p>
+    <div class="trap"><b>🧠 本番のひっかけ：</b>名称だけで選ばず、主体・目的・処理対象・レイヤ・鍵/資格情報の5軸で比較する。</div></section></div></div></article></body></html>
