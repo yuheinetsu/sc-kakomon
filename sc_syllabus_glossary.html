@@ -17,572 +17,1395 @@ main{max-width:1450px;margin:14px auto;padding:0 10px}.status{margin:8px 0;color
 .newnotice{margin-top:10px;background:#fff4d9;color:#604700;border-left:5px solid #e0a52d;padding:9px 11px;border-radius:8px}
 .compare{margin-top:7px;background:#f1edff;border-left:4px solid #7558b8;padding:8px;border-radius:7px}
 .compare b{color:#49357e}.compare p{margin:3px 0 0;font-size:.9rem;color:#39495a}
+
+.learnbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;padding:8px 10px;background:#0e263b;border:1px solid #365a75;border-radius:9px}
+.progressbox{display:grid;grid-template-columns:auto auto;gap:2px 10px;align-items:center;min-width:230px}.progressbox span{text-align:right;font-weight:900;color:#bfe5cc}
+.progress{grid-column:1/-1;height:7px;background:#071725;border-radius:999px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:#6fc48d;transition:width .2s}
+.learnfilters{display:flex;gap:6px;flex-wrap:wrap}.learnbtn{border:1px solid #52728b;background:#102f48;color:#fff;padding:6px 10px;border-radius:999px;font-weight:800}
+.learnbtn.active{background:#eef7ff;color:#174d7c}.donebtn{border-color:#4e8b68}
+.memory-toggle{display:flex;align-items:center;gap:7px;margin:8px 0 2px;padding:7px 9px;background:#eef5fb;border:1px solid #c9dae8;border-radius:7px;color:#36536b;font-size:.82rem;font-weight:900;cursor:pointer}
+.memory-toggle input{width:18px;height:18px;accent-color:#3b8b5e}.term.memorized{opacity:.72;border-top-color:#4a9b69}.term.memorized .memory-toggle{background:#e5f6eb;border-color:#92c9a5;color:#276440}
+.term.memorized .memory-toggle span:after{content:" ✓";}.term.memorized h2:after{content:"  ✓";color:#38835a;font-size:.85rem}
+@media(max-width:700px){.learnbar{align-items:stretch;flex-direction:column}.progressbox{min-width:0}}
 </style></head><body>
 <header><div class="wrap"><small>SC KAKOMON｜学習資料</small><h1>情報処理安全確保支援士<br/>シラバス用語集</h1>
 <p>IPA「情報処理安全確保支援士試験 シラバス Ver.2.1」および科目A-2追補版 Ver.4.0をベースに、試験で使える意味へ噛み砕いた用語集。現在 150 語。</p>
 <a class="official" href="https://www.ipa.go.jp/shiken/syllabus/gaiyou.html" rel="noopener" target="_blank">🏛 IPA公式 シラバス一覧を開く ↗</a><div class="newnotice">🆕 <b>比較的新しい用語</b>も独立分類：AIを悪用した攻撃／ディープフェイク／敵対的サンプル／プロンプトインジェクション／データポイズニング／モデルインバージョン／メンバーシップ推測／RaaS／Passkeys／PQC など</div></div></header>
 <div class="tools"><div class="toolsin"><input id="search" placeholder="用語を検索 例：DMARC / Passkeys / SQLインジェクション / PKI"/>
-<div class="cats"><button class="catbtn active" data-cat="all">すべて 150</button><button class="catbtn" data-cat="compare-only">⚖️ 混同注意あり</button><button class="catbtn" data-cat="基礎・脅威">基礎・脅威 <small>7</small></button><button class="catbtn" data-cat="マルウェア・攻撃">マルウェア・攻撃 <small>12</small></button><button class="catbtn" data-cat="Web・サーバセキュリティ">Web・サーバセキュリティ <small>19</small></button><button class="catbtn" data-cat="暗号・PKI">暗号・PKI <small>25</small></button><button class="catbtn" data-cat="認証・認可">認証・認可 <small>18</small></button><button class="catbtn" data-cat="メールセキュリティ">メールセキュリティ <small>7</small></button><button class="catbtn" data-cat="ネットワークセキュリティ">ネットワークセキュリティ <small>21</small></button><button class="catbtn" data-cat="インシデント・管理">インシデント・管理 <small>24</small></button><button class="catbtn" data-cat="ネットワーク">ネットワーク <small>6</small></button><button class="catbtn" data-cat="新技術・AIセキュリティ">新技術・AIセキュリティ <small>11</small></button></div></div></div>
-<main><div class="status" id="status"></div><div class="grid"><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 cia 機密性・完全性・可用性 情報セキュリティの基本3要素。秘密を守る・正しさを守る・必要な時に使える、の3観点。 機密性と完全性、可用性のどれが損なわれた事象かを切り分ける。">
+<div class="cats"><button class="catbtn active" data-cat="all">すべて 150</button><button class="catbtn" data-cat="compare-only">⚖️ 混同注意あり</button><button class="catbtn" data-cat="基礎・脅威">基礎・脅威 <small>7</small></button><button class="catbtn" data-cat="マルウェア・攻撃">マルウェア・攻撃 <small>12</small></button><button class="catbtn" data-cat="Web・サーバセキュリティ">Web・サーバセキュリティ <small>19</small></button><button class="catbtn" data-cat="暗号・PKI">暗号・PKI <small>25</small></button><button class="catbtn" data-cat="認証・認可">認証・認可 <small>18</small></button><button class="catbtn" data-cat="メールセキュリティ">メールセキュリティ <small>7</small></button><button class="catbtn" data-cat="ネットワークセキュリティ">ネットワークセキュリティ <small>21</small></button><button class="catbtn" data-cat="インシデント・管理">インシデント・管理 <small>24</small></button><button class="catbtn" data-cat="ネットワーク">ネットワーク <small>6</small></button><button class="catbtn" data-cat="新技術・AIセキュリティ">新技術・AIセキュリティ <small>11</small></button></div>
+<div class="learnbar">
+<div class="progressbox"><b>暗記進捗</b><span id="memorizedCount">0 / 150</span>
+<div class="progress"><i id="progressFill"></i></div>
+</div>
+<div class="learnfilters">
+<button class="learnbtn active" data-learn="all">すべて</button>
+<button class="learnbtn" data-learn="todo">📚 未学習</button>
+<button class="learnbtn donebtn" data-learn="done">✅ 暗記済み</button>
+</div>
+</div>
+</div></div>
+<main><div class="status" id="status"></div><div class="grid"><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 cia 機密性・完全性・可用性 情報セキュリティの基本3要素。秘密を守る・正しさを守る・必要な時に使える、の3観点。 機密性と完全性、可用性のどれが損なわれた事象かを切り分ける。" data-term-key="CIA">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>CIA</h2><div class="en">機密性・完全性・可用性</div>
 <div class="one"><b>一言でいうと</b><p>情報セキュリティの基本3要素。秘密を守る・正しさを守る・必要な時に使える、の3観点。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>機密性と完全性、可用性のどれが損なわれた事象かを切り分ける。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 多層防御 defense in depth 単一対策に依存せず、入口・内部・端末・監視など複数層で防御する考え方。 一つ突破されても次の防御が残る構成を選ぶ。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 多層防御 defense in depth 単一対策に依存せず、入口・内部・端末・監視など複数層で防御する考え方。 一つ突破されても次の防御が残る構成を選ぶ。" data-term-key="多層防御">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>多層防御</h2><div class="en">Defense in Depth</div>
 <div class="one"><b>一言でいうと</b><p>単一対策に依存せず、入口・内部・端末・監視など複数層で防御する考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>一つ突破されても次の防御が残る構成を選ぶ。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 セキュリティバイデザイン security by design 設計段階からセキュリティ要件を組み込む考え方。後付け対策だけに頼らない。 要件定義・設計時点で脅威と対策を考慮する。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 セキュリティバイデザイン security by design 設計段階からセキュリティ要件を組み込む考え方。後付け対策だけに頼らない。 要件定義・設計時点で脅威と対策を考慮する。" data-term-key="セキュリティバイデザイン">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>セキュリティバイデザイン</h2><div class="en">Security by Design</div>
 <div class="one"><b>一言でいうと</b><p>設計段階からセキュリティ要件を組み込む考え方。後付け対策だけに頼らない。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>要件定義・設計時点で脅威と対策を考慮する。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 アタックサーフェス attack surface 攻撃者が侵入・悪用を試せる入口や機能の総体。公開ポート、api、アカウント等を含む。 不要な公開機能を減らす＝攻撃面縮小。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 アタックサーフェス attack surface 攻撃者が侵入・悪用を試せる入口や機能の総体。公開ポート、api、アカウント等を含む。 不要な公開機能を減らす＝攻撃面縮小。" data-term-key="アタックサーフェス">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>アタックサーフェス</h2><div class="en">Attack Surface</div>
 <div class="one"><b>一言でいうと</b><p>攻撃者が侵入・悪用を試せる入口や機能の総体。公開ポート、API、アカウント等を含む。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>不要な公開機能を減らす＝攻撃面縮小。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 攻撃ベクトル attack vector 攻撃者が対象へ到達・侵害するために利用する経路や手段。 メール、web、vpn、脆弱サービスなど『どこから来たか』を見る。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 攻撃ベクトル attack vector 攻撃者が対象へ到達・侵害するために利用する経路や手段。 メール、web、vpn、脆弱サービスなど『どこから来たか』を見る。" data-term-key="攻撃ベクトル">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>攻撃ベクトル</h2><div class="en">Attack Vector</div>
 <div class="one"><b>一言でいうと</b><p>攻撃者が対象へ到達・侵害するために利用する経路や手段。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>メール、Web、VPN、脆弱サービスなど『どこから来たか』を見る。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 mitre att&amp;ck 攻撃者の戦術・技術の知識ベース 実際の攻撃行動を戦術・技術として体系化した知識ベース。 インシデントの攻撃フェーズや検知・対策を整理する文脈。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 mitre att&amp;ck 攻撃者の戦術・技術の知識ベース 実際の攻撃行動を戦術・技術として体系化した知識ベース。 インシデントの攻撃フェーズや検知・対策を整理する文脈。" data-term-key="MITRE ATT&amp;CK">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>MITRE ATT&amp;CK</h2><div class="en">攻撃者の戦術・技術の知識ベース</div>
 <div class="one"><b>一言でいうと</b><p>実際の攻撃行動を戦術・技術として体系化した知識ベース。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>インシデントの攻撃フェーズや検知・対策を整理する文脈。</p></div>
-</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 サイバーキルチェーン 攻撃段階モデル 偵察から目的達成までの攻撃プロセスを段階で捉える考え方。 どの段階で攻撃を止められるかを考える。">
+</article><article class="term" data-cat="基礎・脅威" data-search="基礎・脅威 サイバーキルチェーン 攻撃段階モデル 偵察から目的達成までの攻撃プロセスを段階で捉える考え方。 どの段階で攻撃を止められるかを考える。" data-term-key="サイバーキルチェーン">
 <div class="term-top"><span>基礎・脅威</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>サイバーキルチェーン</h2><div class="en">攻撃段階モデル</div>
 <div class="one"><b>一言でいうと</b><p>偵察から目的達成までの攻撃プロセスを段階で捉える考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>どの段階で攻撃を止められるかを考える。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ランサムウェア ransomware データ暗号化や窃取を行い、復号や非公開を条件に金銭を要求するマルウェア。 バックアップだけでなく侵入・横展開・情報窃取まで考える。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ランサムウェア ransomware データ暗号化や窃取を行い、復号や非公開を条件に金銭を要求するマルウェア。 バックアップだけでなく侵入・横展開・情報窃取まで考える。" data-term-key="ランサムウェア">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ランサムウェア</h2><div class="en">Ransomware</div>
 <div class="one"><b>一言でいうと</b><p>データ暗号化や窃取を行い、復号や非公開を条件に金銭を要求するマルウェア。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>バックアップだけでなく侵入・横展開・情報窃取まで考える。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 rat remote access trojan 感染端末を遠隔操作するためのマルウェア。 c&amp;c通信、遠隔操作、情報窃取の関係を押さえる。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 rat remote access trojan 感染端末を遠隔操作するためのマルウェア。 c&amp;c通信、遠隔操作、情報窃取の関係を押さえる。" data-term-key="RAT">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>RAT</h2><div class="en">Remote Access Trojan</div>
 <div class="one"><b>一言でいうと</b><p>感染端末を遠隔操作するためのマルウェア。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>C&amp;C通信、遠隔操作、情報窃取の関係を押さえる。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 c&amp;cサーバ command and control 攻撃者が感染端末へ指令を送り、結果を受け取るためのサーバ。 不審な外向き通信や周期通信が手掛かり。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 c&amp;cサーバ command and control 攻撃者が感染端末へ指令を送り、結果を受け取るためのサーバ。 不審な外向き通信や周期通信が手掛かり。" data-term-key="C&amp;Cサーバ">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>C&amp;Cサーバ</h2><div class="en">Command and Control</div>
 <div class="one"><b>一言でいうと</b><p>攻撃者が感染端末へ指令を送り、結果を受け取るためのサーバ。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>不審な外向き通信や周期通信が手掛かり。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 リバースシェル reverse shell 侵害端末側から攻撃者側へ接続し、遠隔からシェル操作を可能にする手法。 内向き通信制限を回避しやすい点に注意。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 リバースシェル reverse shell 侵害端末側から攻撃者側へ接続し、遠隔からシェル操作を可能にする手法。 内向き通信制限を回避しやすい点に注意。" data-term-key="リバースシェル">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>リバースシェル</h2><div class="en">Reverse Shell</div>
 <div class="one"><b>一言でいうと</b><p>侵害端末側から攻撃者側へ接続し、遠隔からシェル操作を可能にする手法。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>内向き通信制限を回避しやすい点に注意。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ファイルレスマルウェア fileless malware ディスク上の実行ファイルに依存せず、メモリや正規ツールを悪用して動作する攻撃。 powershell等の正規機能悪用、ログ監視が論点。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ファイルレスマルウェア fileless malware ディスク上の実行ファイルに依存せず、メモリや正規ツールを悪用して動作する攻撃。 powershell等の正規機能悪用、ログ監視が論点。" data-term-key="ファイルレスマルウェア">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ファイルレスマルウェア</h2><div class="en">Fileless Malware</div>
 <div class="one"><b>一言でいうと</b><p>ディスク上の実行ファイルに依存せず、メモリや正規ツールを悪用して動作する攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>PowerShell等の正規機能悪用、ログ監視が論点。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ゼロデイ攻撃 zero-day attack 修正プログラムが提供される前など、防御が整う前の脆弱性を悪用する攻撃。 パッチだけでなく多層防御・緩和策が必要。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ゼロデイ攻撃 zero-day attack 修正プログラムが提供される前など、防御が整う前の脆弱性を悪用する攻撃。 パッチだけでなく多層防御・緩和策が必要。" data-term-key="ゼロデイ攻撃">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ゼロデイ攻撃</h2><div class="en">Zero-day Attack</div>
 <div class="one"><b>一言でいうと</b><p>修正プログラムが提供される前など、防御が整う前の脆弱性を悪用する攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>パッチだけでなく多層防御・緩和策が必要。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ラテラルムーブメント lateral movement 侵入後に組織内部の別端末・サーバへ横方向に侵害範囲を広げる行動。 認証情報窃取、ネットワーク分離、内部監視と関連。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ラテラルムーブメント lateral movement 侵入後に組織内部の別端末・サーバへ横方向に侵害範囲を広げる行動。 認証情報窃取、ネットワーク分離、内部監視と関連。" data-term-key="ラテラルムーブメント">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ラテラルムーブメント</h2><div class="en">Lateral Movement</div>
 <div class="one"><b>一言でいうと</b><p>侵入後に組織内部の別端末・サーバへ横方向に侵害範囲を広げる行動。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>認証情報窃取、ネットワーク分離、内部監視と関連。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 クレデンシャルスタッフィング パスワードリスト攻撃 他サービスから漏れたid・パスワードの組合せを別サービスへ試す攻撃。 パスワード使い回し、多要素認証、試行制限が論点。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 クレデンシャルスタッフィング パスワードリスト攻撃 他サービスから漏れたid・パスワードの組合せを別サービスへ試す攻撃。 パスワード使い回し、多要素認証、試行制限が論点。" data-term-key="クレデンシャルスタッフィング">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>クレデンシャルスタッフィング</h2><div class="en">パスワードリスト攻撃</div>
 <div class="one"><b>一言でいうと</b><p>他サービスから漏れたID・パスワードの組合せを別サービスへ試す攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>パスワード使い回し、多要素認証、試行制限が論点。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 mfa疲労攻撃 mfa fatigue 大量の認証承認要求を送り、利用者の誤承認を狙う攻撃。 mfaがあるだけで安全とは限らない。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 mfa疲労攻撃 mfa fatigue 大量の認証承認要求を送り、利用者の誤承認を狙う攻撃。 mfaがあるだけで安全とは限らない。" data-term-key="MFA疲労攻撃">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>MFA疲労攻撃</h2><div class="en">MFA Fatigue</div>
 <div class="one"><b>一言でいうと</b><p>大量の認証承認要求を送り、利用者の誤承認を狙う攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>MFAがあるだけで安全とは限らない。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 dnsキャッシュポイズニング dns cache poisoning dnsキャッシュへ偽情報を混入させ、利用者を誤った接続先へ誘導する攻撃。 dnssecとの関係を押さえる。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 dnsキャッシュポイズニング dns cache poisoning dnsキャッシュへ偽情報を混入させ、利用者を誤った接続先へ誘導する攻撃。 dnssecとの関係を押さえる。" data-term-key="DNSキャッシュポイズニング">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DNSキャッシュポイズニング</h2><div class="en">DNS Cache Poisoning</div>
 <div class="one"><b>一言でいうと</b><p>DNSキャッシュへ偽情報を混入させ、利用者を誤った接続先へ誘導する攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>DNSSECとの関係を押さえる。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ddos distributed dos 多数の端末から大量通信などを送り、サービスを利用不能にする攻撃。 可用性への攻撃。ボットネットやcdn・レート制御と関連。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 ddos distributed dos 多数の端末から大量通信などを送り、サービスを利用不能にする攻撃。 可用性への攻撃。ボットネットやcdn・レート制御と関連。" data-term-key="DDoS">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DDoS</h2><div class="en">Distributed DoS</div>
 <div class="one"><b>一言でいうと</b><p>多数の端末から大量通信などを送り、サービスを利用不能にする攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>可用性への攻撃。ボットネットやCDN・レート制御と関連。</p></div>
-</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 drdos distributed reflection dos 送信元を被害者に偽装し、第三者サーバから大量応答を被害者へ返させるddos。 反射・増幅、udpサービスがキーワード。">
+</article><article class="term" data-cat="マルウェア・攻撃" data-search="マルウェア・攻撃 drdos distributed reflection dos 送信元を被害者に偽装し、第三者サーバから大量応答を被害者へ返させるddos。 反射・増幅、udpサービスがキーワード。" data-term-key="DRDoS">
 <div class="term-top"><span>マルウェア・攻撃</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DRDoS</h2><div class="en">Distributed Reflection DoS</div>
 <div class="one"><b>一言でいうと</b><p>送信元を被害者に偽装し、第三者サーバから大量応答を被害者へ返させるDDoS。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>反射・増幅、UDPサービスがキーワード。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ sqlインジェクション sql injection 入力値がsql構文として解釈され、dbを不正操作される脆弱性。 文字列連結を疑い、プレースホルダ＋バインドを根本対策として考える。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ sqlインジェクション sql injection 入力値がsql構文として解釈され、dbを不正操作される脆弱性。 文字列連結を疑い、プレースホルダ＋バインドを根本対策として考える。" data-term-key="SQLインジェクション">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SQLインジェクション</h2><div class="en">SQL Injection</div>
 <div class="one"><b>一言でいうと</b><p>入力値がSQL構文として解釈され、DBを不正操作される脆弱性。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>文字列連結を疑い、プレースホルダ＋バインドを根本対策として考える。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ xss cross-site scripting 外部入力がhtmlやスクリプトとしてブラウザに解釈される脆弱性。 出力文脈に応じたエスケープが基本。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ xss cross-site scripting 外部入力がhtmlやスクリプトとしてブラウザに解釈される脆弱性。 出力文脈に応じたエスケープが基本。" data-term-key="XSS">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>XSS</h2><div class="en">Cross-Site Scripting</div>
 <div class="one"><b>一言でいうと</b><p>外部入力がHTMLやスクリプトとしてブラウザに解釈される脆弱性。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>出力文脈に応じたエスケープが基本。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜CSRF</b><p>XSSはWebページへのスクリプト混入・実行。CSRFはブラウザの認証状態を悪用した偽リクエスト。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ csrf cross-site request forgery ログイン済み利用者のブラウザに、本人が意図しない状態変更要求を送らせる攻撃。 csrfトークン照合や再認証。cookieが自動送信される点が核心。">
+<div class="compare"><b>⚖️ 混同注意｜CSRF</b><p>XSSはWebページへのスクリプト混入・実行。CSRFはブラウザの認証状態を悪用した偽リクエスト。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ csrf cross-site request forgery ログイン済み利用者のブラウザに、本人が意図しない状態変更要求を送らせる攻撃。 csrfトークン照合や再認証。cookieが自動送信される点が核心。" data-term-key="CSRF">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>CSRF</h2><div class="en">Cross-Site Request Forgery</div>
 <div class="one"><b>一言でいうと</b><p>ログイン済み利用者のブラウザに、本人が意図しない状態変更要求を送らせる攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>CSRFトークン照合や再認証。Cookieが自動送信される点が核心。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜XSS</b><p>CSRFは正規利用者の権限で意図しない要求を送らせる。XSSは攻撃者のスクリプトを被害者ブラウザで実行させる。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ クリックジャッキング clickjacking 正規ページを重ねて表示し、利用者に意図しないボタンをクリックさせる攻撃。 frame制御、x-frame-options等。">
+<div class="compare"><b>⚖️ 混同注意｜XSS</b><p>CSRFは正規利用者の権限で意図しない要求を送らせる。XSSは攻撃者のスクリプトを被害者ブラウザで実行させる。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ クリックジャッキング clickjacking 正規ページを重ねて表示し、利用者に意図しないボタンをクリックさせる攻撃。 frame制御、x-frame-options等。" data-term-key="クリックジャッキング">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>クリックジャッキング</h2><div class="en">Clickjacking</div>
 <div class="one"><b>一言でいうと</b><p>正規ページを重ねて表示し、利用者に意図しないボタンをクリックさせる攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>frame制御、X-Frame-Options等。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ osコマンドインジェクション os command injection 入力値がシェルの命令として解釈され、任意コマンドを実行される脆弱性。 シェルを呼ばない設計が根本。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ osコマンドインジェクション os command injection 入力値がシェルの命令として解釈され、任意コマンドを実行される脆弱性。 シェルを呼ばない設計が根本。" data-term-key="OSコマンドインジェクション">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>OSコマンドインジェクション</h2><div class="en">OS Command Injection</div>
 <div class="one"><b>一言でいうと</b><p>入力値がシェルの命令として解釈され、任意コマンドを実行される脆弱性。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>シェルを呼ばない設計が根本。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ ディレクトリトラバーサル directory traversal パス指定を操作し、想定ディレクトリ外のファイルへアクセスする攻撃。 外部入力から物理パスを直接組み立てない。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ ディレクトリトラバーサル directory traversal パス指定を操作し、想定ディレクトリ外のファイルへアクセスする攻撃。 外部入力から物理パスを直接組み立てない。" data-term-key="ディレクトリトラバーサル">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ディレクトリトラバーサル</h2><div class="en">Directory Traversal</div>
 <div class="one"><b>一言でいうと</b><p>パス指定を操作し、想定ディレクトリ外のファイルへアクセスする攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>外部入力から物理パスを直接組み立てない。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ httpヘッダインジェクション http header injection 改行文字などを利用し、httpレスポンスヘッダを不正に追加・改変する攻撃。 cr/lfとヘッダ出力apiがポイント。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ httpヘッダインジェクション http header injection 改行文字などを利用し、httpレスポンスヘッダを不正に追加・改変する攻撃。 cr/lfとヘッダ出力apiがポイント。" data-term-key="HTTPヘッダインジェクション">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>HTTPヘッダインジェクション</h2><div class="en">HTTP Header Injection</div>
 <div class="one"><b>一言でいうと</b><p>改行文字などを利用し、HTTPレスポンスヘッダを不正に追加・改変する攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>CR/LFとヘッダ出力APIがポイント。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ セッションハイジャック session hijacking 有効なセッションidを盗用し、正規利用者になりすます攻撃。 セッションidを認証情報として扱う。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ セッションハイジャック session hijacking 有効なセッションidを盗用し、正規利用者になりすます攻撃。 セッションidを認証情報として扱う。" data-term-key="セッションハイジャック">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>セッションハイジャック</h2><div class="en">Session Hijacking</div>
 <div class="one"><b>一言でいうと</b><p>有効なセッションIDを盗用し、正規利用者になりすます攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>セッションIDを認証情報として扱う。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ session fixation セッションid固定化攻撃 攻撃者が知るセッションidを被害者に使わせ、ログイン後も同じidを利用させる攻撃。 ログイン成功時のセッションid再生成。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ session fixation セッションid固定化攻撃 攻撃者が知るセッションidを被害者に使わせ、ログイン後も同じidを利用させる攻撃。 ログイン成功時のセッションid再生成。" data-term-key="Session Fixation">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>Session Fixation</h2><div class="en">セッションID固定化攻撃</div>
 <div class="one"><b>一言でいうと</b><p>攻撃者が知るセッションIDを被害者に使わせ、ログイン後も同じIDを利用させる攻撃。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ログイン成功時のセッションID再生成。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ bola / idor 認可不備による他人データアクセス urlやapiのidを変更するだけで他人のデータへアクセスできるなど、オブジェクト単位の認可不足。 認証済みかではなく『その対象を操作してよいか』をサーバ側で確認。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ bola / idor 認可不備による他人データアクセス urlやapiのidを変更するだけで他人のデータへアクセスできるなど、オブジェクト単位の認可不足。 認証済みかではなく『その対象を操作してよいか』をサーバ側で確認。" data-term-key="BOLA / IDOR">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>BOLA / IDOR</h2><div class="en">認可不備による他人データアクセス</div>
 <div class="one"><b>一言でいうと</b><p>URLやAPIのIDを変更するだけで他人のデータへアクセスできるなど、オブジェクト単位の認可不足。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>認証済みかではなく『その対象を操作してよいか』をサーバ側で確認。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ プレースホルダ sqlの値を入れる場所 sql構造を固定し、後から値を入れるための仕組み。 where id = ? の ? のような形。sqli対策の中心。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ プレースホルダ sqlの値を入れる場所 sql構造を固定し、後から値を入れるための仕組み。 where id = ? の ? のような形。sqli対策の中心。" data-term-key="プレースホルダ">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>プレースホルダ</h2><div class="en">SQLの値を入れる場所</div>
 <div class="one"><b>一言でいうと</b><p>SQL構造を固定し、後から値を入れるための仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>WHERE id = ? の ? のような形。SQLi対策の中心。</p></div>
-</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ バインド 値の割当て プレースホルダへ実際の値を割り当てる処理。 文字列連結との違いを説明できるようにする。">
+</article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ バインド 値の割当て プレースホルダへ実際の値を割り当てる処理。 文字列連結との違いを説明できるようにする。" data-term-key="バインド">
 <div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>バインド</h2><div class="en">値の割当て</div>
 <div class="one"><b>一言でいうと</b><p>プレースホルダへ実際の値を割り当てる処理。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>文字列連結との違いを説明できるようにする。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 共通鍵暗号 symmetric-key cryptography 暗号化と復号に同じ秘密鍵を使う方式。高速だが鍵配送が課題。 公開鍵暗号との長所短所比較。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 共通鍵暗号 symmetric-key cryptography 暗号化と復号に同じ秘密鍵を使う方式。高速だが鍵配送が課題。 公開鍵暗号との長所短所比較。" data-term-key="共通鍵暗号">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>共通鍵暗号</h2><div class="en">Symmetric-key Cryptography</div>
 <div class="one"><b>一言でいうと</b><p>暗号化と復号に同じ秘密鍵を使う方式。高速だが鍵配送が課題。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>公開鍵暗号との長所短所比較。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜公開鍵暗号</b><p>共通鍵は同じ鍵で暗号化・復号し高速。公開鍵暗号は鍵配送や署名に強いが一般に処理が重い。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 公開鍵暗号 public-key cryptography 公開鍵と秘密鍵のペアを利用する暗号方式。 暗号化と署名でどの鍵を使うかを混同しない。">
+<div class="compare"><b>⚖️ 混同注意｜公開鍵暗号</b><p>共通鍵は同じ鍵で暗号化・復号し高速。公開鍵暗号は鍵配送や署名に強いが一般に処理が重い。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 公開鍵暗号 public-key cryptography 公開鍵と秘密鍵のペアを利用する暗号方式。 暗号化と署名でどの鍵を使うかを混同しない。" data-term-key="公開鍵暗号">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>公開鍵暗号</h2><div class="en">Public-key Cryptography</div>
 <div class="one"><b>一言でいうと</b><p>公開鍵と秘密鍵のペアを利用する暗号方式。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化と署名でどの鍵を使うかを混同しない。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜共通鍵暗号</b><p>公開鍵と秘密鍵のペアを利用。大量データは共通鍵暗号、鍵共有等に公開鍵暗号を使うハイブリッド方式も重要。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ハイブリッド暗号 hybrid encryption データ本体を共通鍵で暗号化し、その鍵を公開鍵暗号等で安全に共有する方式。 tlsなどで考え方が使われる。">
+<div class="compare"><b>⚖️ 混同注意｜共通鍵暗号</b><p>公開鍵と秘密鍵のペアを利用。大量データは共通鍵暗号、鍵共有等に公開鍵暗号を使うハイブリッド方式も重要。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ハイブリッド暗号 hybrid encryption データ本体を共通鍵で暗号化し、その鍵を公開鍵暗号等で安全に共有する方式。 tlsなどで考え方が使われる。" data-term-key="ハイブリッド暗号">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ハイブリッド暗号</h2><div class="en">Hybrid Encryption</div>
 <div class="one"><b>一言でいうと</b><p>データ本体を共通鍵で暗号化し、その鍵を公開鍵暗号等で安全に共有する方式。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>TLSなどで考え方が使われる。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki aead authenticated encryption with associated data 暗号化と改ざん検知を一体で提供する認証付き暗号。 機密性だけでなく完全性・真正性も意識する。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki aead authenticated encryption with associated data 暗号化と改ざん検知を一体で提供する認証付き暗号。 機密性だけでなく完全性・真正性も意識する。" data-term-key="AEAD">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>AEAD</h2><div class="en">Authenticated Encryption with Associated Data</div>
 <div class="one"><b>一言でいうと</b><p>暗号化と改ざん検知を一体で提供する認証付き暗号。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>機密性だけでなく完全性・真正性も意識する。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pfs perfect forward secrecy 将来サーバ秘密鍵が漏れても、過去の通信内容を復号されにくくする性質。 一時鍵を用いる鍵共有との関係。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pfs perfect forward secrecy 将来サーバ秘密鍵が漏れても、過去の通信内容を復号されにくくする性質。 一時鍵を用いる鍵共有との関係。" data-term-key="PFS">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>PFS</h2><div class="en">Perfect Forward Secrecy</div>
 <div class="one"><b>一言でいうと</b><p>将来サーバ秘密鍵が漏れても、過去の通信内容を復号されにくくする性質。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>一時鍵を用いる鍵共有との関係。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ハッシュ関数 hash function 任意長データから固定長値を生成する一方向性の関数。 暗号化とは違い復号しない。改ざん検知や署名で利用。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ハッシュ関数 hash function 任意長データから固定長値を生成する一方向性の関数。 暗号化とは違い復号しない。改ざん検知や署名で利用。" data-term-key="ハッシュ関数">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ハッシュ関数</h2><div class="en">Hash Function</div>
 <div class="one"><b>一言でいうと</b><p>任意長データから固定長値を生成する一方向性の関数。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化とは違い復号しない。改ざん検知や署名で利用。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki デジタル署名 digital signature 秘密鍵で署名し公開鍵で検証することで、真正性・完全性・否認防止を支える技術。 暗号化との鍵の使い方の違い。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki デジタル署名 digital signature 秘密鍵で署名し公開鍵で検証することで、真正性・完全性・否認防止を支える技術。 暗号化との鍵の使い方の違い。" data-term-key="デジタル署名">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>デジタル署名</h2><div class="en">Digital Signature</div>
 <div class="one"><b>一言でいうと</b><p>秘密鍵で署名し公開鍵で検証することで、真正性・完全性・否認防止を支える技術。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化との鍵の使い方の違い。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜MAC</b><p>署名は公開鍵で第三者も検証可能。MACは共有秘密鍵を持つ当事者間で真正性・完全性を確認。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki mac message authentication code 共通の秘密鍵を使ってメッセージの完全性・真正性を確認する仕組み。 デジタル署名との違い＝第三者検証や否認防止。">
+<div class="compare"><b>⚖️ 混同注意｜MAC</b><p>署名は公開鍵で第三者も検証可能。MACは共有秘密鍵を持つ当事者間で真正性・完全性を確認。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki mac message authentication code 共通の秘密鍵を使ってメッセージの完全性・真正性を確認する仕組み。 デジタル署名との違い＝第三者検証や否認防止。" data-term-key="MAC">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>MAC</h2><div class="en">Message Authentication Code</div>
 <div class="one"><b>一言でいうと</b><p>共通の秘密鍵を使ってメッセージの完全性・真正性を確認する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>デジタル署名との違い＝第三者検証や否認防止。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜デジタル署名</b><p>MACは秘密鍵を共有するため第三者が署名者を検証する用途には向かない。デジタル署名は秘密鍵で署名し公開鍵で検証。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki hmac hash-based mac ハッシュ関数と秘密鍵を組み合わせたmac。 単なるハッシュ値との違いを押さえる。">
+<div class="compare"><b>⚖️ 混同注意｜デジタル署名</b><p>MACは秘密鍵を共有するため第三者が署名者を検証する用途には向かない。デジタル署名は秘密鍵で署名し公開鍵で検証。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki hmac hash-based mac ハッシュ関数と秘密鍵を組み合わせたmac。 単なるハッシュ値との違いを押さえる。" data-term-key="HMAC">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>HMAC</h2><div class="en">Hash-based MAC</div>
 <div class="one"><b>一言でいうと</b><p>ハッシュ関数と秘密鍵を組み合わせたMAC。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>単なるハッシュ値との違いを押さえる。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pki public key infrastructure caとデジタル証明書を用いて公開鍵と主体の結び付きを信頼できる形で管理する基盤。 ca、証明書、失効確認を一連で理解。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pki public key infrastructure caとデジタル証明書を用いて公開鍵と主体の結び付きを信頼できる形で管理する基盤。 ca、証明書、失効確認を一連で理解。" data-term-key="PKI">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>PKI</h2><div class="en">Public Key Infrastructure</div>
 <div class="one"><b>一言でいうと</b><p>CAとデジタル証明書を用いて公開鍵と主体の結び付きを信頼できる形で管理する基盤。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>CA、証明書、失効確認を一連で理解。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ca certification authority 公開鍵証明書を発行・署名する認証局。 ルートca・中間ca・証明書チェーン。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ca certification authority 公開鍵証明書を発行・署名する認証局。 ルートca・中間ca・証明書チェーン。" data-term-key="CA">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>CA</h2><div class="en">Certification Authority</div>
 <div class="one"><b>一言でいうと</b><p>公開鍵証明書を発行・署名する認証局。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ルートCA・中間CA・証明書チェーン。</p></div>
-</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki crl certificate revocation list 有効期限前に失効した証明書の一覧。 ocspとの違い。">
+</article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki crl certificate revocation list 有効期限前に失効した証明書の一覧。 ocspとの違い。" data-term-key="CRL">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>CRL</h2><div class="en">Certificate Revocation List</div>
 <div class="one"><b>一言でいうと</b><p>有効期限前に失効した証明書の一覧。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>OCSPとの違い。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜OCSP</b><p>CRLは失効証明書の一覧を取得。OCSPは対象証明書の状態をオンライン照会。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ocsp online certificate status protocol 証明書の失効状態をオンラインで問い合わせる仕組み。 crlは一覧、ocspは状態照会。">
+<div class="compare"><b>⚖️ 混同注意｜OCSP</b><p>CRLは失効証明書の一覧を取得。OCSPは対象証明書の状態をオンライン照会。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ocsp online certificate status protocol 証明書の失効状態をオンラインで問い合わせる仕組み。 crlは一覧、ocspは状態照会。" data-term-key="OCSP">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>OCSP</h2><div class="en">Online Certificate Status Protocol</div>
 <div class="one"><b>一言でいうと</b><p>証明書の失効状態をオンラインで問い合わせる仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>CRLは一覧、OCSPは状態照会。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜CRL</b><p>OCSPは証明書ごとの状態照会。CRLは失効リストをまとめて配布。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pqc post-quantum cryptography 量子計算機による既存公開鍵暗号への脅威を考慮した耐量子計算機暗号。 量子暗号とは別物。">
+<div class="compare"><b>⚖️ 混同注意｜CRL</b><p>OCSPは証明書ごとの状態照会。CRLは失効リストをまとめて配布。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki pqc post-quantum cryptography 量子計算機による既存公開鍵暗号への脅威を考慮した耐量子計算機暗号。 量子暗号とは別物。" data-term-key="PQC">
 <div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>PQC</h2><div class="en">Post-Quantum Cryptography</div>
 <div class="one"><b>一言でいうと</b><p>量子計算機による既存公開鍵暗号への脅威を考慮した耐量子計算機暗号。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>量子暗号とは別物。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜量子暗号</b><p>PQCは通常のコンピュータでも実装可能な耐量子計算機暗号。量子力学を通信に利用する量子暗号とは別。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 多要素認証 mfa 知識・所有・生体など異なる要素を二つ以上組み合わせる認証。 多段階認証との違い。要素の種類を見る。">
+<div class="compare"><b>⚖️ 混同注意｜量子暗号</b><p>PQCは通常のコンピュータでも実装可能な耐量子計算機暗号。量子力学を通信に利用する量子暗号とは別。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 多要素認証 mfa 知識・所有・生体など異なる要素を二つ以上組み合わせる認証。 多段階認証との違い。要素の種類を見る。" data-term-key="多要素認証">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>多要素認証</h2><div class="en">MFA</div>
 <div class="one"><b>一言でいうと</b><p>知識・所有・生体など異なる要素を二つ以上組み合わせる認証。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>多段階認証との違い。要素の種類を見る。</p></div>
-</article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido2 パスワードレス認証技術 公開鍵暗号を利用し、サーバに共有パスワードを持たせず認証する枠組み。 webauthn、認証器、フィッシング耐性と関連。">
+</article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido2 パスワードレス認証技術 公開鍵暗号を利用し、サーバに共有パスワードを持たせず認証する枠組み。 webauthn、認証器、フィッシング耐性と関連。" data-term-key="FIDO2">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>FIDO2</h2><div class="en">パスワードレス認証技術</div>
 <div class="one"><b>一言でいうと</b><p>公開鍵暗号を利用し、サーバに共有パスワードを持たせず認証する枠組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>WebAuthn、認証器、フィッシング耐性と関連。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜WebAuthn / Passkeys</b><p>FIDO2はWebAuthn等を含む公開鍵認証の枠組み。Passkeysはそれを使いやすくした利用形態として捉える。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 webauthn web authentication api ブラウザとwebサービスで公開鍵ベースの認証を利用するための標準api。 fido2・passkeysとの関係。">
+<div class="compare"><b>⚖️ 混同注意｜WebAuthn / Passkeys</b><p>FIDO2はWebAuthn等を含む公開鍵認証の枠組み。Passkeysはそれを使いやすくした利用形態として捉える。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 webauthn web authentication api ブラウザとwebサービスで公開鍵ベースの認証を利用するための標準api。 fido2・passkeysとの関係。" data-term-key="WebAuthn">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>WebAuthn</h2><div class="en">Web Authentication API</div>
 <div class="one"><b>一言でいうと</b><p>ブラウザとWebサービスで公開鍵ベースの認証を利用するための標準API。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>FIDO2・Passkeysとの関係。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜FIDO2 / Passkeys</b><p>WebAuthnはブラウザ・Webサービスで公開鍵認証を使う標準API。Passkeysは利用者向けの認証体験・資格情報の形。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 passkeys パスキー fido系技術を利用したパスワードレス認証の利用形態。 公開鍵ベース、フィッシング耐性が重要。">
+<div class="compare"><b>⚖️ 混同注意｜FIDO2 / Passkeys</b><p>WebAuthnはブラウザ・Webサービスで公開鍵認証を使う標準API。Passkeysは利用者向けの認証体験・資格情報の形。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 passkeys パスキー fido系技術を利用したパスワードレス認証の利用形態。 公開鍵ベース、フィッシング耐性が重要。" data-term-key="Passkeys">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>Passkeys</h2><div class="en">パスキー</div>
 <div class="one"><b>一言でいうと</b><p>FIDO系技術を利用したパスワードレス認証の利用形態。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>公開鍵ベース、フィッシング耐性が重要。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜パスワード / FIDO2</b><p>Passkeysは共有パスワードではなく公開鍵認証を利用。サーバ側にパスワード相当の共有秘密を置かない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 kerberos チケットベース認証 kdcが発行するチケットを利用してネットワーク上の認証を行う方式。 パスワードを各サービスへ直接送らない。">
+<div class="compare"><b>⚖️ 混同注意｜パスワード / FIDO2</b><p>Passkeysは共有パスワードではなく公開鍵認証を利用。サーバ側にパスワード相当の共有秘密を置かない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 kerberos チケットベース認証 kdcが発行するチケットを利用してネットワーク上の認証を行う方式。 パスワードを各サービスへ直接送らない。" data-term-key="Kerberos">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>Kerberos</h2><div class="en">チケットベース認証</div>
 <div class="one"><b>一言でいうと</b><p>KDCが発行するチケットを利用してネットワーク上の認証を行う方式。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>パスワードを各サービスへ直接送らない。</p></div>
-</article><article class="term" data-cat="認証・認可" data-search="認証・認可 saml security assertion markup language idpが認証結果等のアサーションをspへ渡す連携方式。 企業ssoで頻出。oidcとの比較。">
+</article><article class="term" data-cat="認証・認可" data-search="認証・認可 saml security assertion markup language idpが認証結果等のアサーションをspへ渡す連携方式。 企業ssoで頻出。oidcとの比較。" data-term-key="SAML">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SAML</h2><div class="en">Security Assertion Markup Language</div>
 <div class="one"><b>一言でいうと</b><p>IdPが認証結果等のアサーションをSPへ渡す連携方式。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>企業SSOで頻出。OIDCとの比較。</p></div>
-</article><article class="term" data-cat="認証・認可" data-search="認証・認可 openid connect oidc oauth 2.0を基盤に、利用者の認証情報を連携する仕組み。 oauth＝認可、oidc＝認証の整理が重要。">
+</article><article class="term" data-cat="認証・認可" data-search="認証・認可 openid connect oidc oauth 2.0を基盤に、利用者の認証情報を連携する仕組み。 oauth＝認可、oidc＝認証の整理が重要。" data-term-key="OpenID Connect">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>OpenID Connect</h2><div class="en">OIDC</div>
 <div class="one"><b>一言でいうと</b><p>OAuth 2.0を基盤に、利用者の認証情報を連携する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>OAuth＝認可、OIDC＝認証の整理が重要。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜OAuth 2.0</b><p>OIDCは認証。OAuth 2.0は認可・権限委譲。『ログイン』と『API利用権限』を分けて考える。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 oauth 2.0 認可フレームワーク 利用者のパスワードを第三者アプリへ渡さず、限定した権限を委譲する仕組み。 アクセストークン、認可コード、スコープ。">
+<div class="compare"><b>⚖️ 混同注意｜OAuth 2.0</b><p>OIDCは認証。OAuth 2.0は認可・権限委譲。『ログイン』と『API利用権限』を分けて考える。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 oauth 2.0 認可フレームワーク 利用者のパスワードを第三者アプリへ渡さず、限定した権限を委譲する仕組み。 アクセストークン、認可コード、スコープ。" data-term-key="OAuth 2.0">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>OAuth 2.0</h2><div class="en">認可フレームワーク</div>
 <div class="one"><b>一言でいうと</b><p>利用者のパスワードを第三者アプリへ渡さず、限定した権限を委譲する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>アクセストークン、認可コード、スコープ。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜OpenID Connect</b><p>OAuth 2.0は権限を委譲するための認可フレームワーク。OIDCはOAuth 2.0を基盤に利用者の認証情報を連携する。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 idp identity provider 利用者を認証し、その結果を他サービスへ提供する主体。 sp/rpとの役割分担。">
+<div class="compare"><b>⚖️ 混同注意｜OpenID Connect</b><p>OAuth 2.0は権限を委譲するための認可フレームワーク。OIDCはOAuth 2.0を基盤に利用者の認証情報を連携する。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 idp identity provider 利用者を認証し、その結果を他サービスへ提供する主体。 sp/rpとの役割分担。" data-term-key="IdP">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>IdP</h2><div class="en">Identity Provider</div>
 <div class="one"><b>一言でいうと</b><p>利用者を認証し、その結果を他サービスへ提供する主体。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>SP/RPとの役割分担。</p></div>
-</article><article class="term" data-cat="認証・認可" data-search="認証・認可 aaa authentication authorization accounting 認証・認可・アカウンティングをまとめたアクセス管理の考え方。 radius等と関連して出やすい。">
+</article><article class="term" data-cat="認証・認可" data-search="認証・認可 aaa authentication authorization accounting 認証・認可・アカウンティングをまとめたアクセス管理の考え方。 radius等と関連して出やすい。" data-term-key="AAA">
 <div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>AAA</h2><div class="en">Authentication Authorization Accounting</div>
 <div class="one"><b>一言でいうと</b><p>認証・認可・アカウンティングをまとめたアクセス管理の考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>RADIUS等と関連して出やすい。</p></div>
-</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ spf sender policy framework 送信元ipが、そのドメインからメールを送信してよいサーバかをdns情報で確認する仕組み。 envelope-from側のドメインと送信元ipを見る。">
+</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ spf sender policy framework 送信元ipが、そのドメインからメールを送信してよいサーバかをdns情報で確認する仕組み。 envelope-from側のドメインと送信元ipを見る。" data-term-key="SPF">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SPF</h2><div class="en">Sender Policy Framework</div>
 <div class="one"><b>一言でいうと</b><p>送信元IPが、そのドメインからメールを送信してよいサーバかをDNS情報で確認する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>Envelope-From側のドメインと送信元IPを見る。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜DKIM / DMARC</b><p>SPFは送信元IPを確認。DKIMはメールへの署名を検証。DMARCはSPF/DKIMとHeader-Fromの整合性・ポリシーを扱う。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ dkim domainkeys identified mail 送信側がメールへデジタル署名し、受信側がdns公開鍵で検証する仕組み。 本文・ヘッダの改ざん検知と署名ドメイン。">
+<div class="compare"><b>⚖️ 混同注意｜DKIM / DMARC</b><p>SPFは送信元IPを確認。DKIMはメールへの署名を検証。DMARCはSPF/DKIMとHeader-Fromの整合性・ポリシーを扱う。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ dkim domainkeys identified mail 送信側がメールへデジタル署名し、受信側がdns公開鍵で検証する仕組み。 本文・ヘッダの改ざん検知と署名ドメイン。" data-term-key="DKIM">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DKIM</h2><div class="en">DomainKeys Identified Mail</div>
 <div class="one"><b>一言でいうと</b><p>送信側がメールへデジタル署名し、受信側がDNS公開鍵で検証する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>本文・ヘッダの改ざん検知と署名ドメイン。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜SPF / DMARC</b><p>DKIMは署名によってメールの真正性・完全性を確認。SPFのように送信元IPを認証する方式ではない。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ dmarc domain-based message authentication, reporting and conformance spf/dkim結果とheader-fromのドメイン整合性を確認し、失敗メールの扱いを送信側が宣言する仕組み。 spf/dkim単体との違い、アライメント、p=ポリシー。">
+<div class="compare"><b>⚖️ 混同注意｜SPF / DMARC</b><p>DKIMは署名によってメールの真正性・完全性を確認。SPFのように送信元IPを認証する方式ではない。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ dmarc domain-based message authentication, reporting and conformance spf/dkim結果とheader-fromのドメイン整合性を確認し、失敗メールの扱いを送信側が宣言する仕組み。 spf/dkim単体との違い、アライメント、p=ポリシー。" data-term-key="DMARC">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DMARC</h2><div class="en">Domain-based Message Authentication, Reporting and Conformance</div>
 <div class="one"><b>一言でいうと</b><p>SPF/DKIM結果とHeader-Fromのドメイン整合性を確認し、失敗メールの扱いを送信側が宣言する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>SPF/DKIM単体との違い、アライメント、p=ポリシー。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜SPF / DKIM</b><p>DMARCはSPF/DKIMの認証結果を利用し、Header-Fromとのアライメントと失敗時ポリシーを扱う。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ s/mime secure/multipurpose internet mail extensions 公開鍵証明書を利用して電子メールの暗号化・デジタル署名を行う方式。 送信ドメイン認証ではなくメール内容・送信者署名の技術。">
+<div class="compare"><b>⚖️ 混同注意｜SPF / DKIM</b><p>DMARCはSPF/DKIMの認証結果を利用し、Header-Fromとのアライメントと失敗時ポリシーを扱う。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ s/mime secure/multipurpose internet mail extensions 公開鍵証明書を利用して電子メールの暗号化・デジタル署名を行う方式。 送信ドメイン認証ではなくメール内容・送信者署名の技術。" data-term-key="S/MIME">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>S/MIME</h2><div class="en">Secure/Multipurpose Internet Mail Extensions</div>
 <div class="one"><b>一言でいうと</b><p>公開鍵証明書を利用して電子メールの暗号化・デジタル署名を行う方式。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>送信ドメイン認証ではなくメール内容・送信者署名の技術。</p></div>
-</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ starttls smtp等のtls化 平文で開始した通信をtlsへ切り替える仕組み。 メール本文のエンドツーエンド暗号化とは異なる。">
+</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ starttls smtp等のtls化 平文で開始した通信をtlsへ切り替える仕組み。 メール本文のエンドツーエンド暗号化とは異なる。" data-term-key="STARTTLS">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>STARTTLS</h2><div class="en">SMTP等のTLS化</div>
 <div class="one"><b>一言でいうと</b><p>平文で開始した通信をTLSへ切り替える仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>メール本文のエンドツーエンド暗号化とは異なる。</p></div>
-</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ bec business email compromise 取引先や経営者等になりすまし、送金や情報提供をだますビジネスメール詐欺。 技術対策＋業務確認手順が重要。">
+</article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ bec business email compromise 取引先や経営者等になりすまし、送金や情報提供をだますビジネスメール詐欺。 技術対策＋業務確認手順が重要。" data-term-key="BEC">
 <div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>BEC</h2><div class="en">Business Email Compromise</div>
 <div class="one"><b>一言でいうと</b><p>取引先や経営者等になりすまし、送金や情報提供をだますビジネスメール詐欺。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>技術対策＋業務確認手順が重要。</p></div>
-</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ tls transport layer security 通信相手の認証、通信内容の暗号化、改ざん検知を提供するプロトコル。 証明書検証、鍵共有、暗号スイート。">
+</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ tls transport layer security 通信相手の認証、通信内容の暗号化、改ざん検知を提供するプロトコル。 証明書検証、鍵共有、暗号スイート。" data-term-key="TLS">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>TLS</h2><div class="en">Transport Layer Security</div>
 <div class="one"><b>一言でいうと</b><p>通信相手の認証、通信内容の暗号化、改ざん検知を提供するプロトコル。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>証明書検証、鍵共有、暗号スイート。</p></div>
-</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ipsec ip security ip層で通信を保護する技術群。 ah/esp、トランスポート/トンネルモード。">
+</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ipsec ip security ip層で通信を保護する技術群。 ah/esp、トランスポート/トンネルモード。" data-term-key="IPsec">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>IPsec</h2><div class="en">IP Security</div>
 <div class="one"><b>一言でいうと</b><p>IP層で通信を保護する技術群。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>AH/ESP、トランスポート/トンネルモード。</p></div>
-</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ vpn virtual private network 公衆網上などに論理的な専用通信路を構成する仕組み。 ipsec vpn、ssl-vpn等を区別。">
+</article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ vpn virtual private network 公衆網上などに論理的な専用通信路を構成する仕組み。 ipsec vpn、ssl-vpn等を区別。" data-term-key="VPN">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>VPN</h2><div class="en">Virtual Private Network</div>
 <div class="one"><b>一言でいうと</b><p>公衆網上などに論理的な専用通信路を構成する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>IPsec VPN、SSL-VPN等を区別。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜ZTNA</b><p>VPNはネットワークへの接続を提供する考え方が中心。ZTNAは利用者・端末等を検証し必要なアプリへのアクセスだけを許可。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ waf web application firewall http/httpsの内容を解析し、webアプリへの攻撃を検知・遮断する装置・サービス。 根本的な脆弱性修正の代替ではない。">
+<div class="compare"><b>⚖️ 混同注意｜ZTNA</b><p>VPNはネットワークへの接続を提供する考え方が中心。ZTNAは利用者・端末等を検証し必要なアプリへのアクセスだけを許可。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ waf web application firewall http/httpsの内容を解析し、webアプリへの攻撃を検知・遮断する装置・サービス。 根本的な脆弱性修正の代替ではない。" data-term-key="WAF">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>WAF</h2><div class="en">Web Application Firewall</div>
 <div class="one"><b>一言でいうと</b><p>HTTP/HTTPSの内容を解析し、Webアプリへの攻撃を検知・遮断する装置・サービス。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>根本的な脆弱性修正の代替ではない。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜IDS / IPS</b><p>WAFはWebアプリ層のHTTP/HTTPSを理解して防御。脆弱性そのものを修正する根本対策ではない。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ids / ips 侵入検知 / 侵入防止 idsは不審通信を検知・通知、ipsはさらに遮断まで行う。 設置位置と検知後の動作を問われる。">
+<div class="compare"><b>⚖️ 混同注意｜IDS / IPS</b><p>WAFはWebアプリ層のHTTP/HTTPSを理解して防御。脆弱性そのものを修正する根本対策ではない。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ids / ips 侵入検知 / 侵入防止 idsは不審通信を検知・通知、ipsはさらに遮断まで行う。 設置位置と検知後の動作を問われる。" data-term-key="IDS / IPS">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>IDS / IPS</h2><div class="en">侵入検知 / 侵入防止</div>
 <div class="one"><b>一言でいうと</b><p>IDSは不審通信を検知・通知、IPSはさらに遮断まで行う。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>設置位置と検知後の動作を問われる。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜WAF</b><p>IDS/IPSはネットワーク上の広い攻撃を検知・遮断。WAFは主にHTTP/HTTPSのWebアプリ攻撃を対象にする。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ edr endpoint detection and response 端末上の挙動を継続監視し、不審活動の検知・調査・対応を支援する。 従来型avとの役割差。">
+<div class="compare"><b>⚖️ 混同注意｜WAF</b><p>IDS/IPSはネットワーク上の広い攻撃を検知・遮断。WAFは主にHTTP/HTTPSのWebアプリ攻撃を対象にする。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ edr endpoint detection and response 端末上の挙動を継続監視し、不審活動の検知・調査・対応を支援する。 従来型avとの役割差。" data-term-key="EDR">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>EDR</h2><div class="en">Endpoint Detection and Response</div>
 <div class="one"><b>一言でいうと</b><p>端末上の挙動を継続監視し、不審活動の検知・調査・対応を支援する。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>従来型AVとの役割差。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜NDR</b><p>EDRは端末のプロセス・ファイル等を観測。NDRはネットワーク通信を観測。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ndr network detection and response ネットワーク通信を分析し、侵害兆候の検知・調査・対応を支援する。 edrとの観測点の違い。">
+<div class="compare"><b>⚖️ 混同注意｜NDR</b><p>EDRは端末のプロセス・ファイル等を観測。NDRはネットワーク通信を観測。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ndr network detection and response ネットワーク通信を分析し、侵害兆候の検知・調査・対応を支援する。 edrとの観測点の違い。" data-term-key="NDR">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>NDR</h2><div class="en">Network Detection and Response</div>
 <div class="one"><b>一言でいうと</b><p>ネットワーク通信を分析し、侵害兆候の検知・調査・対応を支援する。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>EDRとの観測点の違い。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜EDR</b><p>NDRはネットワーク側、EDRはエンドポイント側。観測点の違いを押さえる。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ siem security information and event management 複数機器・サービスのログを集約・相関分析して異常を検知・調査する基盤。 ログ集約だけでなく相関分析。">
+<div class="compare"><b>⚖️ 混同注意｜EDR</b><p>NDRはネットワーク側、EDRはエンドポイント側。観測点の違いを押さえる。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ siem security information and event management 複数機器・サービスのログを集約・相関分析して異常を検知・調査する基盤。 ログ集約だけでなく相関分析。" data-term-key="SIEM">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SIEM</h2><div class="en">Security Information and Event Management</div>
 <div class="one"><b>一言でいうと</b><p>複数機器・サービスのログを集約・相関分析して異常を検知・調査する基盤。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ログ集約だけでなく相関分析。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜SOAR</b><p>SIEMはログ集約・相関分析・検知。SOARは複数ツールを連携して対応手順を自動化・効率化。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ soar security orchestration, automation and response セキュリティ対応手順を連携・自動化し、対応を効率化する仕組み。 siemで検知→soarで対応自動化、の関係。">
+<div class="compare"><b>⚖️ 混同注意｜SOAR</b><p>SIEMはログ集約・相関分析・検知。SOARは複数ツールを連携して対応手順を自動化・効率化。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ soar security orchestration, automation and response セキュリティ対応手順を連携・自動化し、対応を効率化する仕組み。 siemで検知→soarで対応自動化、の関係。" data-term-key="SOAR">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SOAR</h2><div class="en">Security Orchestration, Automation and Response</div>
 <div class="one"><b>一言でいうと</b><p>セキュリティ対応手順を連携・自動化し、対応を効率化する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>SIEMで検知→SOARで対応自動化、の関係。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜SIEM</b><p>SOARは対応のオーケストレーション・自動化。SIEMはログ分析・検知が中心。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ゼロトラスト zero trust ネットワーク内外を理由に暗黙に信頼せず、アクセスごとに主体・端末・状況等を検証する考え方。 『社内だから信頼』をやめる。">
+<div class="compare"><b>⚖️ 混同注意｜SIEM</b><p>SOARは対応のオーケストレーション・自動化。SIEMはログ分析・検知が中心。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ゼロトラスト zero trust ネットワーク内外を理由に暗黙に信頼せず、アクセスごとに主体・端末・状況等を検証する考え方。 『社内だから信頼』をやめる。" data-term-key="ゼロトラスト">
 <div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ゼロトラスト</h2><div class="en">Zero Trust</div>
 <div class="one"><b>一言でいうと</b><p>ネットワーク内外を理由に暗黙に信頼せず、アクセスごとに主体・端末・状況等を検証する考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>『社内だから信頼』をやめる。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 csirt computer security incident response team 組織内外のセキュリティインシデント対応を担う体制・チーム。 socとの役割差、連絡・調整・対応。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 csirt computer security incident response team 組織内外のセキュリティインシデント対応を担う体制・チーム。 socとの役割差、連絡・調整・対応。" data-term-key="CSIRT">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>CSIRT</h2><div class="en">Computer Security Incident Response Team</div>
 <div class="one"><b>一言でいうと</b><p>組織内外のセキュリティインシデント対応を担う体制・チーム。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>SOCとの役割差、連絡・調整・対応。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜SOC</b><p>SOCは継続監視・分析寄り。CSIRTはインシデント発生時の対応・調整・復旧まで含む。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 soc security operation center ログやアラートを継続監視し、脅威の検知・分析を行う運用組織。 csirtは対応全体、socは監視・分析寄り。">
+<div class="compare"><b>⚖️ 混同注意｜SOC</b><p>SOCは継続監視・分析寄り。CSIRTはインシデント発生時の対応・調整・復旧まで含む。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 soc security operation center ログやアラートを継続監視し、脅威の検知・分析を行う運用組織。 csirtは対応全体、socは監視・分析寄り。" data-term-key="SOC">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>SOC</h2><div class="en">Security Operation Center</div>
 <div class="one"><b>一言でいうと</b><p>ログやアラートを継続監視し、脅威の検知・分析を行う運用組織。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>CSIRTは対応全体、SOCは監視・分析寄り。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜CSIRT</b><p>SOC＝監視・検知・分析、CSIRT＝インシデント対応全体、と整理すると覚えやすい。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 デジタルフォレンジックス digital forensics インシデントの証拠となるデジタルデータを適切に収集・保全・分析する技術・手続。 証拠保全、ハッシュ、時系列。">
+<div class="compare"><b>⚖️ 混同注意｜CSIRT</b><p>SOC＝監視・検知・分析、CSIRT＝インシデント対応全体、と整理すると覚えやすい。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 デジタルフォレンジックス digital forensics インシデントの証拠となるデジタルデータを適切に収集・保全・分析する技術・手続。 証拠保全、ハッシュ、時系列。" data-term-key="デジタルフォレンジックス">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>デジタルフォレンジックス</h2><div class="en">Digital Forensics</div>
 <div class="one"><b>一言でいうと</b><p>インシデントの証拠となるデジタルデータを適切に収集・保全・分析する技術・手続。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>証拠保全、ハッシュ、時系列。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 チェーンオブカストディ chain of custody 証拠が誰によっていつ取得・移送・保管されたかを記録し、真正性を担保する考え方。 フォレンジックスの証拠管理。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 チェーンオブカストディ chain of custody 証拠が誰によっていつ取得・移送・保管されたかを記録し、真正性を担保する考え方。 フォレンジックスの証拠管理。" data-term-key="チェーンオブカストディ">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>チェーンオブカストディ</h2><div class="en">Chain of Custody</div>
 <div class="one"><b>一言でいうと</b><p>証拠が誰によっていつ取得・移送・保管されたかを記録し、真正性を担保する考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>フォレンジックスの証拠管理。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 リスクアセスメント risk assessment リスクを特定・分析・評価し、対応の優先順位を判断するプロセス。 特定→分析→評価の順。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 リスクアセスメント risk assessment リスクを特定・分析・評価し、対応の優先順位を判断するプロセス。 特定→分析→評価の順。" data-term-key="リスクアセスメント">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>リスクアセスメント</h2><div class="en">Risk Assessment</div>
 <div class="one"><b>一言でいうと</b><p>リスクを特定・分析・評価し、対応の優先順位を判断するプロセス。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>特定→分析→評価の順。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 残留リスク residual risk 対策を実施した後にも残るリスク。 ゼロにはできない。受容基準との関係。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 残留リスク residual risk 対策を実施した後にも残るリスク。 ゼロにはできない。受容基準との関係。" data-term-key="残留リスク">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>残留リスク</h2><div class="en">Residual Risk</div>
 <div class="one"><b>一言でいうと</b><p>対策を実施した後にも残るリスク。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ゼロにはできない。受容基準との関係。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 リスク移転 risk transfer 保険や契約等により、損失負担の一部を他者へ移す対応。 リスク自体が消えるわけではない。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 リスク移転 risk transfer 保険や契約等により、損失負担の一部を他者へ移す対応。 リスク自体が消えるわけではない。" data-term-key="リスク移転">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>リスク移転</h2><div class="en">Risk Transfer</div>
 <div class="one"><b>一言でいうと</b><p>保険や契約等により、損失負担の一部を他者へ移す対応。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>リスク自体が消えるわけではない。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜リスク低減 / 受容</b><p>保険等で損失負担を移しても脅威や事故発生確率そのものが消えるわけではない。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 最小権限 least privilege 業務に必要な最小限の権限だけを付与する原則。 db権限、管理者権限、アクセス制御で頻出。">
+<div class="compare"><b>⚖️ 混同注意｜リスク低減 / 受容</b><p>保険等で損失負担を移しても脅威や事故発生確率そのものが消えるわけではない。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 最小権限 least privilege 業務に必要な最小限の権限だけを付与する原則。 db権限、管理者権限、アクセス制御で頻出。" data-term-key="最小権限">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>最小権限</h2><div class="en">Least Privilege</div>
 <div class="one"><b>一言でいうと</b><p>業務に必要な最小限の権限だけを付与する原則。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>DB権限、管理者権限、アクセス制御で頻出。</p></div>
-</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 責任共有モデル shared responsibility model クラウド事業者と利用者で、セキュリティ責任範囲を分担する考え方。 iaas/paas/saasで利用者責任が変わる。">
+</article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 責任共有モデル shared responsibility model クラウド事業者と利用者で、セキュリティ責任範囲を分担する考え方。 iaas/paas/saasで利用者責任が変わる。" data-term-key="責任共有モデル">
 <div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>責任共有モデル</h2><div class="en">Shared Responsibility Model</div>
 <div class="one"><b>一言でいうと</b><p>クラウド事業者と利用者で、セキュリティ責任範囲を分担する考え方。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>IaaS/PaaS/SaaSで利用者責任が変わる。</p></div>
-</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク arp address resolution protocol ipv4でipアドレスから同一lan上のmacアドレスを解決するプロトコル。 arp spoofingとの関係。">
+</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク arp address resolution protocol ipv4でipアドレスから同一lan上のmacアドレスを解決するプロトコル。 arp spoofingとの関係。" data-term-key="ARP">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ARP</h2><div class="en">Address Resolution Protocol</div>
 <div class="one"><b>一言でいうと</b><p>IPv4でIPアドレスから同一LAN上のMACアドレスを解決するプロトコル。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ARP spoofingとの関係。</p></div>
-</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク icmp internet control message protocol ip通信のエラー通知や診断に利用されるプロトコル。 ping、traceroute、icmp flood。">
+</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク icmp internet control message protocol ip通信のエラー通知や診断に利用されるプロトコル。 ping、traceroute、icmp flood。" data-term-key="ICMP">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>ICMP</h2><div class="en">Internet Control Message Protocol</div>
 <div class="one"><b>一言でいうと</b><p>IP通信のエラー通知や診断に利用されるプロトコル。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>ping、traceroute、ICMP Flood。</p></div>
-</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dns domain name system ドメイン名とipアドレス等の情報を対応付ける分散型名前解決システム。 キャッシュ、権威dns、再帰問い合わせ。">
+</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dns domain name system ドメイン名とipアドレス等の情報を対応付ける分散型名前解決システム。 キャッシュ、権威dns、再帰問い合わせ。" data-term-key="DNS">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DNS</h2><div class="en">Domain Name System</div>
 <div class="one"><b>一言でいうと</b><p>ドメイン名とIPアドレス等の情報を対応付ける分散型名前解決システム。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>キャッシュ、権威DNS、再帰問い合わせ。</p></div>
-</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dnssec dns security extensions dns応答へデジタル署名を付け、データの真正性・完全性を検証する仕組み。 dns通信の暗号化ではない。">
+</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dnssec dns security extensions dns応答へデジタル署名を付け、データの真正性・完全性を検証する仕組み。 dns通信の暗号化ではない。" data-term-key="DNSSEC">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DNSSEC</h2><div class="en">DNS Security Extensions</div>
 <div class="one"><b>一言でいうと</b><p>DNS応答へデジタル署名を付け、データの真正性・完全性を検証する仕組み。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>DNS通信の暗号化ではない。</p></div>
-<div class="compare"><b>⚖️ 混同注意｜DoH / DoT</b><p>DNSSECはDNSデータの真正性・完全性を署名で検証。DoH/DoTはDNS問い合わせの通信路を暗号化。</p></div></article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dhcp dynamic host configuration protocol 端末へipアドレス、dns、デフォルトゲートウェイ等を自動配布するプロトコル。 doraの流れが定番。">
+<div class="compare"><b>⚖️ 混同注意｜DoH / DoT</b><p>DNSSECはDNSデータの真正性・完全性を署名で検証。DoH/DoTはDNS問い合わせの通信路を暗号化。</p></div></article><article class="term" data-cat="ネットワーク" data-search="ネットワーク dhcp dynamic host configuration protocol 端末へipアドレス、dns、デフォルトゲートウェイ等を自動配布するプロトコル。 doraの流れが定番。" data-term-key="DHCP">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>DHCP</h2><div class="en">Dynamic Host Configuration Protocol</div>
 <div class="one"><b>一言でいうと</b><p>端末へIPアドレス、DNS、デフォルトゲートウェイ等を自動配布するプロトコル。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>DORAの流れが定番。</p></div>
-</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク nat / napt アドレス変換 プライベートipとグローバルip等を変換する仕組み。naptはポート番号も利用する。 セキュリティ機能そのものと誤解しない。">
+</article><article class="term" data-cat="ネットワーク" data-search="ネットワーク nat / napt アドレス変換 プライベートipとグローバルip等を変換する仕組み。naptはポート番号も利用する。 セキュリティ機能そのものと誤解しない。" data-term-key="NAT / NAPT">
 <div class="term-top"><span>ネットワーク</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+
 <h2>NAT / NAPT</h2><div class="en">アドレス変換</div>
 <div class="one"><b>一言でいうと</b><p>プライベートIPとグローバルIP等を変換する仕組み。NAPTはポート番号も利用する。</p></div>
 <div class="exam"><b>🎯 支援士ではここを見る</b><p>セキュリティ機能そのものと誤解しない。</p></div>
-</article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ aiを悪用した攻撃 ai-enabled attacks 生成ai等を用いてフィッシング・なりすまし・マルウェア生成・脆弱性探索などを高度化する攻撃の総称。 ai自体への攻撃と、aiを道具として使う攻撃を分ける。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>AIを悪用した攻撃</h2><div class="en">AI-enabled attacks</div>
-<div class="one"><b>一言でいうと</b><p>生成AI等を用いてフィッシング・なりすまし・マルウェア生成・脆弱性探索などを高度化する攻撃の総称。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AI自体への攻撃と、AIを道具として使う攻撃を分ける。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ ディープフェイク deepfake 生成ai等で人物の画像・映像・音声を精巧に偽造する技術。 bec・本人確認・ソーシャルエンジニアリングとの組合せに注意。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>ディープフェイク</h2><div class="en">Deepfake</div>
-<div class="one"><b>一言でいうと</b><p>生成AI等で人物の画像・映像・音声を精巧に偽造する技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>BEC・本人確認・ソーシャルエンジニアリングとの組合せに注意。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 敵対的サンプル adversarial examples aiモデルが誤認識するよう入力へ人には気付きにくい変更を加える攻撃。 aiへの入力を操作して推論結果を誤らせる攻撃。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>敵対的サンプル</h2><div class="en">Adversarial Examples</div>
-<div class="one"><b>一言でいうと</b><p>AIモデルが誤認識するよう入力へ人には気付きにくい変更を加える攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AIへの入力を操作して推論結果を誤らせる攻撃。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ プロンプトインジェクション prompt injection 生成aiへの入力に不正な指示を混ぜ、意図しない情報開示や処理を誘発する攻撃。 sqliとは対象が違う。命令と外部入力の境界が論点。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>プロンプトインジェクション</h2><div class="en">Prompt Injection</div>
-<div class="one"><b>一言でいうと</b><p>生成AIへの入力に不正な指示を混ぜ、意図しない情報開示や処理を誘発する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SQLiとは対象が違う。命令と外部入力の境界が論点。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ データポイズニング data poisoning 学習データへ悪意あるデータを混入し、モデルの挙動や精度を意図的に歪める攻撃。 学習フェーズへの攻撃。敵対的サンプルとの違いを押さえる。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>データポイズニング</h2><div class="en">Data Poisoning</div>
-<div class="one"><b>一言でいうと</b><p>学習データへ悪意あるデータを混入し、モデルの挙動や精度を意図的に歪める攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>学習フェーズへの攻撃。敵対的サンプルとの違いを押さえる。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ モデルインバージョン攻撃 model inversion attack モデルの出力等から学習データに含まれる特徴・情報を推測する攻撃。 aiモデルから学習データ側の情報を逆算する。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>モデルインバージョン攻撃</h2><div class="en">Model Inversion Attack</div>
-<div class="one"><b>一言でいうと</b><p>モデルの出力等から学習データに含まれる特徴・情報を推測する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AIモデルから学習データ側の情報を逆算する。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ メンバーシップ推測攻撃 membership inference attack あるデータがモデルの学習データに含まれていたかを推測する攻撃。 モデルインバージョンとの違いを説明できるようにする。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>メンバーシップ推測攻撃</h2><div class="en">Membership Inference Attack</div>
-<div class="one"><b>一言でいうと</b><p>あるデータがモデルの学習データに含まれていたかを推測する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>モデルインバージョンとの違いを説明できるようにする。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ raas ransomware as a service ランサムウェアの開発・運用基盤をサービスとして犯罪者へ提供するビジネスモデル。 攻撃者の分業化・参入障壁低下と関連。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>RaaS</h2><div class="en">Ransomware as a Service</div>
-<div class="one"><b>一言でいうと</b><p>ランサムウェアの開発・運用基盤をサービスとして犯罪者へ提供するビジネスモデル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>攻撃者の分業化・参入障壁低下と関連。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ passkeys passkeys fido系の公開鍵認証を使い、パスワード入力への依存を減らす認証方式・利用形態。 fido2/webauthnとの関係、フィッシング耐性。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>Passkeys</h2><div class="en">Passkeys</div>
-<div class="one"><b>一言でいうと</b><p>FIDO系の公開鍵認証を使い、パスワード入力への依存を減らす認証方式・利用形態。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>FIDO2/WebAuthnとの関係、フィッシング耐性。</p></div><div class="compare"><b>⚖️ 混同注意｜パスワード / FIDO2</b><p>Passkeysは共有パスワードではなく公開鍵認証を利用。サーバ側にパスワード相当の共有秘密を置かない。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 耐量子暗号 pqc 量子計算機による既存公開鍵暗号への脅威を考慮した暗号方式。 量子暗号とは別。移行・暗号アジリティも関連。">
-<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div><h2>耐量子暗号</h2><div class="en">PQC</div>
-<div class="one"><b>一言でいうと</b><p>量子計算機による既存公開鍵暗号への脅威を考慮した暗号方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>量子暗号とは別。移行・暗号アジリティも関連。</p></div><div class="compare"><b>⚖️ 混同注意｜量子暗号</b><p>耐量子暗号＝PQC。量子コンピュータでも解読困難になるよう設計された暗号アルゴリズム。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki aes advanced encryption standard 代表的な共通鍵ブロック暗号。 rsaは公開鍵、aesは共通鍵。用途と速度差を押さえる。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>AES</h2><div class="en">Advanced Encryption Standard</div>
-<div class="one"><b>一言でいうと</b><p>代表的な共通鍵ブロック暗号。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>RSAは公開鍵、AESは共通鍵。用途と速度差を押さえる。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki rsa rsa cryptosystem 素因数分解問題の困難性を利用する代表的な公開鍵暗号方式。 暗号化・署名、鍵長、pqcとの関係。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>RSA</h2><div class="en">RSA Cryptosystem</div>
-<div class="one"><b>一言でいうと</b><p>素因数分解問題の困難性を利用する代表的な公開鍵暗号方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化・署名、鍵長、PQCとの関係。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ecdsa elliptic curve digital signature algorithm 楕円曲線暗号を用いたデジタル署名方式。 署名方式であり、aesのような共通鍵暗号ではない。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>ECDSA</h2><div class="en">Elliptic Curve Digital Signature Algorithm</div>
-<div class="one"><b>一言でいうと</b><p>楕円曲線暗号を用いたデジタル署名方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>署名方式であり、AESのような共通鍵暗号ではない。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki diffie-hellman鍵共有 dh key exchange 盗聴される通信路上で共通の秘密値を合意する鍵共有方式。 暗号化そのものではなく鍵共有。認証がないとmitmに注意。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>Diffie-Hellman鍵共有</h2><div class="en">DH Key Exchange</div>
-<div class="one"><b>一言でいうと</b><p>盗聴される通信路上で共通の秘密値を合意する鍵共有方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化そのものではなく鍵共有。認証がないとMITMに注意。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki cbc cipher block chaining ブロック暗号の利用モードの一つ。前ブロックの暗号文を次の暗号化へ利用する。 ivやパディング、ctr等との違い。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>CBC</h2><div class="en">Cipher Block Chaining</div>
-<div class="one"><b>一言でいうと</b><p>ブロック暗号の利用モードの一つ。前ブロックの暗号文を次の暗号化へ利用する。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IVやパディング、CTR等との違い。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ctr counter mode カウンタ値を暗号化して生成した鍵ストリームと平文を組み合わせる利用モード。 同じnonce/counterの再利用を避ける。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>CTR</h2><div class="en">Counter Mode</div>
-<div class="one"><b>一言でいうと</b><p>カウンタ値を暗号化して生成した鍵ストリームと平文を組み合わせる利用モード。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>同じnonce/counterの再利用を避ける。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki sha-256 sha-2 family 代表的な暗号学的ハッシュ関数。256ビットのハッシュ値を生成する。 暗号化ではない。一方向性・衝突耐性。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>SHA-256</h2><div class="en">SHA-2 family</div>
-<div class="one"><b>一言でいうと</b><p>代表的な暗号学的ハッシュ関数。256ビットのハッシュ値を生成する。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化ではない。一方向性・衝突耐性。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki sha-3 sha-3 keccakを基に標準化されたハッシュ関数群。 sha-2の単なる後継バージョンというより異なる構造。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>SHA-3</h2><div class="en">SHA-3</div>
-<div class="one"><b>一言でいうと</b><p>Keccakを基に標準化されたハッシュ関数群。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SHA-2の単なる後継バージョンというより異なる構造。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 秘密分散 secret sharing 秘密情報を複数の分散片に分け、一定数以上を集めた場合だけ復元可能にする技術。 バックアップや鍵管理で単一点集中を避ける。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>秘密分散</h2><div class="en">Secret Sharing</div>
-<div class="one"><b>一言でいうと</b><p>秘密情報を複数の分散片に分け、一定数以上を集めた場合だけ復元可能にする技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>バックアップや鍵管理で単一点集中を避ける。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 準同型暗号 homomorphic encryption 暗号化したまま特定の演算を行い、復号後に演算結果を得られる暗号技術。 秘密計算の一方式。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>準同型暗号</h2><div class="en">Homomorphic Encryption</div>
-<div class="one"><b>一言でいうと</b><p>暗号化したまま特定の演算を行い、復号後に演算結果を得られる暗号技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>秘密計算の一方式。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ゼロ知識証明 zero-knowledge proof 秘密そのものを明かさずに、その秘密を知っていること等を証明する技術。 『秘密を送らず証明』が核心。">
-<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div><h2>ゼロ知識証明</h2><div class="en">Zero-Knowledge Proof</div>
-<div class="one"><b>一言でいうと</b><p>秘密そのものを明かさずに、その秘密を知っていること等を証明する技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>『秘密を送らず証明』が核心。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido u2f universal 2nd factor 公開鍵暗号を利用するfidoの第2要素認証仕様。 fido2/passkeysへの流れを整理。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>FIDO U2F</h2><div class="en">Universal 2nd Factor</div>
-<div class="one"><b>一言でいうと</b><p>公開鍵暗号を利用するFIDOの第2要素認証仕様。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>FIDO2/Passkeysへの流れを整理。</p></div><div class="compare"><b>⚖️ 混同注意｜FIDO UAF / FIDO2</b><p>U2Fは主にパスワードに追加する第2要素。UAFはパスワードレス志向。FIDO2はWebAuthn等を利用。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido uaf universal authentication framework パスワードレス認証を志向したfido仕様。 u2fは第2要素、uafはパスワードレス寄り。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>FIDO UAF</h2><div class="en">Universal Authentication Framework</div>
-<div class="one"><b>一言でいうと</b><p>パスワードレス認証を志向したFIDO仕様。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>U2Fは第2要素、UAFはパスワードレス寄り。</p></div><div class="compare"><b>⚖️ 混同注意｜FIDO U2F / FIDO2</b><p>UAFはパスワードレス認証を志向。U2Fは第2要素。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 idaas identity as a service 認証・sso・id管理等をクラウドサービスとして提供する形態。 idpとの関係、クラウド型id基盤。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>IDaaS</h2><div class="en">Identity as a Service</div>
-<div class="one"><b>一言でいうと</b><p>認証・SSO・ID管理等をクラウドサービスとして提供する形態。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IdPとの関係、クラウド型ID基盤。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 captcha captcha 操作主体が人間か自動プログラムかを判別するための仕組み。 認証そのものではなくbot対策。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>CAPTCHA</h2><div class="en">CAPTCHA</div>
-<div class="one"><b>一言でいうと</b><p>操作主体が人間か自動プログラムかを判別するための仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>認証そのものではなくBot対策。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 ekyc electronic know your customer オンラインで本人確認を行う仕組み・手続。 ログイン認証と新規本人確認の違い。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>eKYC</h2><div class="en">electronic Know Your Customer</div>
-<div class="one"><b>一言でいうと</b><p>オンラインで本人確認を行う仕組み・手続。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ログイン認証と新規本人確認の違い。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 リスクベース認証 risk-based authentication 端末・場所・時間・行動等のリスクに応じて追加認証を要求する方式。 常に同じ認証強度ではない。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>リスクベース認証</h2><div class="en">Risk-based Authentication</div>
-<div class="one"><b>一言でいうと</b><p>端末・場所・時間・行動等のリスクに応じて追加認証を要求する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>常に同じ認証強度ではない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 チャレンジレスポンス認証 challenge-response authentication サーバが乱数等を提示し、秘密情報から計算した応答で本人性を確認する方式。 秘密そのものを通信路へ送らない。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>チャレンジレスポンス認証</h2><div class="en">Challenge-response Authentication</div>
-<div class="one"><b>一言でいうと</b><p>サーバが乱数等を提示し、秘密情報から計算した応答で本人性を確認する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>秘密そのものを通信路へ送らない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 トランザクション署名 transaction signing 送金先や金額など取引内容と結び付けて署名・承認する仕組み。 単なるログイン認証と取引承認を分ける。">
-<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div><h2>トランザクション署名</h2><div class="en">Transaction Signing</div>
-<div class="one"><b>一言でいうと</b><p>送金先や金額など取引内容と結び付けて署名・承認する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>単なるログイン認証と取引承認を分ける。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dns over https doh dns問い合わせをhttpsで暗号化する方式。 dnssecは真正性、dohは通信路の秘匿化という違い。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>DNS over HTTPS</h2><div class="en">DoH</div>
-<div class="one"><b>一言でいうと</b><p>DNS問い合わせをHTTPSで暗号化する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DNSSECは真正性、DoHは通信路の秘匿化という違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DNSSEC / DoT</b><p>DoHはDNS通信をHTTPSで暗号化。DNS応答自体の真正性を保証するDNSSECとは目的が違う。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dns over tls dot dns問い合わせをtlsで暗号化する方式。 dohとのトランスポートの違い。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>DNS over TLS</h2><div class="en">DoT</div>
-<div class="one"><b>一言でいうと</b><p>DNS問い合わせをTLSで暗号化する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DoHとのトランスポートの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DNSSEC / DoH</b><p>DoTはTLSでDNS通信路を暗号化。DoHはHTTPSを利用。DNSSECは署名検証。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ sase secure access service edge ネットワーク接続機能とクラウド型セキュリティ機能を統合的に提供する考え方。 ゼロトラスト、swg、casb等との関係。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>SASE</h2><div class="en">Secure Access Service Edge</div>
-<div class="one"><b>一言でいうと</b><p>ネットワーク接続機能とクラウド型セキュリティ機能を統合的に提供する考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ゼロトラスト、SWG、CASB等との関係。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ casb cloud access security broker 利用者とクラウドサービスの間で可視化・制御・データ保護等を行う仕組み。 シャドーit、saas利用統制。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>CASB</h2><div class="en">Cloud Access Security Broker</div>
-<div class="one"><b>一言でいうと</b><p>利用者とクラウドサービスの間で可視化・制御・データ保護等を行う仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>シャドーIT、SaaS利用統制。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ swg secure web gateway webアクセスを中継し、url/コンテンツ検査やマルウェア対策等を行う仕組み。 wafはwebサーバ防御、swgは利用者のwebアクセス防御。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>SWG</h2><div class="en">Secure Web Gateway</div>
-<div class="one"><b>一言でいうと</b><p>Webアクセスを中継し、URL/コンテンツ検査やマルウェア対策等を行う仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>WAFはWebサーバ防御、SWGは利用者のWebアクセス防御。</p></div><div class="compare"><b>⚖️ 混同注意｜WAF</b><p>SWGは主に利用者→Webへのアクセスを保護。WAFはインターネット→自社Webアプリへの攻撃を保護。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ztna zero trust network access 利用者・端末等を検証し、必要なアプリケーションへのアクセスだけを許可する仕組み。 従来vpnとの考え方の違い。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>ZTNA</h2><div class="en">Zero Trust Network Access</div>
-<div class="one"><b>一言でいうと</b><p>利用者・端末等を検証し、必要なアプリケーションへのアクセスだけを許可する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>従来VPNとの考え方の違い。</p></div><div class="compare"><b>⚖️ 混同注意｜VPN</b><p>ZTNAは『接続後は内部を広く信頼』せず、アプリ単位・継続検証を重視する。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dlp data loss prevention 機密情報の持出し・送信・漏えいを検知・制御する仕組み。 データ内容や分類に基づく制御。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>DLP</h2><div class="en">Data Loss Prevention</div>
-<div class="one"><b>一言でいうと</b><p>機密情報の持出し・送信・漏えいを検知・制御する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>データ内容や分類に基づく制御。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ nac network access control 端末の認証や状態を確認し、ネットワーク接続可否を制御する仕組み。 未許可端末や基準未達端末を制限。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>NAC</h2><div class="en">Network Access Control</div>
-<div class="one"><b>一言でいうと</b><p>端末の認証や状態を確認し、ネットワーク接続可否を制御する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>未許可端末や基準未達端末を制限。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ieee 802.1x port-based network access control lan/wlanのポート単位で認証を行うアクセス制御規格。 サプリカント・オーセンティケータ・認証サーバ。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>IEEE 802.1X</h2><div class="en">Port-based Network Access Control</div>
-<div class="one"><b>一言でいうと</b><p>LAN/WLANのポート単位で認証を行うアクセス制御規格。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>サプリカント・オーセンティケータ・認証サーバ。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ radius remote authentication dial-in user service ネットワークアクセスの認証・認可・アカウンティングに使われるプロトコル。 aaa、802.1xとの組合せ。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>RADIUS</h2><div class="en">Remote Authentication Dial-In User Service</div>
-<div class="one"><b>一言でいうと</b><p>ネットワークアクセスの認証・認可・アカウンティングに使われるプロトコル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AAA、802.1Xとの組合せ。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ tacacs+ terminal access controller access-control system plus ネットワーク機器管理等でaaaを提供するプロトコル。 radiusとの用途・設計差を意識。">
-<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div><h2>TACACS+</h2><div class="en">Terminal Access Controller Access-Control System Plus</div>
-<div class="one"><b>一言でいうと</b><p>ネットワーク機器管理等でAAAを提供するプロトコル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>RADIUSとの用途・設計差を意識。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ csp content security policy ブラウザが読み込み・実行できるスクリプト等の供給元を制限するhttpレスポンスヘッダ。 xssの被害軽減策。出力時対策の代替ではない。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>CSP</h2><div class="en">Content Security Policy</div>
-<div class="one"><b>一言でいうと</b><p>ブラウザが読み込み・実行できるスクリプト等の供給元を制限するHTTPレスポンスヘッダ。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>XSSの被害軽減策。出力時対策の代替ではない。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ samesite属性 samesite cookie attribute クロスサイト要求時のcookie送信を制御するcookie属性。 csrf軽減。strict/lax/noneの意味。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>SameSite属性</h2><div class="en">SameSite Cookie Attribute</div>
-<div class="one"><b>一言でいうと</b><p>クロスサイト要求時のCookie送信を制御するCookie属性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CSRF軽減。Strict/Lax/Noneの意味。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ hsts http strict transport security ブラウザへhttpsのみで接続するよう指示するhttpレスポンスヘッダ。 httpへのダウングレードを抑止。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>HSTS</h2><div class="en">HTTP Strict Transport Security</div>
-<div class="one"><b>一言でいうと</b><p>ブラウザへHTTPSのみで接続するよう指示するHTTPレスポンスヘッダ。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>HTTPへのダウングレードを抑止。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ ssrf server-side request forgery 攻撃者がwebサーバ等に意図しない宛先へリクエストを送信させる攻撃。 内部サービス・クラウドメタデータへのアクセスに注意。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>SSRF</h2><div class="en">Server-Side Request Forgery</div>
-<div class="one"><b>一言でいうと</b><p>攻撃者がWebサーバ等に意図しない宛先へリクエストを送信させる攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>内部サービス・クラウドメタデータへのアクセスに注意。</p></div><div class="compare"><b>⚖️ 混同注意｜CSRF</b><p>SSRFはサーバに意図しない宛先へリクエストさせる。CSRFは利用者のブラウザに意図しない要求を送らせる。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ xxe xml external entity xml外部エンティティ機能を悪用し、ファイル読出しや外部通信等を引き起こす攻撃。 xmlパーサの外部エンティティ無効化。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>XXE</h2><div class="en">XML External Entity</div>
-<div class="one"><b>一言でいうと</b><p>XML外部エンティティ機能を悪用し、ファイル読出しや外部通信等を引き起こす攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>XMLパーサの外部エンティティ無効化。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ デシリアライゼーション脆弱性 insecure deserialization 信頼できないシリアライズデータを復元する際に、意図しない処理を実行される脆弱性。 外部入力を安全なオブジェクトと決めつけない。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>デシリアライゼーション脆弱性</h2><div class="en">Insecure Deserialization</div>
-<div class="one"><b>一言でいうと</b><p>信頼できないシリアライズデータを復元する際に、意図しない処理を実行される脆弱性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>外部入力を安全なオブジェクトと決めつけない。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ オープンリダイレクト open redirect 外部入力でリダイレクト先を自由に指定でき、攻撃者サイトへ誘導される脆弱性。 許可する遷移先を限定する。">
-<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div><h2>オープンリダイレクト</h2><div class="en">Open Redirect</div>
-<div class="one"><b>一言でいうと</b><p>外部入力でリダイレクト先を自由に指定でき、攻撃者サイトへ誘導される脆弱性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>許可する遷移先を限定する。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脅威インテリジェンス threat intelligence 攻撃者・手法・ioc・脆弱性等の脅威情報を収集・分析し、防御判断に利用する活動・情報。 単なるニュースではなく意思決定に使える分析情報。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>脅威インテリジェンス</h2><div class="en">Threat Intelligence</div>
-<div class="one"><b>一言でいうと</b><p>攻撃者・手法・IOC・脆弱性等の脅威情報を収集・分析し、防御判断に利用する活動・情報。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>単なるニュースではなく意思決定に使える分析情報。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 ioc indicator of compromise 侵害を示す可能性のあるip、ドメイン、ハッシュ値、ファイル等の痕跡。 既知痕跡の照合。ttpとの違い。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>IOC</h2><div class="en">Indicator of Compromise</div>
-<div class="one"><b>一言でいうと</b><p>侵害を示す可能性のあるIP、ドメイン、ハッシュ値、ファイル等の痕跡。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>既知痕跡の照合。TTPとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜TTP</b><p>IOCはIP・ドメイン・ハッシュ等の具体的痕跡。TTPは攻撃者の戦術・技術・手順という行動パターン。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 ttp tactics, techniques and procedures 攻撃者の戦術・技術・手順を表す概念。 iocより攻撃行動のパターン寄り。mitre att&amp;ckと関連。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>TTP</h2><div class="en">Tactics, Techniques and Procedures</div>
-<div class="one"><b>一言でいうと</b><p>攻撃者の戦術・技術・手順を表す概念。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IOCより攻撃行動のパターン寄り。MITRE ATT&amp;CKと関連。</p></div><div class="compare"><b>⚖️ 混同注意｜IOC</b><p>TTPは攻撃行動の特徴なので、単一のIPやハッシュより変更されにくい場合がある。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脅威ハンティング threat hunting アラート待ちではなく、仮説を立てて環境内の侵害兆候を能動的に探索する活動。 soc監視との違い＝能動探索。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>脅威ハンティング</h2><div class="en">Threat Hunting</div>
-<div class="one"><b>一言でいうと</b><p>アラート待ちではなく、仮説を立てて環境内の侵害兆候を能動的に探索する活動。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SOC監視との違い＝能動探索。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 プレイブック incident response playbook 特定のインシデントに対する調査・封じ込め・復旧等の手順を定型化したもの。 soarによる自動化とも関連。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>プレイブック</h2><div class="en">Incident Response Playbook</div>
-<div class="one"><b>一言でいうと</b><p>特定のインシデントに対する調査・封じ込め・復旧等の手順を定型化したもの。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SOARによる自動化とも関連。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sbom software bill of materials ソフトウェアを構成する部品・ライブラリ等を一覧化した情報。 サプライチェーン脆弱性の影響確認。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>SBOM</h2><div class="en">Software Bill of Materials</div>
-<div class="one"><b>一言でいうと</b><p>ソフトウェアを構成する部品・ライブラリ等を一覧化した情報。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>サプライチェーン脆弱性の影響確認。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sca software composition analysis oss等の依存コンポーネントと既知脆弱性・ライセンスを分析する手法・ツール。 sbom生成や依存関係管理と関連。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>SCA</h2><div class="en">Software Composition Analysis</div>
-<div class="one"><b>一言でいうと</b><p>OSS等の依存コンポーネントと既知脆弱性・ライセンスを分析する手法・ツール。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SBOM生成や依存関係管理と関連。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sast static application security testing ソースコード等を実行せず解析して脆弱性を検出するテスト。 ホワイトボックス寄り。dastとの違い。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>SAST</h2><div class="en">Static Application Security Testing</div>
-<div class="one"><b>一言でいうと</b><p>ソースコード等を実行せず解析して脆弱性を検出するテスト。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ホワイトボックス寄り。DASTとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DAST</b><p>SASTは主にコード等を実行せず解析。DASTは稼働中アプリへ外部からアクセスして検査。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 dast dynamic application security testing 稼働中アプリへ外部からリクエストを送り、脆弱性を検査するテスト。 ブラックボックス寄り。sastとの違い。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>DAST</h2><div class="en">Dynamic Application Security Testing</div>
-<div class="one"><b>一言でいうと</b><p>稼働中アプリへ外部からリクエストを送り、脆弱性を検査するテスト。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ブラックボックス寄り。SASTとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜SAST</b><p>DASTは動的検査。SASTは静的解析。観測できる範囲と実施タイミングが違う。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 devsecops development security operations 開発・運用プロセスへセキュリティを継続的に組み込む考え方。 後工程だけで診断するのではなく早期・継続的に対策。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>DevSecOps</h2><div class="en">Development Security Operations</div>
-<div class="one"><b>一言でいうと</b><p>開発・運用プロセスへセキュリティを継続的に組み込む考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>後工程だけで診断するのではなく早期・継続的に対策。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cve common vulnerabilities and exposures 公開された脆弱性を一意に識別するための識別子体系。 cveは識別子、cvssは深刻度評価。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>CVE</h2><div class="en">Common Vulnerabilities and Exposures</div>
-<div class="one"><b>一言でいうと</b><p>公開された脆弱性を一意に識別するための識別子体系。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CVEは識別子、CVSSは深刻度評価。</p></div><div class="compare"><b>⚖️ 混同注意｜CWE / CVSS</b><p>CVE＝個別の脆弱性を識別、CWE＝弱点の種類、CVSS＝脆弱性の深刻度を評価。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cvss common vulnerability scoring system 脆弱性の深刻度を共通指標で評価する仕組み。 スコアだけで自組織のリスクが決まるわけではない。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>CVSS</h2><div class="en">Common Vulnerability Scoring System</div>
-<div class="one"><b>一言でいうと</b><p>脆弱性の深刻度を共通指標で評価する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>スコアだけで自組織のリスクが決まるわけではない。</p></div><div class="compare"><b>⚖️ 混同注意｜CVE / CWE</b><p>CVSSは深刻度の評価指標。脆弱性そのものの識別子ではない。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cwe common weakness enumeration ソフトウェア・ハードウェアの弱点の種類を体系化した分類。 cve＝個別脆弱性、cwe＝弱点の型。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>CWE</h2><div class="en">Common Weakness Enumeration</div>
-<div class="one"><b>一言でいうと</b><p>ソフトウェア・ハードウェアの弱点の種類を体系化した分類。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CVE＝個別脆弱性、CWE＝弱点の型。</p></div><div class="compare"><b>⚖️ 混同注意｜CVE / CVSS</b><p>CWEは『SQLインジェクション等の弱点の型』。個別事例の識別子CVEとは役割が違う。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 サプライチェーン攻撃 supply chain attack 委託先、ソフトウェア更新、ライブラリ等の供給網を経由して標的を侵害する攻撃。 自社だけでなく取引先・依存部品の管理。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>サプライチェーン攻撃</h2><div class="en">Supply Chain Attack</div>
-<div class="one"><b>一言でいうと</b><p>委託先、ソフトウェア更新、ライブラリ等の供給網を経由して標的を侵害する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>自社だけでなく取引先・依存部品の管理。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脆弱性管理 vulnerability management 資産の脆弱性を継続的に把握し、優先順位付け・修正・例外管理するプロセス。 発見して終わりではなく継続管理。">
-<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div><h2>脆弱性管理</h2><div class="en">Vulnerability Management</div>
-<div class="one"><b>一言でいうと</b><p>資産の脆弱性を継続的に把握し、優先順位付け・修正・例外管理するプロセス。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>発見して終わりではなく継続管理。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ arc authenticated received chain 転送等でspf/dkim/dmarcの検証条件が崩れる場合に、途中の認証結果を連鎖的に保持する仕組み。 dmarc・メーリングリスト・転送との関係。">
-<div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div><h2>ARC</h2><div class="en">Authenticated Received Chain</div>
-<div class="one"><b>一言でいうと</b><p>転送等でSPF/DKIM/DMARCの検証条件が崩れる場合に、途中の認証結果を連鎖的に保持する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DMARC・メーリングリスト・転送との関係。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 暗号アジリティ cryptographic agility 利用する暗号方式や鍵長を、脅威・標準の変化に応じて安全かつ円滑に切り替えられるよう設計・運用する考え方。 pqc移行などで、特定アルゴリズムへの固定依存を避ける観点として理解する。"><div class="term-top"><span>新技術・AIセキュリティ</span><em>発展用語</em></div><h2>暗号アジリティ</h2><div class="en">Cryptographic Agility</div><div class="one"><b>一言でいうと</b><p>利用する暗号方式や鍵長を、脅威・標準の変化に応じて安全かつ円滑に切り替えられるよう設計・運用する考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>PQC移行などで、特定アルゴリズムへの固定依存を避ける観点として理解する。</p></div></article></div></main>
+</article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ aiを悪用した攻撃 ai-enabled attacks 生成ai等を用いてフィッシング・なりすまし・マルウェア生成・脆弱性探索などを高度化する攻撃の総称。 ai自体への攻撃と、aiを道具として使う攻撃を分ける。" data-term-key="AIを悪用した攻撃">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>AIを悪用した攻撃</h2><div class="en">AI-enabled attacks</div>
+<div class="one"><b>一言でいうと</b><p>生成AI等を用いてフィッシング・なりすまし・マルウェア生成・脆弱性探索などを高度化する攻撃の総称。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AI自体への攻撃と、AIを道具として使う攻撃を分ける。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ ディープフェイク deepfake 生成ai等で人物の画像・映像・音声を精巧に偽造する技術。 bec・本人確認・ソーシャルエンジニアリングとの組合せに注意。" data-term-key="ディープフェイク">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>ディープフェイク</h2><div class="en">Deepfake</div>
+<div class="one"><b>一言でいうと</b><p>生成AI等で人物の画像・映像・音声を精巧に偽造する技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>BEC・本人確認・ソーシャルエンジニアリングとの組合せに注意。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 敵対的サンプル adversarial examples aiモデルが誤認識するよう入力へ人には気付きにくい変更を加える攻撃。 aiへの入力を操作して推論結果を誤らせる攻撃。" data-term-key="敵対的サンプル">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>敵対的サンプル</h2><div class="en">Adversarial Examples</div>
+<div class="one"><b>一言でいうと</b><p>AIモデルが誤認識するよう入力へ人には気付きにくい変更を加える攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AIへの入力を操作して推論結果を誤らせる攻撃。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ プロンプトインジェクション prompt injection 生成aiへの入力に不正な指示を混ぜ、意図しない情報開示や処理を誘発する攻撃。 sqliとは対象が違う。命令と外部入力の境界が論点。" data-term-key="プロンプトインジェクション">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>プロンプトインジェクション</h2><div class="en">Prompt Injection</div>
+<div class="one"><b>一言でいうと</b><p>生成AIへの入力に不正な指示を混ぜ、意図しない情報開示や処理を誘発する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SQLiとは対象が違う。命令と外部入力の境界が論点。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ データポイズニング data poisoning 学習データへ悪意あるデータを混入し、モデルの挙動や精度を意図的に歪める攻撃。 学習フェーズへの攻撃。敵対的サンプルとの違いを押さえる。" data-term-key="データポイズニング">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>データポイズニング</h2><div class="en">Data Poisoning</div>
+<div class="one"><b>一言でいうと</b><p>学習データへ悪意あるデータを混入し、モデルの挙動や精度を意図的に歪める攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>学習フェーズへの攻撃。敵対的サンプルとの違いを押さえる。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ モデルインバージョン攻撃 model inversion attack モデルの出力等から学習データに含まれる特徴・情報を推測する攻撃。 aiモデルから学習データ側の情報を逆算する。" data-term-key="モデルインバージョン攻撃">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>モデルインバージョン攻撃</h2><div class="en">Model Inversion Attack</div>
+<div class="one"><b>一言でいうと</b><p>モデルの出力等から学習データに含まれる特徴・情報を推測する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AIモデルから学習データ側の情報を逆算する。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ メンバーシップ推測攻撃 membership inference attack あるデータがモデルの学習データに含まれていたかを推測する攻撃。 モデルインバージョンとの違いを説明できるようにする。" data-term-key="メンバーシップ推測攻撃">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>メンバーシップ推測攻撃</h2><div class="en">Membership Inference Attack</div>
+<div class="one"><b>一言でいうと</b><p>あるデータがモデルの学習データに含まれていたかを推測する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>モデルインバージョンとの違いを説明できるようにする。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ raas ransomware as a service ランサムウェアの開発・運用基盤をサービスとして犯罪者へ提供するビジネスモデル。 攻撃者の分業化・参入障壁低下と関連。" data-term-key="RaaS">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>RaaS</h2><div class="en">Ransomware as a Service</div>
+<div class="one"><b>一言でいうと</b><p>ランサムウェアの開発・運用基盤をサービスとして犯罪者へ提供するビジネスモデル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>攻撃者の分業化・参入障壁低下と関連。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ passkeys passkeys fido系の公開鍵認証を使い、パスワード入力への依存を減らす認証方式・利用形態。 fido2/webauthnとの関係、フィッシング耐性。" data-term-key="Passkeys">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>Passkeys</h2><div class="en">Passkeys</div>
+<div class="one"><b>一言でいうと</b><p>FIDO系の公開鍵認証を使い、パスワード入力への依存を減らす認証方式・利用形態。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>FIDO2/WebAuthnとの関係、フィッシング耐性。</p></div><div class="compare"><b>⚖️ 混同注意｜パスワード / FIDO2</b><p>Passkeysは共有パスワードではなく公開鍵認証を利用。サーバ側にパスワード相当の共有秘密を置かない。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 耐量子暗号 pqc 量子計算機による既存公開鍵暗号への脅威を考慮した暗号方式。 量子暗号とは別。移行・暗号アジリティも関連。" data-term-key="耐量子暗号">
+<div class="term-top"><span>新技術・AIセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>耐量子暗号</h2><div class="en">PQC</div>
+<div class="one"><b>一言でいうと</b><p>量子計算機による既存公開鍵暗号への脅威を考慮した暗号方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>量子暗号とは別。移行・暗号アジリティも関連。</p></div><div class="compare"><b>⚖️ 混同注意｜量子暗号</b><p>耐量子暗号＝PQC。量子コンピュータでも解読困難になるよう設計された暗号アルゴリズム。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki aes advanced encryption standard 代表的な共通鍵ブロック暗号。 rsaは公開鍵、aesは共通鍵。用途と速度差を押さえる。" data-term-key="AES">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>AES</h2><div class="en">Advanced Encryption Standard</div>
+<div class="one"><b>一言でいうと</b><p>代表的な共通鍵ブロック暗号。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>RSAは公開鍵、AESは共通鍵。用途と速度差を押さえる。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki rsa rsa cryptosystem 素因数分解問題の困難性を利用する代表的な公開鍵暗号方式。 暗号化・署名、鍵長、pqcとの関係。" data-term-key="RSA">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>RSA</h2><div class="en">RSA Cryptosystem</div>
+<div class="one"><b>一言でいうと</b><p>素因数分解問題の困難性を利用する代表的な公開鍵暗号方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化・署名、鍵長、PQCとの関係。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ecdsa elliptic curve digital signature algorithm 楕円曲線暗号を用いたデジタル署名方式。 署名方式であり、aesのような共通鍵暗号ではない。" data-term-key="ECDSA">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>ECDSA</h2><div class="en">Elliptic Curve Digital Signature Algorithm</div>
+<div class="one"><b>一言でいうと</b><p>楕円曲線暗号を用いたデジタル署名方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>署名方式であり、AESのような共通鍵暗号ではない。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki diffie-hellman鍵共有 dh key exchange 盗聴される通信路上で共通の秘密値を合意する鍵共有方式。 暗号化そのものではなく鍵共有。認証がないとmitmに注意。" data-term-key="Diffie-Hellman鍵共有">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>Diffie-Hellman鍵共有</h2><div class="en">DH Key Exchange</div>
+<div class="one"><b>一言でいうと</b><p>盗聴される通信路上で共通の秘密値を合意する鍵共有方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化そのものではなく鍵共有。認証がないとMITMに注意。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki cbc cipher block chaining ブロック暗号の利用モードの一つ。前ブロックの暗号文を次の暗号化へ利用する。 ivやパディング、ctr等との違い。" data-term-key="CBC">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CBC</h2><div class="en">Cipher Block Chaining</div>
+<div class="one"><b>一言でいうと</b><p>ブロック暗号の利用モードの一つ。前ブロックの暗号文を次の暗号化へ利用する。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IVやパディング、CTR等との違い。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ctr counter mode カウンタ値を暗号化して生成した鍵ストリームと平文を組み合わせる利用モード。 同じnonce/counterの再利用を避ける。" data-term-key="CTR">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CTR</h2><div class="en">Counter Mode</div>
+<div class="one"><b>一言でいうと</b><p>カウンタ値を暗号化して生成した鍵ストリームと平文を組み合わせる利用モード。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>同じnonce/counterの再利用を避ける。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki sha-256 sha-2 family 代表的な暗号学的ハッシュ関数。256ビットのハッシュ値を生成する。 暗号化ではない。一方向性・衝突耐性。" data-term-key="SHA-256">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SHA-256</h2><div class="en">SHA-2 family</div>
+<div class="one"><b>一言でいうと</b><p>代表的な暗号学的ハッシュ関数。256ビットのハッシュ値を生成する。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>暗号化ではない。一方向性・衝突耐性。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki sha-3 sha-3 keccakを基に標準化されたハッシュ関数群。 sha-2の単なる後継バージョンというより異なる構造。" data-term-key="SHA-3">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SHA-3</h2><div class="en">SHA-3</div>
+<div class="one"><b>一言でいうと</b><p>Keccakを基に標準化されたハッシュ関数群。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SHA-2の単なる後継バージョンというより異なる構造。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 秘密分散 secret sharing 秘密情報を複数の分散片に分け、一定数以上を集めた場合だけ復元可能にする技術。 バックアップや鍵管理で単一点集中を避ける。" data-term-key="秘密分散">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>秘密分散</h2><div class="en">Secret Sharing</div>
+<div class="one"><b>一言でいうと</b><p>秘密情報を複数の分散片に分け、一定数以上を集めた場合だけ復元可能にする技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>バックアップや鍵管理で単一点集中を避ける。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki 準同型暗号 homomorphic encryption 暗号化したまま特定の演算を行い、復号後に演算結果を得られる暗号技術。 秘密計算の一方式。" data-term-key="準同型暗号">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>準同型暗号</h2><div class="en">Homomorphic Encryption</div>
+<div class="one"><b>一言でいうと</b><p>暗号化したまま特定の演算を行い、復号後に演算結果を得られる暗号技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>秘密計算の一方式。</p></div></article><article class="term" data-cat="暗号・PKI" data-search="暗号・pki ゼロ知識証明 zero-knowledge proof 秘密そのものを明かさずに、その秘密を知っていること等を証明する技術。 『秘密を送らず証明』が核心。" data-term-key="ゼロ知識証明">
+<div class="term-top"><span>暗号・PKI</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>ゼロ知識証明</h2><div class="en">Zero-Knowledge Proof</div>
+<div class="one"><b>一言でいうと</b><p>秘密そのものを明かさずに、その秘密を知っていること等を証明する技術。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>『秘密を送らず証明』が核心。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido u2f universal 2nd factor 公開鍵暗号を利用するfidoの第2要素認証仕様。 fido2/passkeysへの流れを整理。" data-term-key="FIDO U2F">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>FIDO U2F</h2><div class="en">Universal 2nd Factor</div>
+<div class="one"><b>一言でいうと</b><p>公開鍵暗号を利用するFIDOの第2要素認証仕様。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>FIDO2/Passkeysへの流れを整理。</p></div><div class="compare"><b>⚖️ 混同注意｜FIDO UAF / FIDO2</b><p>U2Fは主にパスワードに追加する第2要素。UAFはパスワードレス志向。FIDO2はWebAuthn等を利用。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 fido uaf universal authentication framework パスワードレス認証を志向したfido仕様。 u2fは第2要素、uafはパスワードレス寄り。" data-term-key="FIDO UAF">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>FIDO UAF</h2><div class="en">Universal Authentication Framework</div>
+<div class="one"><b>一言でいうと</b><p>パスワードレス認証を志向したFIDO仕様。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>U2Fは第2要素、UAFはパスワードレス寄り。</p></div><div class="compare"><b>⚖️ 混同注意｜FIDO U2F / FIDO2</b><p>UAFはパスワードレス認証を志向。U2Fは第2要素。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 idaas identity as a service 認証・sso・id管理等をクラウドサービスとして提供する形態。 idpとの関係、クラウド型id基盤。" data-term-key="IDaaS">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>IDaaS</h2><div class="en">Identity as a Service</div>
+<div class="one"><b>一言でいうと</b><p>認証・SSO・ID管理等をクラウドサービスとして提供する形態。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IdPとの関係、クラウド型ID基盤。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 captcha captcha 操作主体が人間か自動プログラムかを判別するための仕組み。 認証そのものではなくbot対策。" data-term-key="CAPTCHA">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CAPTCHA</h2><div class="en">CAPTCHA</div>
+<div class="one"><b>一言でいうと</b><p>操作主体が人間か自動プログラムかを判別するための仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>認証そのものではなくBot対策。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 ekyc electronic know your customer オンラインで本人確認を行う仕組み・手続。 ログイン認証と新規本人確認の違い。" data-term-key="eKYC">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>eKYC</h2><div class="en">electronic Know Your Customer</div>
+<div class="one"><b>一言でいうと</b><p>オンラインで本人確認を行う仕組み・手続。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ログイン認証と新規本人確認の違い。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 リスクベース認証 risk-based authentication 端末・場所・時間・行動等のリスクに応じて追加認証を要求する方式。 常に同じ認証強度ではない。" data-term-key="リスクベース認証">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>リスクベース認証</h2><div class="en">Risk-based Authentication</div>
+<div class="one"><b>一言でいうと</b><p>端末・場所・時間・行動等のリスクに応じて追加認証を要求する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>常に同じ認証強度ではない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 チャレンジレスポンス認証 challenge-response authentication サーバが乱数等を提示し、秘密情報から計算した応答で本人性を確認する方式。 秘密そのものを通信路へ送らない。" data-term-key="チャレンジレスポンス認証">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>チャレンジレスポンス認証</h2><div class="en">Challenge-response Authentication</div>
+<div class="one"><b>一言でいうと</b><p>サーバが乱数等を提示し、秘密情報から計算した応答で本人性を確認する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>秘密そのものを通信路へ送らない。</p></div></article><article class="term" data-cat="認証・認可" data-search="認証・認可 トランザクション署名 transaction signing 送金先や金額など取引内容と結び付けて署名・承認する仕組み。 単なるログイン認証と取引承認を分ける。" data-term-key="トランザクション署名">
+<div class="term-top"><span>認証・認可</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>トランザクション署名</h2><div class="en">Transaction Signing</div>
+<div class="one"><b>一言でいうと</b><p>送金先や金額など取引内容と結び付けて署名・承認する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>単なるログイン認証と取引承認を分ける。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dns over https doh dns問い合わせをhttpsで暗号化する方式。 dnssecは真正性、dohは通信路の秘匿化という違い。" data-term-key="DNS over HTTPS">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>DNS over HTTPS</h2><div class="en">DoH</div>
+<div class="one"><b>一言でいうと</b><p>DNS問い合わせをHTTPSで暗号化する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DNSSECは真正性、DoHは通信路の秘匿化という違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DNSSEC / DoT</b><p>DoHはDNS通信をHTTPSで暗号化。DNS応答自体の真正性を保証するDNSSECとは目的が違う。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dns over tls dot dns問い合わせをtlsで暗号化する方式。 dohとのトランスポートの違い。" data-term-key="DNS over TLS">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>DNS over TLS</h2><div class="en">DoT</div>
+<div class="one"><b>一言でいうと</b><p>DNS問い合わせをTLSで暗号化する方式。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DoHとのトランスポートの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DNSSEC / DoH</b><p>DoTはTLSでDNS通信路を暗号化。DoHはHTTPSを利用。DNSSECは署名検証。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ sase secure access service edge ネットワーク接続機能とクラウド型セキュリティ機能を統合的に提供する考え方。 ゼロトラスト、swg、casb等との関係。" data-term-key="SASE">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SASE</h2><div class="en">Secure Access Service Edge</div>
+<div class="one"><b>一言でいうと</b><p>ネットワーク接続機能とクラウド型セキュリティ機能を統合的に提供する考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ゼロトラスト、SWG、CASB等との関係。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ casb cloud access security broker 利用者とクラウドサービスの間で可視化・制御・データ保護等を行う仕組み。 シャドーit、saas利用統制。" data-term-key="CASB">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CASB</h2><div class="en">Cloud Access Security Broker</div>
+<div class="one"><b>一言でいうと</b><p>利用者とクラウドサービスの間で可視化・制御・データ保護等を行う仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>シャドーIT、SaaS利用統制。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ swg secure web gateway webアクセスを中継し、url/コンテンツ検査やマルウェア対策等を行う仕組み。 wafはwebサーバ防御、swgは利用者のwebアクセス防御。" data-term-key="SWG">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SWG</h2><div class="en">Secure Web Gateway</div>
+<div class="one"><b>一言でいうと</b><p>Webアクセスを中継し、URL/コンテンツ検査やマルウェア対策等を行う仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>WAFはWebサーバ防御、SWGは利用者のWebアクセス防御。</p></div><div class="compare"><b>⚖️ 混同注意｜WAF</b><p>SWGは主に利用者→Webへのアクセスを保護。WAFはインターネット→自社Webアプリへの攻撃を保護。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ztna zero trust network access 利用者・端末等を検証し、必要なアプリケーションへのアクセスだけを許可する仕組み。 従来vpnとの考え方の違い。" data-term-key="ZTNA">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>ZTNA</h2><div class="en">Zero Trust Network Access</div>
+<div class="one"><b>一言でいうと</b><p>利用者・端末等を検証し、必要なアプリケーションへのアクセスだけを許可する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>従来VPNとの考え方の違い。</p></div><div class="compare"><b>⚖️ 混同注意｜VPN</b><p>ZTNAは『接続後は内部を広く信頼』せず、アプリ単位・継続検証を重視する。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ dlp data loss prevention 機密情報の持出し・送信・漏えいを検知・制御する仕組み。 データ内容や分類に基づく制御。" data-term-key="DLP">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>DLP</h2><div class="en">Data Loss Prevention</div>
+<div class="one"><b>一言でいうと</b><p>機密情報の持出し・送信・漏えいを検知・制御する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>データ内容や分類に基づく制御。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ nac network access control 端末の認証や状態を確認し、ネットワーク接続可否を制御する仕組み。 未許可端末や基準未達端末を制限。" data-term-key="NAC">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>NAC</h2><div class="en">Network Access Control</div>
+<div class="one"><b>一言でいうと</b><p>端末の認証や状態を確認し、ネットワーク接続可否を制御する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>未許可端末や基準未達端末を制限。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ ieee 802.1x port-based network access control lan/wlanのポート単位で認証を行うアクセス制御規格。 サプリカント・オーセンティケータ・認証サーバ。" data-term-key="IEEE 802.1X">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>IEEE 802.1X</h2><div class="en">Port-based Network Access Control</div>
+<div class="one"><b>一言でいうと</b><p>LAN/WLANのポート単位で認証を行うアクセス制御規格。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>サプリカント・オーセンティケータ・認証サーバ。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ radius remote authentication dial-in user service ネットワークアクセスの認証・認可・アカウンティングに使われるプロトコル。 aaa、802.1xとの組合せ。" data-term-key="RADIUS">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>RADIUS</h2><div class="en">Remote Authentication Dial-In User Service</div>
+<div class="one"><b>一言でいうと</b><p>ネットワークアクセスの認証・認可・アカウンティングに使われるプロトコル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>AAA、802.1Xとの組合せ。</p></div></article><article class="term" data-cat="ネットワークセキュリティ" data-search="ネットワークセキュリティ tacacs+ terminal access controller access-control system plus ネットワーク機器管理等でaaaを提供するプロトコル。 radiusとの用途・設計差を意識。" data-term-key="TACACS+">
+<div class="term-top"><span>ネットワークセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>TACACS+</h2><div class="en">Terminal Access Controller Access-Control System Plus</div>
+<div class="one"><b>一言でいうと</b><p>ネットワーク機器管理等でAAAを提供するプロトコル。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>RADIUSとの用途・設計差を意識。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ csp content security policy ブラウザが読み込み・実行できるスクリプト等の供給元を制限するhttpレスポンスヘッダ。 xssの被害軽減策。出力時対策の代替ではない。" data-term-key="CSP">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CSP</h2><div class="en">Content Security Policy</div>
+<div class="one"><b>一言でいうと</b><p>ブラウザが読み込み・実行できるスクリプト等の供給元を制限するHTTPレスポンスヘッダ。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>XSSの被害軽減策。出力時対策の代替ではない。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ samesite属性 samesite cookie attribute クロスサイト要求時のcookie送信を制御するcookie属性。 csrf軽減。strict/lax/noneの意味。" data-term-key="SameSite属性">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SameSite属性</h2><div class="en">SameSite Cookie Attribute</div>
+<div class="one"><b>一言でいうと</b><p>クロスサイト要求時のCookie送信を制御するCookie属性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CSRF軽減。Strict/Lax/Noneの意味。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ hsts http strict transport security ブラウザへhttpsのみで接続するよう指示するhttpレスポンスヘッダ。 httpへのダウングレードを抑止。" data-term-key="HSTS">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>HSTS</h2><div class="en">HTTP Strict Transport Security</div>
+<div class="one"><b>一言でいうと</b><p>ブラウザへHTTPSのみで接続するよう指示するHTTPレスポンスヘッダ。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>HTTPへのダウングレードを抑止。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ ssrf server-side request forgery 攻撃者がwebサーバ等に意図しない宛先へリクエストを送信させる攻撃。 内部サービス・クラウドメタデータへのアクセスに注意。" data-term-key="SSRF">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SSRF</h2><div class="en">Server-Side Request Forgery</div>
+<div class="one"><b>一言でいうと</b><p>攻撃者がWebサーバ等に意図しない宛先へリクエストを送信させる攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>内部サービス・クラウドメタデータへのアクセスに注意。</p></div><div class="compare"><b>⚖️ 混同注意｜CSRF</b><p>SSRFはサーバに意図しない宛先へリクエストさせる。CSRFは利用者のブラウザに意図しない要求を送らせる。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ xxe xml external entity xml外部エンティティ機能を悪用し、ファイル読出しや外部通信等を引き起こす攻撃。 xmlパーサの外部エンティティ無効化。" data-term-key="XXE">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>XXE</h2><div class="en">XML External Entity</div>
+<div class="one"><b>一言でいうと</b><p>XML外部エンティティ機能を悪用し、ファイル読出しや外部通信等を引き起こす攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>XMLパーサの外部エンティティ無効化。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ デシリアライゼーション脆弱性 insecure deserialization 信頼できないシリアライズデータを復元する際に、意図しない処理を実行される脆弱性。 外部入力を安全なオブジェクトと決めつけない。" data-term-key="デシリアライゼーション脆弱性">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>デシリアライゼーション脆弱性</h2><div class="en">Insecure Deserialization</div>
+<div class="one"><b>一言でいうと</b><p>信頼できないシリアライズデータを復元する際に、意図しない処理を実行される脆弱性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>外部入力を安全なオブジェクトと決めつけない。</p></div></article><article class="term" data-cat="Web・サーバセキュリティ" data-search="web・サーバセキュリティ オープンリダイレクト open redirect 外部入力でリダイレクト先を自由に指定でき、攻撃者サイトへ誘導される脆弱性。 許可する遷移先を限定する。" data-term-key="オープンリダイレクト">
+<div class="term-top"><span>Web・サーバセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>オープンリダイレクト</h2><div class="en">Open Redirect</div>
+<div class="one"><b>一言でいうと</b><p>外部入力でリダイレクト先を自由に指定でき、攻撃者サイトへ誘導される脆弱性。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>許可する遷移先を限定する。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脅威インテリジェンス threat intelligence 攻撃者・手法・ioc・脆弱性等の脅威情報を収集・分析し、防御判断に利用する活動・情報。 単なるニュースではなく意思決定に使える分析情報。" data-term-key="脅威インテリジェンス">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>脅威インテリジェンス</h2><div class="en">Threat Intelligence</div>
+<div class="one"><b>一言でいうと</b><p>攻撃者・手法・IOC・脆弱性等の脅威情報を収集・分析し、防御判断に利用する活動・情報。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>単なるニュースではなく意思決定に使える分析情報。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 ioc indicator of compromise 侵害を示す可能性のあるip、ドメイン、ハッシュ値、ファイル等の痕跡。 既知痕跡の照合。ttpとの違い。" data-term-key="IOC">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>IOC</h2><div class="en">Indicator of Compromise</div>
+<div class="one"><b>一言でいうと</b><p>侵害を示す可能性のあるIP、ドメイン、ハッシュ値、ファイル等の痕跡。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>既知痕跡の照合。TTPとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜TTP</b><p>IOCはIP・ドメイン・ハッシュ等の具体的痕跡。TTPは攻撃者の戦術・技術・手順という行動パターン。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 ttp tactics, techniques and procedures 攻撃者の戦術・技術・手順を表す概念。 iocより攻撃行動のパターン寄り。mitre att&amp;ckと関連。" data-term-key="TTP">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>TTP</h2><div class="en">Tactics, Techniques and Procedures</div>
+<div class="one"><b>一言でいうと</b><p>攻撃者の戦術・技術・手順を表す概念。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>IOCより攻撃行動のパターン寄り。MITRE ATT&amp;CKと関連。</p></div><div class="compare"><b>⚖️ 混同注意｜IOC</b><p>TTPは攻撃行動の特徴なので、単一のIPやハッシュより変更されにくい場合がある。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脅威ハンティング threat hunting アラート待ちではなく、仮説を立てて環境内の侵害兆候を能動的に探索する活動。 soc監視との違い＝能動探索。" data-term-key="脅威ハンティング">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>脅威ハンティング</h2><div class="en">Threat Hunting</div>
+<div class="one"><b>一言でいうと</b><p>アラート待ちではなく、仮説を立てて環境内の侵害兆候を能動的に探索する活動。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SOC監視との違い＝能動探索。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 プレイブック incident response playbook 特定のインシデントに対する調査・封じ込め・復旧等の手順を定型化したもの。 soarによる自動化とも関連。" data-term-key="プレイブック">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>プレイブック</h2><div class="en">Incident Response Playbook</div>
+<div class="one"><b>一言でいうと</b><p>特定のインシデントに対する調査・封じ込め・復旧等の手順を定型化したもの。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SOARによる自動化とも関連。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sbom software bill of materials ソフトウェアを構成する部品・ライブラリ等を一覧化した情報。 サプライチェーン脆弱性の影響確認。" data-term-key="SBOM">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SBOM</h2><div class="en">Software Bill of Materials</div>
+<div class="one"><b>一言でいうと</b><p>ソフトウェアを構成する部品・ライブラリ等を一覧化した情報。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>サプライチェーン脆弱性の影響確認。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sca software composition analysis oss等の依存コンポーネントと既知脆弱性・ライセンスを分析する手法・ツール。 sbom生成や依存関係管理と関連。" data-term-key="SCA">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SCA</h2><div class="en">Software Composition Analysis</div>
+<div class="one"><b>一言でいうと</b><p>OSS等の依存コンポーネントと既知脆弱性・ライセンスを分析する手法・ツール。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>SBOM生成や依存関係管理と関連。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 sast static application security testing ソースコード等を実行せず解析して脆弱性を検出するテスト。 ホワイトボックス寄り。dastとの違い。" data-term-key="SAST">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>SAST</h2><div class="en">Static Application Security Testing</div>
+<div class="one"><b>一言でいうと</b><p>ソースコード等を実行せず解析して脆弱性を検出するテスト。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ホワイトボックス寄り。DASTとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜DAST</b><p>SASTは主にコード等を実行せず解析。DASTは稼働中アプリへ外部からアクセスして検査。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 dast dynamic application security testing 稼働中アプリへ外部からリクエストを送り、脆弱性を検査するテスト。 ブラックボックス寄り。sastとの違い。" data-term-key="DAST">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>DAST</h2><div class="en">Dynamic Application Security Testing</div>
+<div class="one"><b>一言でいうと</b><p>稼働中アプリへ外部からリクエストを送り、脆弱性を検査するテスト。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>ブラックボックス寄り。SASTとの違い。</p></div><div class="compare"><b>⚖️ 混同注意｜SAST</b><p>DASTは動的検査。SASTは静的解析。観測できる範囲と実施タイミングが違う。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 devsecops development security operations 開発・運用プロセスへセキュリティを継続的に組み込む考え方。 後工程だけで診断するのではなく早期・継続的に対策。" data-term-key="DevSecOps">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>DevSecOps</h2><div class="en">Development Security Operations</div>
+<div class="one"><b>一言でいうと</b><p>開発・運用プロセスへセキュリティを継続的に組み込む考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>後工程だけで診断するのではなく早期・継続的に対策。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cve common vulnerabilities and exposures 公開された脆弱性を一意に識別するための識別子体系。 cveは識別子、cvssは深刻度評価。" data-term-key="CVE">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CVE</h2><div class="en">Common Vulnerabilities and Exposures</div>
+<div class="one"><b>一言でいうと</b><p>公開された脆弱性を一意に識別するための識別子体系。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CVEは識別子、CVSSは深刻度評価。</p></div><div class="compare"><b>⚖️ 混同注意｜CWE / CVSS</b><p>CVE＝個別の脆弱性を識別、CWE＝弱点の種類、CVSS＝脆弱性の深刻度を評価。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cvss common vulnerability scoring system 脆弱性の深刻度を共通指標で評価する仕組み。 スコアだけで自組織のリスクが決まるわけではない。" data-term-key="CVSS">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CVSS</h2><div class="en">Common Vulnerability Scoring System</div>
+<div class="one"><b>一言でいうと</b><p>脆弱性の深刻度を共通指標で評価する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>スコアだけで自組織のリスクが決まるわけではない。</p></div><div class="compare"><b>⚖️ 混同注意｜CVE / CWE</b><p>CVSSは深刻度の評価指標。脆弱性そのものの識別子ではない。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 cwe common weakness enumeration ソフトウェア・ハードウェアの弱点の種類を体系化した分類。 cve＝個別脆弱性、cwe＝弱点の型。" data-term-key="CWE">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>CWE</h2><div class="en">Common Weakness Enumeration</div>
+<div class="one"><b>一言でいうと</b><p>ソフトウェア・ハードウェアの弱点の種類を体系化した分類。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>CVE＝個別脆弱性、CWE＝弱点の型。</p></div><div class="compare"><b>⚖️ 混同注意｜CVE / CVSS</b><p>CWEは『SQLインジェクション等の弱点の型』。個別事例の識別子CVEとは役割が違う。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 サプライチェーン攻撃 supply chain attack 委託先、ソフトウェア更新、ライブラリ等の供給網を経由して標的を侵害する攻撃。 自社だけでなく取引先・依存部品の管理。" data-term-key="サプライチェーン攻撃">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>サプライチェーン攻撃</h2><div class="en">Supply Chain Attack</div>
+<div class="one"><b>一言でいうと</b><p>委託先、ソフトウェア更新、ライブラリ等の供給網を経由して標的を侵害する攻撃。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>自社だけでなく取引先・依存部品の管理。</p></div></article><article class="term" data-cat="インシデント・管理" data-search="インシデント・管理 脆弱性管理 vulnerability management 資産の脆弱性を継続的に把握し、優先順位付け・修正・例外管理するプロセス。 発見して終わりではなく継続管理。" data-term-key="脆弱性管理">
+<div class="term-top"><span>インシデント・管理</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>脆弱性管理</h2><div class="en">Vulnerability Management</div>
+<div class="one"><b>一言でいうと</b><p>資産の脆弱性を継続的に把握し、優先順位付け・修正・例外管理するプロセス。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>発見して終わりではなく継続管理。</p></div></article><article class="term" data-cat="メールセキュリティ" data-search="メールセキュリティ arc authenticated received chain 転送等でspf/dkim/dmarcの検証条件が崩れる場合に、途中の認証結果を連鎖的に保持する仕組み。 dmarc・メーリングリスト・転送との関係。" data-term-key="ARC">
+<div class="term-top"><span>メールセキュリティ</span><em>シラバス用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>ARC</h2><div class="en">Authenticated Received Chain</div>
+<div class="one"><b>一言でいうと</b><p>転送等でSPF/DKIM/DMARCの検証条件が崩れる場合に、途中の認証結果を連鎖的に保持する仕組み。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>DMARC・メーリングリスト・転送との関係。</p></div></article><article class="term" data-cat="新技術・AIセキュリティ" data-search="新技術・aiセキュリティ 暗号アジリティ cryptographic agility 利用する暗号方式や鍵長を、脅威・標準の変化に応じて安全かつ円滑に切り替えられるよう設計・運用する考え方。 pqc移行などで、特定アルゴリズムへの固定依存を避ける観点として理解する。" data-term-key="暗号アジリティ"><div class="term-top"><span>新技術・AIセキュリティ</span><em>発展用語</em></div>
+<label class="memory-toggle" title="覚えたらチェック">
+<input class="memory-check" type="checkbox"/>
+<span>暗記済みにする</span>
+</label>
+<h2>暗号アジリティ</h2><div class="en">Cryptographic Agility</div><div class="one"><b>一言でいうと</b><p>利用する暗号方式や鍵長を、脅威・標準の変化に応じて安全かつ円滑に切り替えられるよう設計・運用する考え方。</p></div><div class="exam"><b>🎯 支援士ではここを見る</b><p>PQC移行などで、特定アルゴリズムへの固定依存を避ける観点として理解する。</p></div></article></div></main>
 <div class="note">※ 用語の選定・分類はIPAシラバスを基準にしています。説明文と「支援士ではここを見る」は学習しやすいよう当サイトで再構成しています。分類は既存の過去問サイトに合わせています。</div>
 <script>
-const cards=[...document.querySelectorAll('.term')],search=document.getElementById('search'),status=document.getElementById('status');let cat='all';
-function apply(){const q=search.value.trim().toLowerCase();let n=0;cards.forEach(c=>{const ok=((cat==='all')||(cat==='compare-only'&&c.querySelector('.compare'))||c.dataset.cat===cat)&&c.dataset.search.includes(q);c.style.display=ok?'':'none';if(ok)n++});status.textContent=`表示 ${n} / ${cards.length} 語`;}
-search.oninput=apply;document.querySelectorAll('.catbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.catbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;apply();});apply();
+const cards=[...document.querySelectorAll('.term')];
+const search=document.getElementById('search');
+const status=document.getElementById('status');
+const STORAGE_KEY='sc_syllabus_memorized_v1';
+let cat='all', learn='all';
+
+function loadMem(){
+  try{return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'));}catch(e){return new Set();}
+}
+let memorized=loadMem();
+
+function saveMem(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify([...memorized]));
+}
+function syncMemoryUI(){
+  cards.forEach(c=>{
+    const key=c.dataset.termKey;
+    const done=memorized.has(key);
+    c.classList.toggle('memorized',done);
+    const cb=c.querySelector('.memory-check');
+    cb.checked=done;
+    c.querySelector('.memory-toggle span').textContent=done?'暗記済み':'暗記済みにする';
+  });
+  const n=memorized.size;
+  document.getElementById('memorizedCount').textContent=`${n} / ${cards.length}`;
+  document.getElementById('progressFill').style.width=`${(n/cards.length)*100}%`;
+}
+function apply(){
+  const q=search.value.trim().toLowerCase();let n=0;
+  cards.forEach(c=>{
+    const catok=(cat==='all')||(cat==='compare-only'&&c.querySelector('.compare'))||c.dataset.cat===cat;
+    const learnok=(learn==='all')||(learn==='done'&&memorized.has(c.dataset.termKey))||(learn==='todo'&&!memorized.has(c.dataset.termKey));
+    const ok=catok&&learnok&&c.dataset.search.includes(q);
+    c.style.display=ok?'':'none';if(ok)n++;
+  });
+  const label=learn==='done'?'暗記済み':learn==='todo'?'未学習':'表示';
+  status.textContent=`${label} ${n} / ${cards.length} 語`;
+}
+cards.forEach(c=>{
+  c.querySelector('.memory-check').addEventListener('change',e=>{
+    const key=c.dataset.termKey;
+    if(e.target.checked) memorized.add(key); else memorized.delete(key);
+    saveMem();syncMemoryUI();apply();
+  });
+});
+search.oninput=apply;
+document.querySelectorAll('.catbtn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.catbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');cat=b.dataset.cat;apply();
+});
+document.querySelectorAll('.learnbtn').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.learnbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');learn=b.dataset.learn;apply();
+});
+syncMemoryUI();apply();
 </script></body></html>
