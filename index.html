@@ -391,7 +391,7 @@ function applyFilters(){
      c.style.display=ok?'':'none'; if(ok)n++;
    });
    pmEmpty.style.display=n?'none':'block';
- }else{
+ }else if(mode==='am'){
    let n=0;
    amCards.forEach(c=>{
      const okq=c.dataset.search.toLowerCase().includes(q);
@@ -401,6 +401,10 @@ function applyFilters(){
      c.style.display=ok?'':'none'; if(ok)n++;
    });
    amEmpty.style.display=n?'none':'block';
+ }else{
+   document.querySelectorAll('#studySection [data-search]').forEach(c=>{
+     c.style.display=c.dataset.search.toLowerCase().includes(q)?'':'none';
+   });
  }
 }
 search.addEventListener('input',applyFilters);
@@ -410,9 +414,12 @@ document.querySelectorAll('.mode-btn').forEach(b=>b.onclick=()=>{
  b.classList.add('active'); mode=b.dataset.mode;
  document.getElementById('pmSection').classList.toggle('hidden',mode!=='pm');
  document.getElementById('amSection').classList.toggle('hidden',mode!=='am');
+ document.getElementById('studySection').classList.toggle('hidden',mode!=='study');
  search.placeholder=mode==='pm'
    ? '年度・題材・用語で検索 例：DMARC / OAuth / クラウド'
-   : '午前Ⅱを検索 例：Passkey / WAF / ICMP / GoF';
+   : mode==='am'
+     ? '午前Ⅱを検索 例：Passkey / WAF / ICMP / GoF'
+     : '学習資料を検索 例：SQLインジェクション / XSS / CSRF';
  applyFilters();
 });
 
