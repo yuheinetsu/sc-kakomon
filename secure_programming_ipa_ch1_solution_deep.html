@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>IPA第1章ベース｜支援士 セキュアプログラミング完全攻略</title>
+<style>
+*{box-sizing:border-box}:root{--bg:#06111f;--panel:#0b1c2e;--line:#29445f;--ink:#142238}
+body{margin:0;background:var(--bg);color:#edf5ff;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#07172a,#173d63);padding:25px 18px}.wrap{max-width:1500px;margin:auto}
+h1{margin:4px 0;font-size:clamp(1.5rem,3vw,2.4rem)}header p{max-width:1050px;color:#c9d9e9}
+nav{position:sticky;top:0;z-index:20;background:#071522f5;border-bottom:1px solid var(--line);padding:8px}nav .inner{max-width:1500px;margin:auto;display:flex;gap:6px;overflow-x:auto}
+nav button{flex:0 0 auto;border:1px solid #466782;background:#102840;color:#fff;border-radius:8px;padding:7px 10px;font-weight:800}
+.intro,.vuln{max-width:1500px;margin:14px auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.intro{padding:17px}.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.intro-grid>div{background:#f8fbff;color:var(--ink);padding:13px;border-radius:10px}
+.phase{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.phase>div{background:#fff4dc;color:var(--ink);padding:10px;border-radius:8px}
+.vhead{display:flex;gap:10px;align-items:center;padding:12px 15px}.vhead span{color:#64dcff;font-weight:950}.vhead h2{margin:0;flex:1;font-size:1.12rem}.vhead em{background:#173e60;padding:3px 8px;border-radius:999px;font-size:.75rem}
+.fold{display:grid;grid-template-columns:minmax(0,46%) minmax(0,54%);background:#fff;color:var(--ink)}.left,.right{padding:14px;min-width:0}.left{border-right:1px solid #ccd7e2}
+.overview,.diagram,.weak,.counter,.reduce,.exam,details{border-radius:9px;padding:11px;margin-bottom:10px}.overview{background:#eef5ff}.diagram{background:#f8fbff;border:1px solid #c6d6e5}
+.flow{display:flex;align-items:stretch;gap:7px;overflow-x:auto}.flow-node{flex:1 0 145px;min-width:145px;border:1px solid #83a9ce;border-radius:8px;padding:10px;text-align:center;background:#fff}.flow-node b,.flow-node span{display:block}.flow-node b{color:#174d7c}.arrow{display:flex;align-items:center;font-size:1.4rem;color:#67839c;font-weight:900}
+.weak{background:#fff0f0;border-left:4px solid #c84b4b}pre{background:#071421;color:#edf7ff;padding:10px;border-radius:7px;overflow:auto;white-space:pre-wrap}.weak-read{background:#fff;padding:8px;border-radius:6px}
+.counter.root{background:#eaf8ef;border-left:5px solid #39945f}.counter.insurance{background:#edf4ff;border-left:5px solid #477ac0}.why{margin-top:7px;background:#fff;padding:7px;border-radius:5px}
+.reduce{background:#f3efff;border-left:5px solid #765cc1}.exam{background:#fff5d9;border-left:5px solid #d59a22}
+.right h3,.left h3{margin:0 0 6px;color:#174d7c}details{border:2px solid #8ba8c7;background:#f8fbff}summary{font-weight:900;color:#174d7c;cursor:pointer}
+.source-note{margin-top:12px;font-size:.84rem;color:#bfd0df}
+@media(max-width:900px){.fold,.intro-grid{grid-template-columns:1fr}.left{border-right:0;border-bottom:1px solid #ccd7e2}.phase{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.phase{grid-template-columns:1fr}}
+
+.ipa-title{background:#163d63;color:#fff;font-weight:950;padding:10px;border-radius:9px 9px 0 0}
+.ipa-sec{padding:10px;border:1px solid #c8d6e4}.rootfull{background:#eaf8ef}.insfull{background:#edf4ff}
+.ipa-item{display:grid;grid-template-columns:92px 1fr;gap:9px;background:#fff;padding:9px;border-radius:8px;margin:7px 0}
+.ipa-code{background:#e7f0fa;color:#174d7c;padding:5px;border-radius:5px;text-align:center;height:max-content}.ipa-item p{margin:4px 0;color:#465b6d;font-size:.9rem}
+.ipa-none{background:#fff;padding:9px;border-radius:7px}.low{background:#f4efff;border-left:5px solid #765cc1;padding:10px;border-radius:8px;margin:8px 0 12px}
+@media(max-width:650px){.ipa-item{grid-template-columns:1fr}.ipa-code{text-align:left}}
+.glossary{background:#f7fbff;color:#142238}.term-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.term-card{border:1px solid #c8d8e8;background:#fff;padding:10px;border-radius:9px}.term-card h3{margin:0 0 5px;color:#174d7c}.term-card p{margin:0;font-size:.9rem}@media(max-width:900px){.term-grid{grid-template-columns:1fr 1fr}}@media(max-width:650px){.term-grid{grid-template-columns:1fr}}
+.chapter-terms-inline{background:#fff9df;border:2px solid #e1bf55;border-radius:10px;padding:11px;margin-bottom:12px}
+.chapter-terms-inline h3{margin:0 0 8px;color:#725500}.inline-term{display:grid;grid-template-columns:145px 1fr;gap:8px;padding:7px 0;border-top:1px solid #eadb9b}
+.inline-term:first-of-type{border-top:0}.inline-term b{color:#174d7c}.inline-term p{margin:0;color:#42576a}
+@media(max-width:650px){.inline-term{grid-template-columns:1fr}}
+
+.solution-deep{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}
+.solution-deep>div{background:#f7fbff;border:1px solid #c9d9e8;border-radius:7px;padding:8px}
+.solution-deep b{color:#174d7c}.solution-deep p{margin:3px 0 0;font-size:.86rem;color:#405568;line-height:1.6}
+@media(max-width:700px){.solution-deep{grid-template-columns:1fr}}
+
+.ipa-official-link{max-width:1500px;margin:16px auto 0;background:#eef7ff;color:#173f6b;border:2px solid #76a8d4;border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ipa-official-link span{flex:1;min-width:260px}.ipa-official-link a{background:#174d7c;color:#fff;text-decoration:none;font-weight:900;padding:8px 12px;border-radius:8px}
+.ipa-official-link a:hover{background:#0d385e}
+</style></head><body>
+<header><div class="wrap"><small>SC KAKOMON｜セキュアプログラミング</small><h1>IPA「安全なウェブサイトの作り方」第1章ベース<br/>完全攻略</h1>
+<p>IPA第1章の11種類を軸に、攻撃図解・脆弱な実装・根本的解決・保険的対策・何を低減する対策なのか・支援士での見抜き方まで一本化。</p></div>
+<div class="ipa-official-link">
+<b>🏛 公式資料</b>
+<span>このページはIPA「安全なウェブサイトの作り方」第1章をベースに学習用に再構成しています。</span>
+<a href="https://www.ipa.go.jp/security/vuln/websecurity.html" rel="noopener noreferrer" target="_blank">IPA「安全なウェブサイトの作り方」を開く ↗</a>
+</div>
+</header>
+<nav><div class="inner"><button data-id="c1">1.1 SQLインジェクション</button><button data-id="c2">1.2 OSコマンド・インジェクション</button><button data-id="c3">1.3 パス名パラメータの未チェック／ディレクトリ・トラバーサル</button><button data-id="c4">1.4 セッション管理の不備</button><button data-id="c5">1.5 クロスサイト・スクリプティング（XSS）</button><button data-id="c6">1.6 CSRF</button><button data-id="c7">1.7 HTTPヘッダ・インジェクション</button><button data-id="c8">1.8 メールヘッダ・インジェクション</button><button data-id="c9">1.9 クリックジャッキング</button><button data-id="c10">1.10 バッファオーバーフロー</button><button data-id="c11">1.11 アクセス制御や認可制御の欠落</button></div></nav>
+<section class="intro"><h2>📌 最初に理解する｜IPAの「根本的解決」と「保険的対策」</h2><p style="background:#dff6e8;color:#154b2c;padding:9px;border-radius:7px"><b>FULL版：</b> IPA第1章の対策番号を残し、根本的解決・保険的対策を項目単位で整理しました。</p>
+<div class="intro-grid"><div><h3>✅ 根本的解決</h3><p>脆弱性を作り込まない実装にする。原因そのものを取り除くので、その脆弱性を狙う攻撃の無効化が期待できる。</p></div>
+<div><h3>🛡 保険的対策</h3><p>原因そのものは残っていても、攻撃から被害までのどこかで影響を軽減する。根本的解決の代わりではなく、セーフティネットとして考える。</p></div></div>
+<h3>📉 保険的対策が低減する4フェーズ</h3><div class="phase"><div><b>① 攻撃される可能性</b><br/>攻撃のヒントを減らす</div><div><b>② 脆弱性を突かれる可能性</b><br/>攻撃データを無効化・制限</div><div><b>③ 被害範囲</b><br/>権限・アクセス範囲を狭める</div><div><b>④ 被害発見までの時間</b><br/>通知等で早期検知</div></div>
+<p class="source-note">構成・対策分類はIPA「安全なウェブサイトの作り方」改訂第7版 第1章をベースに学習用として再構成。図は公式図の転載ではなく、内容を理解しやすくするための当サイト独自図解。</p></section><section class="intro glossary"><h2>📖 対策文を読むための重要用語集</h2><p>IPAの対策で出てくる専門語を、支援士で必要な意味に絞って整理。対策名を丸暗記せず『何を分離・照合・制限しているのか』まで理解するための欄です。</p><div class="term-grid"><div class="term-card"><h3>プレースホルダ</h3><p>SQL文で後から値を入れる場所を示す穴。例：WHERE id = ? の「?」。SQL命令と入力値を分離する。</p></div><div class="term-card"><h3>バインド</h3><p>プレースホルダへ実際の値を割り当てる処理。文字列連結ではなく、入力を「値」としてDBへ渡す。</p></div><div class="term-card"><h3>静的プレースホルダ</h3><p>DB側でSQLの構造を先に解析し、その後で値を割り当てる方式。構造と値が明確に分離される。</p></div><div class="term-card"><h3>動的プレースホルダ</h3><p>DB接続ライブラリ側で値をエスケープし、プレースホルダへ組み込む方式。</p></div><div class="term-card"><h3>Prepared Statement</h3><p>プレースホルダを使う代表的仕組み。SQLの雛形を準備し、後から値を渡す。</p></div><div class="term-card"><h3>Referer</h3><p>HTTPリクエストが『どのページから来たか』を示すことがあるヘッダ。CSRFでは正規画面からの遷移確認に使えるが、送信されない場合もある。</p></div><div class="term-card"><h3>hiddenパラメータ</h3><p>フォーム画面には表示されない値。ただしブラウザから送信されるので、hiddenだから秘密という意味ではない。</p></div><div class="term-card"><h3>CSRFトークン／秘密情報</h3><p>攻撃者が予測困難な値を正規画面へ埋め込み、送信時にサーバ側で一致確認するための値。</p></div><div class="term-card"><h3>POSTメソッド</h3><p>HTTPで主にリクエスト本文にデータを入れて送る方法。POSTにするだけでCSRFを防げるわけではない。</p></div><div class="term-card"><h3>GETメソッド</h3><p>主に情報取得に使うHTTPメソッド。パラメータがURLに現れることがあり、秘密情報をURLへ載せないことが重要。</p></div><div class="term-card"><h3>セッションID</h3><p>サーバが利用者のログイン状態等を識別するID。盗まれるとなりすましにつながるため、一時的な認証情報として扱う。</p></div><div class="term-card"><h3>Session Fixation</h3><p>攻撃者が知るセッションIDを被害者に使わせ、そのIDがログイン後も有効になることを悪用する攻撃。</p></div><div class="term-card"><h3>Secure属性</h3><p>CookieをHTTPS通信時だけ送るための属性。HTTPへの誤送信を防ぐ。</p></div><div class="term-card"><h3>HttpOnly属性</h3><p>JavaScriptからCookieを読み取りにくくする属性。XSS自体を直すのではなくCookie窃取被害を抑える。</p></div><div class="term-card"><h3>エスケープ</h3><p>HTML等で特別な意味を持つ文字を、その出力文脈で単なるデータとして扱える形にすること。</p></div><div class="term-card"><h3>ホワイトリスト</h3><p>許可するものを決め、それ以外を拒否する方式。</p></div><div class="term-card"><h3>CR / LF</h3><p>改行を表す制御文字。HTTPやメールでは行の境界なので、混入すると追加ヘッダ等を作られる原因になる。</p></div><div class="term-card"><h3>Locationヘッダ</h3><p>HTTPレスポンスでリダイレクト先を示すヘッダ。</p></div><div class="term-card"><h3>X-Frame-Options</h3><p>ページをframe/iframe内に表示してよいか制御するHTTPレスポンスヘッダ。クリックジャッキング対策で使う。</p></div><div class="term-card"><h3>frame / iframe</h3><p>Webページ内に別のWebページを表示するHTML機能。クリックジャッキングで重ね合わせに悪用される。</p></div><div class="term-card"><h3>認証</h3><p>『誰であるか』を確認すること。</p></div><div class="term-card"><h3>認可</h3><p>認証済み利用者が『そのデータ・機能を操作してよいか』を判定すること。</p></div><div class="term-card"><h3>最小権限</h3><p>必要最小限の権限だけを与え、侵害時の被害範囲を小さくする考え方。</p></div><div class="term-card"><h3>暗号論的擬似乱数生成器</h3><p>第三者が現実的に予測できない値を生成する仕組み。セッションIDやCSRF用秘密情報に使う。</p></div></div></section>
+<section class="vuln" id="c1">
+<div class="vhead"><span>1.1</span><h2>SQLインジェクション</h2><em>CWE-89</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>利用者入力を基にSQL文を組み立てる際、入力値が「データ」ではなくSQL構文の一部として解釈され、DBを不正利用される脆弱性。</p><p><b>発生しうる脅威：</b>非公開情報の閲覧、情報の改ざん・消去、認証回避による不正ログイン。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>入力値を操作</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>入力をSQL文字列へ連結</span></div><div class="arrow">→</div><div class="flow-node"><b>DB</b><span>入力をSQL構文として解釈</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>閲覧・改ざん・認証回避</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>検索語・ID・ログイン情報などを文字列連結してSQL文を生成する実装。開発者は『値が入るだけ』と考えていても、DB側には完成したSQL文として渡るため、入力値がSQL構造へ影響できる。</p><pre>sql = "SELECT * FROM users WHERE id='" + id + "'";</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>プレースホルダ</b><p>SQL文で後から値を入れる場所を示す穴。例：WHERE id = ? の ?。SQL命令と入力値を分離する。</p></div><div class="inline-term"><b>バインド</b><p>プレースホルダへ実際の値を割り当てる処理。入力をSQL構文ではなく値としてDBへ渡す。</p></div><div class="inline-term"><b>Prepared Statement</b><p>プレースホルダを使う代表的な仕組み。SQLの雛形を準備してから値を渡す。</p></div><div class="inline-term"><b>最小権限</b><p>必要最小限の権限だけを与え、侵害時の被害範囲を小さくする考え方。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">1-(i)-a</b><div><strong>SQL文の組み立ては全てプレースホルダで実装する。</strong><p>SQL構造を固定し、外部入力は値としてバインドする。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>SQLの命令部分と入力値を分離するため、攻撃文字列を入力されても原則としてSQL構文として解釈されない。</p></div><div><b>脆弱な実装との違い</b><p>文字列連結は『入力値がSQL文そのものへ混ざる』。プレースホルダ＋バインドは『SQLの形を固定して、後から値だけ渡す』。</p></div></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">1-(iii)</b><div><strong>エラーメッセージをそのままブラウザに表示しない。</strong><p>攻撃のヒントを減らす。</p></div></div><div class="ipa-item"><b class="ipa-code">1-(iv)</b><div><strong>DBアカウントに適切な権限を与える。</strong><p>突破時の被害範囲を最小化する。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>『SQL文を文字列連結』『入力値をWHERE条件へ直接埋込み』『対策として危険文字だけ削除』を見たら要注意。根本対策はプレースホルダ。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c2">
+<div class="vhead"><span>1.2</span><h2>OSコマンド・インジェクション</h2><em>CWE-78</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>外部入力がシェルやOSコマンドの一部として解釈され、Webサーバ上で意図しないコマンドを実行される脆弱性。</p><p><b>発生しうる脅威：</b>サーバ内ファイルの閲覧・改ざん・削除、不正なシステム操作、不正プログラムのダウンロード・実行。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>host等の入力を操作</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>入力入りコマンド文字列を生成</span></div><div class="arrow">→</div><div class="flow-node"><b>シェル</b><span>入力の一部を命令として解釈</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>任意コマンド実行</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>外部入力を含む文字列を、シェルを起動できる言語機能へ渡す実装。『引数として使うつもり』でも、シェルがメタ文字等を命令として解釈できると境界が崩れる。</p><pre>system("ping " + host);</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">2-(i)</b><div><strong>シェルを起動できる言語機能の利用を避ける。</strong><p>入力がシェル文法として解釈される経路そのものをなくす。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>シェルを呼ばなければ、外部入力にシェルのメタ文字が含まれてもOSコマンドの構文として解釈される入口をなくせる。</p></div><div><b>答案での言い方</b><p>『入力値を無害化する』より、『シェルを起動する機能を使用せず専用APIを使用する』と原因を断つ形で書く。</p></div></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">2-(ii)</b><div><strong>シェル利用時は引数を構成する全変数をチェックし、許可した処理だけを実行する。</strong><p>攻撃入力と実行可能処理を限定する。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>『system/open等』『入力値をコマンド引数へ連結』がシグナル。SQLiとの違いは最終的な解釈主体がDBではなくシェル/OSであること。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c3">
+<div class="vhead"><span>1.3</span><h2>パス名パラメータの未チェック／ディレクトリ・トラバーサル</h2><em>CWE-22</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>外部入力でサーバ内のファイル名やパスを直接指定できるため、想定外ディレクトリのファイルへアクセスされる脆弱性。</p><p><b>発生しうる脅威：</b>公開を想定しないファイルの閲覧、設定・機密情報の漏えい、場合によってはファイル変更。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>ファイル名/パスを操作</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>基準パスと単純連結</span></div><div class="arrow">→</div><div class="flow-node"><b>OS</b><span>相対パスを正規化</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>許可領域外のファイルへ到達</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>`/data/` の後ろへ利用者指定ファイル名を単純連結するなど、入力値がそのまま物理パスになる実装。文字列上では安全に見えてもOSのパス正規化後に境界外へ出ることがある。</p><pre>open("/data/" + filename);</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">3-(i)-a</b><div><strong>外部パラメータでサーバ内ファイル名を直接指定する実装を避ける。</strong><p>外部入力を物理パスそのものにしない。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>利用者入力を物理ファイルパスとして扱わなければ、../ 等で想定ディレクトリ外へ移動する余地そのものをなくせる。</p></div><div><b>実装イメージ</b><p>利用者には論理IDを渡し、サーバ側でIDと固定ファイル名を対応付ける。外部入力から直接パスを組み立てない。</p></div></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">3-(ii)</b><div><strong>ファイルへのアクセス権限を正しく管理する。</strong><p>OS/サーバ権限で被害範囲を抑える。</p></div></div><div class="ipa-item"><b class="ipa-code">3-(iii)</b><div><strong>ファイル名をチェックする。</strong><p>パス指定文字列やエンコード後の表現に注意する。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>`../`削除だけを根本対策として選ばせる問題に注意。最終的には『外部入力で物理パスを直接指定させない』設計が強い。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c4">
+<div class="vhead"><span>1.4</span><h2>セッション管理の不備</h2><em>Session Management</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>セッションIDの生成・受渡し・更新・有効期限管理に不備があり、第三者が利用者のセッションを奪う脆弱性。</p><p><b>発生しうる脅威：</b>セッションIDの推測・盗用・固定化により、ログイン中利用者へのなりすまし。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>IDを推測/盗用/固定</span></div><div class="arrow">→</div><div class="flow-node"><b>利用者</b><span>そのIDでログイン</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>同じIDを認証済みとして継続</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>セッション・ハイジャック</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>予測可能なID、URLへのID露出、ログイン前後で同じIDを使い続ける、固定値・長すぎる有効期限など。セッションIDは単なる識別子ではなく一時的な認証情報。</p><pre>// login成功後も session_id を変更しない</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>セッションID</b><p>ログイン状態を識別するID。盗まれるとなりすましにつながるため、一時的な認証情報として扱う。</p></div><div class="inline-term"><b>Session Fixation</b><p>攻撃者が知るセッションIDを被害者に使わせ、そのIDがログイン後も有効になることを悪用する攻撃。</p></div><div class="inline-term"><b>Secure属性</b><p>CookieをHTTPS通信時だけ送る属性。HTTPへの誤送信を防ぐ。</p></div><div class="inline-term"><b>暗号論的擬似乱数</b><p>第三者が現実的に予測できない値を生成する仕組み。セッションIDやCSRFトークンに使う。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">4-(i)</b><div><strong>セッションIDを推測困難にする。</strong><p>暗号論的擬似乱数等で予測を困難にする。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>第三者が有効なセッションIDを推測して本人になりすます攻撃を困難にする。</p></div><div><b>注意</b><p>連番・時刻・ユーザIDなど推測材料になる値からIDを生成しない。</p></div></div></div><div class="ipa-item"><b class="ipa-code">4-(ii)</b><div><strong>セッションIDをURLパラメータに格納しない。</strong><p>Referer等からの漏えい経路を避ける。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>URLは履歴・ログ・Refererなど複数箇所へ残り得る。セッションIDをURLから外すことで漏えい経路を減らす。</p></div><div><b>試験ポイント</b><p>『URLにセッションID』を見たら、Referer等を介した漏えいを疑う。</p></div></div></div><div class="ipa-item"><b class="ipa-code">4-(iii)</b><div><strong>HTTPS用Cookieにsecure属性を加える。</strong><p>平文HTTPへのCookie送信を防ぐ。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>Secure属性付きCookieはHTTPS通信でのみ送られるため、HTTP通信へセッションCookieが流れるのを防ぐ。</p></div><div><b>注意</b><p>Secure属性だけでCookie盗用全般を防げるわけではない。</p></div></div></div><div class="ipa-item"><b class="ipa-code">4-(iv)-a</b><div><strong>ログイン成功後に新しいセッションを開始する。</strong><p>既存IDを無効化しSession Fixationを断つ。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>ログイン前に攻撃者が知っていたセッションIDをログイン成功後に無効化するため、Session Fixationが成立しにくくなる。</p></div><div><b>実装イメージ</b><p>認証成功 → 新しいセッションID発行 → 古いIDを無効化 → 認証済み状態を新IDへ引き継ぐ。</p></div></div></div><div class="ipa-item"><b class="ipa-code">4-(iv)-b</b><div><strong>ログイン後に別の秘密情報を発行し、ページ遷移ごとに確認する。</strong><p>4-(iv)-aを採れない場合の別方式。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">4-(v)</b><div><strong>セッションIDを固定値にしない。</strong><p>漏えいIDの長期悪用を抑える。</p></div></div><div class="ipa-item"><b class="ipa-code">4-(vi)</b><div><strong>Cookieの有効期限設定に注意する。</strong><p>盗まれたCookieが使える期間を短くする。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>Secure/HttpOnly/SameSiteの役割、Session Fixation、ログイン時ID再生成を切り分ける。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c5">
+<div class="vhead"><span>1.5</span><h2>クロスサイト・スクリプティング（XSS）</h2><em>CWE-79</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>外部入力やDB等から得た文字列をWebページへ出力するときの処理が不適切で、ブラウザにスクリプト等として解釈される脆弱性。</p><p><b>発生しうる脅威：</b>偽画面表示、利用者権限での不正操作、Cookie等の情報漏えい。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>細工した入力を保存/送信</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>安全化せず出力</span></div><div class="arrow">→</div><div class="flow-node"><b>ブラウザ</b><span>HTML/Scriptとして解釈</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>偽画面・不正操作等</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>入力値をinnerHTMLやHTML本文・属性へそのまま埋め込む実装。XSSは入力時点ではなく『どの文脈へ出力され、ブラウザが何として解釈するか』が核心。</p><pre>element.innerHTML = userInput;</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>エスケープ</b><p>HTML等で特別な意味を持つ文字を、その文脈で単なるデータとして扱える形にする処理。</p></div><div class="inline-term"><b>HttpOnly属性</b><p>JavaScriptからCookieを読み取りにくくする属性。XSS自体を直すのではなくCookie窃取被害を抑える。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">5-(i)</b><div><strong>出力する全要素にエスケープ処理を施す。</strong><p>HTML本文・属性等の出力文脈で安全化する。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>ブラウザが外部入力をHTMLタグやスクリプトとしてではなく、画面に表示する文字データとして解釈するようにする。</p></div><div><b>重要</b><p>『入力時に危険文字を消す』ではなく、HTML本文・属性など出力先の文脈に応じて出力時に処理する。</p></div></div></div><div class="ipa-item"><b class="ipa-code">5-(ii)</b><div><strong>URL出力はhttp://、https://で始まるものだけを許可する。</strong><p>危険なスキームを許可しない。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>javascript: など、クリック時にスクリプトを実行できるURLスキームを排除できる。</p></div><div><b>試験ポイント</b><p>URLだからHTMLエスケープだけで十分、とは限らない。URLの方式自体を制限する。</p></div></div></div><div class="ipa-item"><b class="ipa-code">5-(iii)</b><div><strong>script要素の内容を動的に生成しない。</strong><p>外部入力をJavaScriptコードへ混ぜない。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>JavaScriptコードの中へ外部入力を混ぜる設計自体を避けることで、入力がコードへ変化する境界をなくす。</p></div><div><b>注意</b><p>HTML用エスケープをJavaScript文脈へそのまま流用しない。</p></div></div></div><div class="ipa-item"><b class="ipa-code">5-(iv)</b><div><strong>任意サイトのスタイルシートを取り込めるようにしない。</strong><p>外部CSS経由の危険な解釈経路を作らない。</p></div></div><div class="ipa-item"><b class="ipa-code">5-(vi)</b><div><strong>HTML入力を許可する場合、構文解析し許可要素だけを抽出する。</strong><p>ホワイトリスト方式で構造として安全化する。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>HTMLを単なる文字列として置換するのではなく構造として解析し、許可したタグ・属性だけを残せる。</p></div><div><b>違い</b><p>ブラックリストは未知の表現を漏らしやすい。許可リスト方式は受け入れる範囲を先に限定する。</p></div></div></div><div class="ipa-item"><b class="ipa-code">5-(viii)</b><div><strong>Content-Typeにcharsetを指定する。</strong><p>想定外文字コード解釈を防ぐ。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">5-(v)</b><div><strong>入力値の内容チェックを行う。</strong><p>攻撃入力を減らすが出力時対策の代替ではない。</p></div></div><div class="ipa-item"><b class="ipa-code">5-(vii)</b><div><strong>HTML入力からスクリプト該当文字列を排除する。</strong><p>ブラックリスト方式なので補助策として扱う。</p></div></div><div class="ipa-item"><b class="ipa-code">5-(ix)</b><div><strong>CookieにHttpOnlyを加えTRACEを無効化する。</strong><p>XSS時のCookie漏えいを低減する。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>『入力値をチェックしたからXSS対策完了』は危険。支援士では出力時エスケープとHttpOnly/CSP等の補助策を分けて考える。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c6">
+<div class="vhead"><span>1.6</span><h2>CSRF</h2><em>CWE-352</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>ログイン済み利用者からの要求が、本当に本人の意図した要求か識別できず、外部サイトから意図しない処理を実行させられる脆弱性。</p><p><b>発生しうる脅威：</b>意図しない情報発信、設定変更、パスワード変更、退会など。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>罠ページを用意</span></div><div class="arrow">→</div><div class="flow-node"><b>利用者</b><span>ログイン済みで罠を閲覧</span></div><div class="arrow">→</div><div class="flow-node"><b>ブラウザ</b><span>Cookie付き要求を送信</span></div><div class="arrow">→</div><div class="flow-node"><b>正規サイト</b><span>本人の意図確認なしで処理</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>セッションCookieが付いていれば正当な要求として状態変更を行う実装。Cookieはブラウザが自動送信するため『本人が意図した』証明にはならない。</p><pre>POST /change-email  // Cookieのみで処理</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>hiddenパラメータ</b><p>フォーム画面には表示されない値。見えないだけで改変可能なので、hiddenだから秘密という意味ではない。</p></div><div class="inline-term"><b>CSRFトークン</b><p>攻撃者が予測困難な値を正規画面へ埋め込み、送信時にサーバ側で照合するための値。</p></div><div class="inline-term"><b>POST</b><p>HTTPリクエスト本文へデータを入れて送る代表的メソッド。POSTにするだけではCSRF対策にならない。</p></div><div class="inline-term"><b>Referer</b><p>HTTPリクエストがどのページから来たかを示すことがあるヘッダ。CSRFで正規画面遷移の確認材料になる。</p></div><div class="inline-term"><b>暗号論的擬似乱数</b><p>第三者が現実的に予測できない値を生成する仕組み。セッションIDやCSRFトークンに使う。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">6-(i)-a</b><div><strong>POST＋hidden秘密情報を使い、正しい場合だけ処理する。</strong><p>攻撃者が知り得ない値を正規画面遷移で埋め込み照合する。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>攻撃者サイトは被害者のCookieを使わせることはできても、正規画面に埋め込まれた予測困難な秘密情報までは通常知ることができない。</p></div><div><b>流れ</b><p>正規画面表示 → CSRFトークンをhiddenへ埋込み → POST送信 → サーバ側で保存値と照合 → 一致時だけ処理。</p></div></div></div><div class="ipa-item"><b class="ipa-code">6-(i)-b</b><div><strong>処理直前に再度パスワード入力を求める。</strong><p>Cookie自動送信だけでは重要処理を完了できなくする。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>Cookieはブラウザが自動送信するが、本人のパスワードを攻撃者サイトが自動で入力することはできない。</p></div><div><b>向いている場面</b><p>パスワード変更・退会など特に重要な操作の直前確認。</p></div></div></div><div class="ipa-item"><b class="ipa-code">6-(i)-c</b><div><strong>Refererが正しいリンク元か確認する。</strong><p>正規画面遷移を確認する。副作用も理解する。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>正規サイト内の画面から遷移した要求かをRefererで確認し、外部の罠ページから来た要求を拒否する。</p></div><div><b>注意</b><p>Refererが送信されない環境もあるため、利用条件・副作用を理解する。</p></div></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">6-(ii)</b><div><strong>重要操作後、登録済みメールへ自動通知する。</strong><p>攻撃自体は防げないが被害を早期発見する。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>XSSとの違いは『正規サイト上で攻撃コードを実行する必要はない』こと。秘密情報/CSRFトークンの照合が根本。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c7">
+<div class="vhead"><span>1.7</span><h2>HTTPヘッダ・インジェクション</h2><em>CWE-113</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>外部入力をHTTPレスポンスヘッダへ出力する際、改行コード等を悪用され、任意ヘッダやレスポンス内容を挿入される脆弱性。</p><p><b>発生しうる脅威：</b>任意Cookieの設定、キャッシュ汚染、偽コンテンツ挿入など。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>改行を含む入力</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>入力をヘッダへ直接出力</span></div><div class="arrow">→</div><div class="flow-node"><b>HTTP応答</b><span>追加ヘッダ/本文として解釈</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>Cookie設定・偽応答等</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>LocationやSet-Cookie等のHTTPヘッダ値へ外部入力を文字列として直接出力し、改行を許してしまう実装。</p><pre>responseHeader("Location: " + nextUrl);</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>CR/LF</b><p>HTTPやメールで行の境界を表す改行文字。混入すると新しいヘッダを挿入される原因になる。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">7-(i)-a</b><div><strong>ヘッダを直接出力せずヘッダ出力APIを使う。</strong><p>CR/LFをHTTP構造へ直接混ぜる設計を避ける。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>生の文字列としてHTTPヘッダを組み立てずAPIに任せることで、外部入力のCR/LFがヘッダ境界として扱われる危険を避ける。</p></div><div><b>試験ポイント</b><p>『Location: + 入力値』のような直接連結を見たら要注意。</p></div></div></div><div class="ipa-item"><b class="ipa-code">7-(i)-b</b><div><strong>安全なAPIが使えない場合、改行を許可しない処理を実装する。</strong><p>新しいヘッダ/本文境界を作れなくする。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">7-(ii)</b><div><strong>外部入力の改行コードを削除する。</strong><p>CR/LF攻撃を減らす。正当な改行への副作用に注意。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>HTTPレスポンスヘッダでCRLFが境界になる。メールヘッダ・インジェクションとの違いは出力先。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c8">
+<div class="vhead"><span>1.8</span><h2>メールヘッダ・インジェクション</h2><em>CWE-93</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>外部入力をTo/Cc/Bcc/Subject等のメールヘッダへ不適切に出力し、改行コードで任意ヘッダや本文を挿入される脆弱性。</p><p><b>発生しうる脅威：</b>任意宛先へのメール送信、ヘッダ挿入、本文改変、第三者中継的な悪用。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>宛先/件名入力を改変</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>メールヘッダへ直接反映</span></div><div class="arrow">→</div><div class="flow-node"><b>メール処理</b><span>改行後を新ヘッダとして解釈</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>任意宛先・本文改変</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>hiddenパラメータやフォーム入力をそのまま宛先・件名等へ設定する実装。外部入力が『メールの制御情報』へ直接入ることが問題。</p><pre>mail(to=userInput, subject=subjectInput, ...);</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>CR/LF</b><p>HTTPやメールで行の境界を表す改行文字。混入すると新しいヘッダを挿入される原因になる。</p></div><div class="inline-term"><b>hiddenパラメータ</b><p>フォーム画面には表示されない値。見えないだけで改変可能なので、hiddenだから秘密という意味ではない。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">8-(i)-a</b><div><strong>メールヘッダを固定値にし、外部入力は本文へ出力する。</strong><p>制御領域へ攻撃者入力を入れない。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>To/Cc/Bcc/Subjectなどメールの制御情報へ外部入力を入れなければ、改行で追加ヘッダを作る入口がなくなる。</p></div><div><b>注意</b><p>hiddenで宛先を持たせても安全にはならない。クライアント値は改変可能。</p></div></div></div><div class="ipa-item"><b class="ipa-code">8-(i)-b</b><div><strong>固定できない場合はメール送信用APIを使う。</strong><p>安全なメール構造生成に任せる。</p></div></div><div class="ipa-item"><b class="ipa-code">8-(ii)</b><div><strong>HTMLで宛先を指定しない。</strong><p>hidden等の改変可能値を宛先にしない。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">8-(iii)</b><div><strong>外部入力の改行コードを削除する。</strong><p>追加ヘッダ挿入を難しくする。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>『hiddenだから安全』は誤り。クライアントから送られる値は攻撃者が変更できる。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c9">
+<div class="vhead"><span>1.9</span><h2>クリックジャッキング</h2><em>Direct CWEなし</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>正規サイトをframe/iframe等で重ね、利用者を視覚的に騙して意図しないクリック操作を実行させる脆弱性。</p><p><b>発生しうる脅威：</b>意図しない情報発信、退会、設定変更など。マウス操作だけで実行可能な重要処理は特に注意。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>罠ページへ透明/重ね合わせ表示</span></div><div class="arrow">→</div><div class="flow-node"><b>利用者</b><span>見えているUIをクリック</span></div><div class="arrow">→</div><div class="flow-node"><b>実際の正規ページ</b><span>背後の重要ボタンが押される</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>意図しない処理</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>ログイン後の重要操作ページを他サイトのframe内に表示でき、クリックだけで処理完了する設計。</p><pre>// 重要ページが外部iframe内で表示可能</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>X-Frame-Options</b><p>ページをframe/iframe内に表示してよいかを制御するHTTPレスポンスヘッダ。</p></div><div class="inline-term"><b>frame/iframe</b><p>Webページ内に別ページを表示するHTML機能。クリックジャッキングで重ね合わせに悪用される。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">9-(i)-a</b><div><strong>X-Frame-Optionsで他ドメインからのframe/iframe読み込みを制限する。</strong><p>攻撃者サイト上へ正規ページを重ねる土台をなくす。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>正規ページを攻撃者サイトのframe/iframe内へ表示できなくすることで、透明化・重ね合わせによるクリック誘導の土台をなくす。</p></div><div><b>覚え方</b><p>クリックジャッキング → frame制御 → X-Frame-Options。</p></div></div></div><div class="ipa-item"><b class="ipa-code">9-(i)-b</b><div><strong>処理直前に再度パスワード入力を求める。</strong><p>誘導クリックだけでは処理完了できなくする。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-item"><b class="ipa-code">9-(ii)</b><div><strong>重要処理をマウス操作だけで完了できないようにする。</strong><p>視覚誘導だけでの攻撃成功率を下げる。</p></div></div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>CSRFと似るが、クリックジャッキングは『見た目を騙して実際に利用者へクリックさせる』。frame制御が重要。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c10">
+<div class="vhead"><span>1.10</span><h2>バッファオーバーフロー</h2><em>CWE-119</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>確保したメモリ領域の境界を超えてデータを書き込み、異常終了や任意コード実行等につながる脆弱性。</p><p><b>発生しうる脅威：</b>プログラム異常終了、メモリ破壊、不正コード実行など。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>想定以上の入力</span></div><div class="arrow">→</div><div class="flow-node"><b>プログラム</b><span>固定長領域へ無制限コピー</span></div><div class="arrow">→</div><div class="flow-node"><b>メモリ</b><span>隣接領域まで破壊</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>異常終了/コード実行</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>C/C++等で固定長バッファへ長さ確認なしにデータをコピーするなど、直接メモリ操作可能な部分で境界チェックが不足する実装。</p><pre>char buf[16]; strcpy(buf, input);</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">10-(i)-a</b><div><strong>直接メモリにアクセスできない言語で記述する。</strong><p>境界外メモリ書換えの実装クラスを避ける。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>言語処理系がメモリ境界を管理するため、典型的な境界外書込みを実装として作り込みにくくなる。</p></div><div><b>試験ポイント</b><p>C/C++等のメモリ安全性と、Java等のメモリ管理言語を切り分ける。</p></div></div></div><div class="ipa-item"><b class="ipa-code">10-(i)-b</b><div><strong>直接メモリへアクセスできる言語で記述する部分を最小限にする。</strong><p>危険領域を限定して集中確認する。</p></div></div><div class="ipa-item"><b class="ipa-code">10-(ii)</b><div><strong>脆弱性が修正されたライブラリを使用する。</strong><p>既知脆弱性のある依存部品を残さない。</p></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-none">IPA第1章では、この節に独立した保険的対策の項目はありません。</div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>Webアプリでもネイティブライブラリを呼ぶ場合に注意。『直接メモリを扱える言語か』が切り分けポイント。</p></div>
+</div>
+</div>
+</section>
+<section class="vuln" id="c11">
+<div class="vhead"><span>1.11</span><h2>アクセス制御や認可制御の欠落</h2><em>Access Control</em></div>
+<div class="fold">
+<div class="left">
+<div class="overview"><h3>📚 概要</h3><p>非公開情報を守る認証機能や、ログイン利用者ごとに許可操作を分ける認可機能が不足している脆弱性。</p><p><b>発生しうる脅威：</b>非公開情報の閲覧、他人データの変更、他利用者へのなりすまし操作。</p></div>
+<div class="diagram"><h3>🗺 攻撃の流れ</h3><div class="flow"><div class="flow-node"><b>攻撃者</b><span>URL/ID/機能を直接指定</span></div><div class="arrow">→</div><div class="flow-node"><b>Webアプリ</b><span>認証/認可確認が不足</span></div><div class="arrow">→</div><div class="flow-node"><b>内部処理</b><span>対象データ・機能へ到達</span></div><div class="arrow">→</div><div class="flow-node"><b>被害</b><span>他人データ閲覧・変更</span></div></div></div>
+<div class="weak"><h3>❌ 脆弱な実装</h3><p>メールアドレス等の公開され得る情報だけで非公開情報を閲覧できる、またはログイン後にIDを書き換えるだけで他人のデータへアクセスできる実装。</p><pre>record = db.find(request.id); return record; // 所有者確認なし</pre>
+<div class="weak-read"><b>読むポイント：</b>攻撃者が操作できる値と、その値を最終的に解釈する処理の間に、どの境界が欠けているか。</div>
+</div>
+</div>
+<div class="right"><div class="chapter-terms-inline"><h3>💡 この対策で出る用語</h3><div class="inline-term"><b>認証</b><p>利用者が誰であるかを確認すること。</p></div><div class="inline-term"><b>認可</b><p>認証済み利用者がそのデータ・機能を操作してよいか判定すること。</p></div><div class="inline-term"><b>最小権限</b><p>必要最小限の権限だけを与え、侵害時の被害範囲を小さくする考え方。</p></div></div><div class="ipa-full"><div class="ipa-title">🏛 IPA公式 第1章｜対策項目フル反映</div>
+<div class="ipa-sec rootfull"><h3>✅ 根本的解決</h3><div class="ipa-item"><b class="ipa-code">11-(i)</b><div><strong>必要なサイトには秘密情報入力を必要とする認証機能を設ける。</strong><p>非公開情報への入口を本人確認で守る。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>非公開情報へ到達する前に本人確認を要求し、誰でもURLを知れば閲覧できる状態をなくす。</p></div><div><b>注意</b><p>認証だけでは他人のデータへのアクセスは防げない。次の認可が必要。</p></div></div></div><div class="ipa-item"><b class="ipa-code">11-(ii)</b><div><strong>認証に加えて認可制御を実装する。</strong><p>セッション上の本人と対象・操作権限をサーバ側で照合する。</p></div><div class="solution-deep"><div><b>なぜ効く？</b><p>サーバ側で『ログイン中の本人』と『操作対象の所有者・必要権限』を照合するため、IDを書き換えるだけの他人データアクセスを防げる。</p></div><div><b>最重要</b><p>認証＝誰か、認可＝何をしてよいか。BOLA/IDORでは認可不足を疑う。</p></div></div></div></div>
+<div class="ipa-sec insfull"><h3>🛡 保険的対策</h3><div class="ipa-none">IPA第1章では、この節に独立した保険的対策の項目はありません。</div></div>
+</div>
+<div class="exam"><h3>📝 支援士での見抜き方</h3><p>BOLA/IDORへ直結。『ログインできている』ことと『その対象を操作してよい』ことは別。</p></div>
+</div>
+</div>
+</section>
+<script>document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.id).scrollIntoView({behavior:'smooth',block:'start'}));</script>
+</body></html>

@@ -68,6 +68,9 @@ footer{padding:28px 0;color:var(--muted)}
 .year-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}
 .year-card h3{margin:8px 0}
 @media(max-width:760px){.year-grid{grid-template-columns:1fr}}
+
+.study-card{border-top:4px solid #2f7d5a!important}
+.study-card .study-badge{display:inline-block;background:#e8f7ef;color:#236445;border-radius:999px;padding:3px 8px;font-size:.72rem;font-weight:900}
 </style>
 </head>
 <body>
@@ -87,6 +90,13 @@ footer{padding:28px 0;color:var(--muted)}
 <section class="section" id="pmSection">
 <h2>午後問題｜超深掘り</h2>
 <div class="grid" id="cards">
+<article class="card study-card" data-search="セキュアプログラミング 安全なウェブサイトの作り方 IPA SQLインジェクション XSS CSRF セッション 認証 認可 Webセキュリティ">
+<div class="top"><span class="meta">学習資料｜Webセキュリティ</span><span class="study-badge">IPA第1章ベース</span></div>
+<h3>セキュアプログラミング｜安全なWebサイトの作り方</h3>
+<p>IPA第1章の11脆弱性を、攻撃図解・脆弱な実装・重要用語・根本的解決・保険的対策までまとめて学習。</p>
+<a class="qopen" href="secure_programming_ipa_ch1_solution_deep.html">この教材を学習する →</a>
+</article>
+
 <article class="card" data-search="令和3年 秋 午後1 問1 セキュリティインシデント SSH リモート保守 FW ファイアウォール ログ 公開鍵認証 秘密鍵 パスフレーズ ssh-agent Agent Forwarding VPN 送信元IP">
 <div class="meta">令和3年度 秋期｜午後Ⅰ 問1</div>
 <h2>セキュリティインシデント</h2>
@@ -134,21 +144,6 @@ footer{padding:28px 0;color:var(--muted)}
 </ul>
 <a class="open" href="r05_autumn_sc_pm_q3_ci_terms_enhanced.html">この問題を学習する →</a>
 <details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r05_autumn_sc_pm_q3_ci_terms_enhanced.html" title="継続的インテグレーションサービス 解説"></iframe></details>
-</article>
-<article class="card" data-search="令和6年 春 午後 問2 サイバー攻撃 VPN DDoS HTTP GET Flood IPS WAF DNS DNS-K DNS-F MFA SMS OTP フィッシング Port Knocking SPA HMAC CDN クラウドファイアウォール ISP S-APPL">
-<div class="meta">令和6年度 春期｜午後 問2</div>
-<h2>サイバー攻撃への対策</h2>
-<p class="desc">VPNを狙った攻撃とDDoS対策を題材に、HTTP GET Flood、DNS分離、MFAフィッシング、Port Knocking、SPA、CDN・ISPのDDoS防御まで体系的に学習。</p>
-<div><span class="badge">VPN / MFA</span><span class="badge">DDoS</span><span class="badge">DNS</span><span class="badge">Port Knocking / SPA</span><span class="badge">CDN / ISP</span></div>
-<ul class="features">
-<li>H社のリモートワーク環境と攻撃ストーリーから整理</li>
-<li>HTTP GET Flood・IPSしきい値・DNS-K / DNS-Fを解説</li>
-<li>SMS OTPフィッシングとPort Knockingのリプレイ攻撃を深掘り</li>
-<li>SPA・HMAC・DDoS上流防御・S-APPLまで解説</li>
-<li>「🔬さらに深掘り」＋設問ごとの重要語句付き</li>
-</ul>
-<a class="open" href="r06_spring_sc_pm_q2_cyberattack_ultradeep.html">この問題を学習する →</a>
-<details class="preview"><summary>ホーム内でプレビュー</summary><iframe loading="lazy" src="r06_spring_sc_pm_q2_cyberattack_ultradeep.html" title="サイバー攻撃への対策 解説"></iframe></details>
 </article>
 <article class="card" data-search="令和6年 秋 午後 問2 メールセキュリティ ドメイン変更 SPF DKIM DMARC SMTP ARC">
 <div class="meta">令和6年度 秋期｜午後 問2</div>
@@ -199,7 +194,7 @@ footer{padding:28px 0;color:var(--muted)}
 </section>
 <section class="section hidden" id="amSection">
 <div class="section-heading">
-<div><h2>午前Ⅱ｜分類別・連続演習（合計 115問）</h2><small>分類別は全年度横断＋重複統合。年度別は各年度25問。問題文・選択肢は各HTML内に直接収録してあります。</small></div>
+<div><h2>午前Ⅱ｜分類別・連続演習</h2><small>分類別・年度別のどちらからでも開始。将来は複数年度を横断して同分類を連続演習できます。</small></div>
 </div>
 <div class="am-entry-tabs" id="amEntryTabs">
 <button class="am-entry active" data-entry="category">分類別に学ぶ</button>
@@ -226,132 +221,143 @@ footer{padding:28px 0;color:var(--muted)}
 <button class="fbtn" data-cat="データベース">データベース</button>
 <button class="fbtn" data-cat="開発・設計">開発・設計</button>
 <button class="fbtn" data-cat="サービス管理・内部統制">サービス管理・内部統制</button>
-<button class="fbtn" data-cat="セキュリティ管理・標準">セキュリティ管理・標準</button></div>
+</div>
 </div><div class="morning-grid" id="amCards">
 <article class="qmini category-card" data-cat="認証・認可" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY 認証・認可 RADIUS / AAA、Passkey / FIDO、SSO、OAuth 2.0 問1・問7・問8・問16">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">認証・認可</span>
 </div>
-<h3>認証・認可（11問）</h3>
-<p>全年度横断・重複統合済み。現在 11 問を連続演習できます。</p>
+<h3>認証・認可</h3>
+<p>全年度横断：<b>4問を連続演習：</b>RADIUS / AAA、Passkey / FIDO、SSO、OAuth 2.0</p>
 <p class="qrange">問1・問7・問8・問16</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E8%AA%8D%E8%A8%BC%E3%83%BB%E8%AA%8D%E5%8F%AF">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E8%AA%8D%E8%A8%BC%E3%83%BB%E8%AA%8D%E5%8F%AF">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="暗号・PKI" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY 暗号・PKI PQC、量子暗号 問5・問9">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">暗号・PKI</span>
 </div>
-<h3>暗号・PKI（12問）</h3>
-<p>全年度横断・重複統合済み。現在 12 問を連続演習できます。</p>
+<h3>暗号・PKI</h3>
+<p>全年度横断：<b>2問を連続演習：</b>PQC、量子暗号</p>
 <p class="qrange">問5・問9</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E6%9A%97%E5%8F%B7%E3%83%BBPKI">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E6%9A%97%E5%8F%B7%E3%83%BBPKI">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="ネットワークセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY ネットワークセキュリティ IPS、DTLS、IEEE 802.1X / RADIUS 問13・問15・問17">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">ネットワークセキュリティ</span>
 </div>
-<h3>ネットワークセキュリティ（10問）</h3>
-<p>全年度横断・重複統合済み。現在 10 問を連続演習できます。</p>
+<h3>ネットワークセキュリティ</h3>
+<p>全年度横断：<b>3問を連続演習：</b>IPS、DTLS、IEEE 802.1X / RADIUS</p>
 <p class="qrange">問13・問15・問17</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="サーバセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY サーバセキュリティ WAF、クリックジャッキング 問12・問14">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">サーバセキュリティ</span>
 </div>
-<h3>サーバセキュリティ（9問）</h3>
-<p>全年度横断・重複統合済み。現在 9 問を連続演習できます。</p>
+<h3>サーバセキュリティ</h3>
+<p>全年度横断：<b>2問を連続演習：</b>WAF、クリックジャッキング</p>
 <p class="qrange">問12・問14</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E3%82%B5%E3%83%BC%E3%83%90%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E3%82%B5%E3%83%BC%E3%83%90%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="メールセキュリティ" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY メールセキュリティ DMARC、SPF / DKIM / Alignment 問10">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">メールセキュリティ</span>
 </div>
-<h3>メールセキュリティ（6問）</h3>
-<p>全年度横断・重複統合済み。現在 6 問を連続演習できます。</p>
+<h3>メールセキュリティ</h3>
+<p>全年度横断：<b>1問を連続演習：</b>DMARC、SPF / DKIM / Alignment</p>
 <p class="qrange">問10</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="マルウェア・攻撃" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY マルウェア・攻撃 Adversarial Examples、NTPリフレクション、Smurf 問2・問4・問6">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">マルウェア・攻撃</span>
 </div>
-<h3>マルウェア・攻撃（11問）</h3>
-<p>全年度横断・重複統合済み。現在 11 問を連続演習できます。</p>
+<h3>マルウェア・攻撃</h3>
+<p>全年度横断：<b>3問を連続演習：</b>Adversarial Examples、NTPリフレクション、Smurf</p>
 <p class="qrange">問2・問4・問6</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E3%83%9E%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%BB%E6%94%BB%E6%92%83">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=%E3%83%9E%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%BB%E6%94%BB%E6%92%83">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="SOC・インシデント対応" data-group="SECURITY" data-search="令和6年 秋 午前Ⅱ SECURITY SOC・インシデント対応 MITRE ATT&amp;CK、SOAR 問3・問11">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge security">SECURITY</span>
 <span class="catbadge">SOC・インシデント対応</span>
 </div>
-<h3>SOC・インシデント対応（10問）</h3>
-<p>全年度横断・重複統合済み。現在 10 問を連続演習できます。</p>
+<h3>SOC・インシデント対応</h3>
+<p>全年度横断：<b>2問を連続演習：</b>MITRE ATT&amp;CK、SOAR</p>
 <p class="qrange">問3・問11</p>
-<a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=SOC%E3%83%BB%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%87%E3%83%B3%E3%83%88%E5%AF%BE%E5%BF%9C">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=SECURITY&amp;cat=SOC%E3%83%BB%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%87%E3%83%B3%E3%83%88%E5%AF%BE%E5%BF%9C">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="ネットワーク" data-group="GENERAL IT" data-search="令和6年 秋 午前Ⅱ GENERAL IT ネットワーク IPsec、ICMP、ネットワークTAP 問18・問19・問20">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge general">GENERAL IT</span>
 <span class="catbadge">ネットワーク</span>
 </div>
-<h3>ネットワーク（13問）</h3>
-<p>全年度横断・重複統合済み。現在 13 問を連続演習できます。</p>
+<h3>ネットワーク</h3>
+<p>全年度横断：<b>3問を連続演習：</b>IPsec、ICMP、ネットワークTAP</p>
 <p class="qrange">問18・問19・問20</p>
-<a class="qopen" href="am2_unique_bank.html?group=GENERAL%20IT&amp;cat=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=GENERAL%20IT&amp;cat=%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="データベース" data-group="GENERAL IT" data-search="令和6年 秋 午前Ⅱ GENERAL IT データベース 関係モデル、外部キー 問21">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge general">GENERAL IT</span>
 <span class="catbadge">データベース</span>
 </div>
-<h3>データベース（6問）</h3>
-<p>全年度横断・重複統合済み。現在 6 問を連続演習できます。</p>
+<h3>データベース</h3>
+<p>全年度横断：<b>1問を連続演習：</b>関係モデル、外部キー</p>
 <p class="qrange">問21</p>
-<a class="qopen" href="am2_unique_bank.html?group=GENERAL%20IT&amp;cat=%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=GENERAL%20IT&amp;cat=%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="開発・設計" data-group="GENERAL IT" data-search="令和6年 秋 午前Ⅱ GENERAL IT 開発・設計 GoF、XP / TDD 問22・問23">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge general">GENERAL IT</span>
 <span class="catbadge">開発・設計</span>
 </div>
-<h3>開発・設計（8問）</h3>
-<p>全年度横断・重複統合済み。現在 8 問を連続演習できます。</p>
+<h3>開発・設計</h3>
+<p>全年度横断：<b>2問を連続演習：</b>GoF、XP / TDD</p>
 <p class="qrange">問22・問23</p>
-<a class="qopen" href="am2_unique_bank.html?group=GENERAL%20IT&amp;cat=%E9%96%8B%E7%99%BA%E3%83%BB%E8%A8%AD%E8%A8%88">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=GENERAL%20IT&amp;cat=%E9%96%8B%E7%99%BA%E3%83%BB%E8%A8%AD%E8%A8%88">この分類をまとめて解く →</a>
 </article>
 <article class="qmini category-card" data-cat="サービス管理・内部統制" data-group="GENERAL IT" data-search="令和6年 秋 午前Ⅱ GENERAL IT サービス管理・内部統制 SMSの継続的改善、IT内部統制 問24・問25">
 <div class="top">
-<span class="meta">午前Ⅱ｜全年度横断</span>
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
 <span class="groupbadge general">GENERAL IT</span>
 <span class="catbadge">サービス管理・内部統制</span>
 </div>
-<h3>サービス管理・内部統制（12問）</h3>
-<p>全年度横断・重複統合済み。現在 12 問を連続演習できます。</p>
+<h3>サービス管理・内部統制</h3>
+<p>全年度横断：<b>2問を連続演習：</b>SMSの継続的改善、IT内部統制</p>
 <p class="qrange">問24・問25</p>
-<a class="qopen" href="am2_unique_bank.html?group=GENERAL%20IT&amp;cat=%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E7%AE%A1%E7%90%86%E3%83%BB%E5%86%85%E9%83%A8%E7%B5%B1%E5%88%B6">全年度・重複なしでまとめて解く →</a>
+<a class="qopen" href="r06_autumn_sc_am2.html?group=GENERAL%20IT&amp;cat=%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E7%AE%A1%E7%90%86%E3%83%BB%E5%86%85%E9%83%A8%E7%B5%B1%E5%88%B6">この分類をまとめて解く →</a>
 </article>
-<article class="qmini category-card" data-cat="セキュリティ管理・標準" data-group="SECURITY" data-search="午前Ⅱ SECURITY セキュリティ管理 標準 ISMAP NIST SCAP CWE FIPS NOTICE"><div class="top"><span class="meta">午前Ⅱ｜全年度横断</span><span class="groupbadge security">SECURITY</span><span class="catbadge">セキュリティ管理・標準</span></div><h3>セキュリティ管理・標準（7問）</h3><p>全年度横断・重複統合済み。現在 7 問を連続演習できます。</p><a class="qopen" href="am2_unique_bank.html?group=SECURITY&amp;cat=%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E7%AE%A1%E7%90%86%E3%83%BB%E6%A8%99%E6%BA%96">全年度・重複なしでまとめて解く →</a></article></div></div>
+</div></div>
 <div class="hidden" id="amYearArea">
-<div class="year-grid"><article class="year-card"><div class="top"><span class="meta">令和4年度 秋期｜午前Ⅱ</span></div><h3>R4秋 午前Ⅱ｜25問通し</h3><p>25問通し。問題 → 正解 → 解説 → 深掘り。</p><a class="qopen" href="r4autumn_sc_am2.html">この年度を通しで解く →</a></article><article class="year-card"><div class="top"><span class="meta">令和5年度 春期｜午前Ⅱ</span></div><h3>R5春 午前Ⅱ｜25問通し</h3><p>25問通し。問題 → 正解 → 解説 → 深掘り。</p><a class="qopen" href="r5spring_sc_am2.html">この年度を通しで解く →</a></article><article class="year-card"><div class="top"><span class="meta">令和5年度 秋期｜午前Ⅱ</span></div><h3>R5秋 午前Ⅱ｜25問通し</h3><p>25問通し。問題 → 正解 → 解説 → 深掘り。</p><a class="qopen" href="r5autumn_sc_am2.html">この年度を通しで解く →</a></article><article class="year-card"><div class="top"><span class="meta">令和6年度 春期｜午前Ⅱ</span></div><h3>R6春 午前Ⅱ｜25問通し</h3><p>25問通し。問題 → 正解 → 解説 → 深掘り。</p><a class="qopen" href="r6spring_sc_am2.html">この年度を通しで解く →</a></article><article class="year-card"><div class="top"><span class="meta">令和6年度 秋期｜午前Ⅱ</span></div><h3>R6秋 午前Ⅱ｜25問通し</h3><p>25問通し。問題 → 正解 → 解説 → 深掘り。</p><a class="qopen" href="r06_autumn_sc_am2.html">この年度を通しで解く →</a></article></div>
+<div class="year-grid">
+<article class="year-card">
+<div class="top">
+<span class="meta">令和6年度 秋期｜午前Ⅱ</span>
+<span class="groupbadge security">SECURITY 17問</span>
+<span class="groupbadge general">GENERAL IT 8問</span>
+</div>
+<h3>R6秋 午前Ⅱ｜25問通し</h3>
+<p>問1〜25を年度順に通して演習。問題文 → 4択 → 全選択肢解説 → さらに深掘り。</p>
+<a class="qopen" href="r06_autumn_sc_am2.html?year=R6秋">この年度を通しで解く →</a>
+</article>
+</div>
 </div>
 <div class="empty" id="amEmpty">該当する午前Ⅱ問題がありません。</div>
 </section>
