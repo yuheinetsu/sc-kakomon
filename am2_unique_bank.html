@@ -512,7 +512,32 @@ body:has(#study_done:checked) article.qcard:not(:has(.done-check:checked)){
 }
 /* A checked card must be eligible to show in Done view.
    Other filters (year/category) can still hide it when they don't match. */
-</style></head>
+</style><script>
+(function(){
+ function applyQuery(){
+   var p=new URLSearchParams(location.search);
+   var cat=p.get('cat'), year=p.get('year');
+   if(cat){
+     document.querySelectorAll('#cf label').forEach(function(l){
+       if(l.textContent.trim().indexOf(cat)===0){
+         var id=l.getAttribute('for'), el=document.getElementById(id);
+         if(el) el.checked=true;
+       }
+     });
+   }
+   if(year){
+     document.querySelectorAll('#yf label').forEach(function(l){
+       if(l.textContent.trim().indexOf(year)===0){
+         var id=l.getAttribute('for'), el=document.getElementById(id);
+         if(el) el.checked=true;
+       }
+     });
+   }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyQuery);
+ else applyQuery();
+})();
+</script></head>
 <body><div aria-hidden="true" id="filterState"><input checked="" id="cat_all" name="catfilter" type="radio"/><input id="cat_0" name="catfilter" type="radio"/><input id="cat_1" name="catfilter" type="radio"/><input id="cat_2" name="catfilter" type="radio"/><input id="cat_3" name="catfilter" type="radio"/><input id="cat_4" name="catfilter" type="radio"/><input id="cat_5" name="catfilter" type="radio"/><input id="cat_6" name="catfilter" type="radio"/><input id="cat_7" name="catfilter" type="radio"/><input id="cat_8" name="catfilter" type="radio"/><input id="cat_9" name="catfilter" type="radio"/><input id="cat_10" name="catfilter" type="radio"/><input id="cat_11" name="catfilter" type="radio"/><input checked="" id="year_all" name="yearfilter" type="radio"/><input id="year_0" name="yearfilter" type="radio"/><input id="year_1" name="yearfilter" type="radio"/><input id="year_2" name="yearfilter" type="radio"/><input id="year_3" name="yearfilter" type="radio"/><input id="year_4" name="yearfilter" type="radio"/><input id="year_5" name="yearfilter" type="radio"/><input id="year_6" name="yearfilter" type="radio"/><input id="year_7" name="yearfilter" type="radio"/><input id="year_8" name="yearfilter" type="radio"/><input id="year_9" name="yearfilter" type="radio"/></div><header><div style="max-width:1050px;margin:auto"><b>SC 午前Ⅱ｜分類別・重複なし問題バンク</b><input id="s" placeholder="用語・年度で検索（検索は従来どおり）"/><a href="index.html" style="display:inline-block;margin-top:8px;color:#bfe1ff;text-decoration:none;font-weight:800">⌂ ホームに戻る</a></div></header>
 <main><section class="summary"><h1>午前Ⅱ 問題演習</h1><p>分類別・年度別に絞り込んで演習できます。選択肢を押すと解答・解説を確認できます。</p><div class="filters" id="cf"><label class="f tablabel" for="cat_all">全分類 232</label><label class="f tablabel" for="cat_0">認証・認可 15</label><label class="f tablabel" for="cat_1">暗号・PKI 34</label><label class="f tablabel" for="cat_2">ネットワークセキュリティ 27</label><label class="f tablabel" for="cat_3">サーバセキュリティ 23</label><label class="f tablabel" for="cat_4">メールセキュリティ 13</label><label class="f tablabel" for="cat_5">マルウェア・攻撃 22</label><label class="f tablabel" for="cat_6">SOC・インシデント対応 6</label><label class="f tablabel" for="cat_7">セキュリティ管理・標準 21</label><label class="f tablabel" for="cat_8">ネットワーク 23</label><label class="f tablabel" for="cat_9">データベース 15</label><label class="f tablabel" for="cat_10">開発・設計 16</label><label class="f tablabel" for="cat_11">サービス管理・内部統制 17</label></div><h2 class="year-filter-title">年度別で演習</h2><div class="filters" id="yf"><label class="f tablabel" for="year_all">全年度 232</label><label class="f tablabel" for="year_0">R6秋 21</label><label class="f tablabel" for="year_1">R6春 19</label><label class="f tablabel" for="year_2">R5秋 25</label><label class="f tablabel" for="year_3">R5春 25</label><label class="f tablabel" for="year_4">R4秋 25</label><label class="f tablabel" for="year_5">R4春 21</label><label class="f tablabel" for="year_6">R3秋 21</label><label class="f tablabel" for="year_7">R3春 25</label><label class="f tablabel" for="year_8">R2秋 25</label><label class="f tablabel" for="year_9">R1秋 25</label></div><h2 class="study-filter-title">学習状況</h2><div class="filters study-filters" id="sf"><input checked="" class="study-radio" id="study_all" name="studyfilter" type="radio" value="all"/><label class="f study-tab" for="study_all">すべて</label><input class="study-radio" id="study_todo" name="studyfilter" type="radio" value="todo"/><label class="f study-tab" for="study_todo">未学習</label><input class="study-radio" id="study_done" name="studyfilter" type="radio" value="done"/><label class="f study-tab" for="study_done">済み</label></div></section><article class="qcard old-added" data-cat="セキュリティ管理・標準" data-group="SECURITY" data-search="ISO/IEC 15408（Common Criteria） SOC・インシデント対応 R4秋 問9 セキュリティ管理・標準 ISO/IEC 15408（Common Criteria）" data-study-id="R4秋_問9_ISO_IEC_15408_Common_Criteria" data-year="R4秋"><div class="qhead"><span>UNIQUE</span><h2>ISO/IEC 15408（Common Criteria）</h2><em>SECURITY</em><b>セキュリティ管理・標準</b><div class="done-css-wrap"><input class="done-check" id="done_1" type="checkbox"/><label class="done-label" for="done_1">✓ 済みにする</label></div></div><div class="sources">出題：R4秋 問9 </div>
 <div class="study-layout">
