@@ -286,7 +286,14 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
   .mail-auth-visuals{margin:10px 0;padding:10px}
 }
 </style><style>.left.panel .page-card{display:block!important}
-@media(max-width:900px){.left.panel .page-card{display:block!important}}</style></head>
+@media(max-width:900px){.left.panel .page-card{display:block!important}}</style>
+<style>
+.official-question{margin:12px 0 16px;border:2px solid #86a9d6;border-radius:12px;overflow:hidden;background:#fff}
+.official-question .oq-head{padding:9px 12px;background:#edf5ff;color:#174f83;font-weight:900}
+.official-question .oq-body{padding:12px 14px;line-height:1.9}
+.official-question .oq-body p{margin:4px 0}.official-question .choices{margin:6px 0 0;padding-left:1.2em}
+</style>
+</head>
 <body>
 <header><div class="wrap">
 <div style="opacity:.82">SC KAKOMON / 自分用学習サイト</div>
@@ -415,14 +422,10 @@ h1{margin:3px 0;line-height:1.3;font-size:clamp(1.65rem,4vw,2.7rem)}
 <div class="panel-title">右｜自分の回答 → 答え合わせ → 詳細解説</div>
 <section class="explain-block" data-q="s1" id="exp-s1">
 <div class="practice-box">
+<div class="official-question"><div class="oq-head">IPA公式｜設問1の設問文</div><div class="oq-body"><p><b>設問1</b>　〔情報システムの現状〕について答えよ。</p><p>（1）表1中及び表2中の［a］に入れる適切な字句を答えよ。</p><p>（2）表2中の［b］に入れる適切な字句を答えよ。</p></div></div>
 <div class="practice-intro"><b>設問1に自分で回答</b><br/>問題文と表を見て、a・bに入る語句を自分の言葉で書いてください。</div>
 <textarea class="answer-input" data-q="s1" placeholder="例：a＝○○、b＝○○
 理由：……"></textarea>
-<div class="selfcheck">
-<label><input type="checkbox"/> aは「誰宛のメールを受け取るか」という条件から考えた</label>
-<label><input type="checkbox"/> bは「社内PCからどこ宛まで送る必要があるか」で考えた</label>
-<label><input type="checkbox"/> 表2を上から順に適用するルールとして読んだ</label>
-</div>
 <div class="practice-actions"><button class="clear danger" data-q="s1" type="button">回答を消す</button><span class="saved" id="saved-s1"></span></div>
 <details class="solution-details">
 <summary>答え・詳細解説を開く</summary>
@@ -487,13 +490,10 @@ attacker@example.net → victim@example.org
 </div>
 </section><section class="explain-block" data-q="s2" id="exp-s2">
 <div class="practice-box">
+<div class="official-question"><div class="oq-head">IPA公式｜設問2の設問文</div><div class="oq-body"><p><b>設問2</b>　表5中の［c］に入れる適切な字句を英字10字以内で答えよ。</p></div></div>
 <div class="practice-intro"><b>設問2に自分で回答</b><br/>「SMTPをTLSで暗号化する方式」を英字で答え、その理由も書いてください。</div>
 <textarea class="answer-input" data-q="s2" placeholder="答え：
 理由："></textarea>
-<div class="selfcheck">
-<label><input type="checkbox"/> 通信経路の暗号化か、メール本文の暗号化かを区別した</label>
-<label><input type="checkbox"/> S/MIMEとの違いを説明できる</label>
-</div>
 <div class="practice-actions"><button class="clear danger" data-q="s2" type="button">回答を消す</button><span class="saved" id="saved-s2"></span></div>
 <details class="solution-details">
 <summary>答え・詳細解説を開く</summary>
@@ -548,22 +548,18 @@ attacker@example.net → victim@example.org
 </div>
 </section><section class="explain-block" data-q="s3" id="exp-s3">
 <div class="practice-box">
+<div class="official-question"><div class="oq-head">IPA公式｜設問3の設問文</div><div class="oq-body"><p><b>設問3</b>　〔送信対応の設定内容についての検討〕について答えよ。</p><p>（1）本文中の下線①のFQDNを解答群の中から選び，記号で答えよ。</p><div class="choices">ア　rsa-sha256._dkim.z-sha.co.jp<br>イ　rsa-sha256._domainkey.z-sha.co.jp<br>ウ　z2024._dkim.z-sha.co.jp<br>エ　z2024._domainkey.z-sha.co.jp<br>オ　z2024.z-sha.co.jp</div><p>（2）図4中の［d］に入れる適切な字句を解答群の中から選び，記号で答えよ。</p><div class="choices">ア　accept　　イ　none　　ウ　quarantine　　エ　receive　　オ　reject</div></div>
 <div class="practice-intro"><b>設問3に自分で回答</b><br/>DKIMのFQDNとDMARCのpタグを選び、表6・移行ステップを根拠に説明してください。</div>
 <textarea class="answer-input" data-q="s3" placeholder="(1) 選択肢：
 理由：
 
 (2) 選択肢：
 理由："></textarea>
-<div class="selfcheck">
-<label><input type="checkbox"/> sタグとdタグを使ってFQDNを組み立てた</label>
-<label><input type="checkbox"/> _domainkey の位置を確認した</label>
-<label><input type="checkbox"/> Mail-Step1が監視段階であることを根拠にした</label>
-</div>
 <div class="practice-actions"><button class="clear danger" data-q="s3" type="button">回答を消す</button><span class="saved" id="saved-s3"></span></div>
 <details class="solution-details">
 <summary>答え・詳細解説を開く</summary>
 <div class="solution-native">
-<h2>設問3｜DKIM・DMARC</h2>
+<h2>設問3｜DKIM・DMARC</h2></div>
 <div class="answer"><b>答え</b><br/>(1) エ：z2024._domainkey.z-sha.co.jp<br/>(2) イ：none</div><div class="section-subnav"><b>この設問の小問：</b><div class="subtab-row"><a class="subtab" href="#sub-3-1">(1) DKIM公開鍵</a><a class="subtab" href="#sub-3-2">(2) DMARC</a></div></div><section class="reasoning-pack"><div class="reasoning-title">🧭 解法プロセス｜本文のどこを見る → 何を考える → なぜその答えになる</div><div class="reasoning-item" id="sub-3-1"><h3>設問3(1)｜DKIM公開鍵のFQDN</h3><div class="reasoning-steps"><div class="reasoning-step look"><b>① 本文のどこを見る？</b><div>表6のDKIM-Signatureにある <code>s=z2024</code> と <code>d=z-sha.co.jp</code>。さらにDKIM公開鍵をDNSから取得するという説明。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step think"><b>② 何を考える？</b><div>DKIMでは、<code>s=</code> がselector、<code>d=</code> が署名ドメイン。公開鍵のDNS名は『selector._domainkey.domain』の形に組み立てる。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step answer"><b>③ なぜその答え？</b><div>したがって <code>z2024._domainkey.z-sha.co.jp</code>。<code>rsa-sha256</code> は <code>a=</code> の署名アルゴリズムでselectorではない。</div></div></div><div class="reasoning-key"><b>試験での狙い：</b>問題文の情報を一般知識へ変換するのではなく、問題文の固有条件を根拠として答案までつなぐ。</div></div><div class="reasoning-item" id="sub-3-2"><h3>設問3(2)｜DMARC p=none</h3><div class="reasoning-steps"><div class="reasoning-step look"><b>① 本文のどこを見る？</b><div>図3のMail-Step1が『移行初期・監視段階』であることと、DMARCレコードの <code>p=</code> タグ。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step think"><b>② 何を考える？</b><div>DMARC導入直後は、正規の外部配信サービスや設定漏れがないかをレポートで把握する必要がある。最初から隔離・拒否すると、正規メールまで落とす危険がある。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step answer"><b>③ なぜその答え？</b><div>よってMail-Step1では <code>p=none</code>。『観測 → 修正 → quarantine → reject』と段階的に強化する考え方で読む。</div></div></div><div class="reasoning-key"><b>試験での狙い：</b>問題文の情報を一般知識へ変換するのではなく、問題文の固有条件を根拠として答案までつなぐ。</div></div></section>
 <h3>問題の背景・状況</h3>
 <p>新ドメインz-sha.co.jpでは、SPF・DKIM・DMARCを導入します。移行の最初の段階ではいきなり拒否せず、まずDMARCレポートを集めて設定ミスや正規送信元を把握します。</p>
@@ -638,21 +634,17 @@ z2024._domainkey.z-sha.co.jp</div>
 </div>
 </section><section class="explain-block" data-q="s4" id="exp-s4">
 <div class="practice-box">
+<div class="official-question"><div class="oq-head">IPA公式｜設問4の設問文</div><div class="oq-body"><p><b>設問4</b>　〔A社ドメイン名の契約についての検討〕について答えよ。</p><p>（1）表7中の下線②について，攻撃の方法を具体的に答えよ。</p><p>（2）表7中の下線③について，受信するメールの内容及び続きの攻撃の例を具体的に答えよ。</p><p>（3）図5中の［e］に入れる適切な字句を解答群の中から選び，記号で答えよ。</p><div class="choices">ア　-all　　イ　?all　　ウ　block　　エ　deny　　オ　refuse</div></div>
 <div class="practice-intro"><b>設問4に自分で回答</b><br/>旧ドメインを第三者が取得した場合のWeb・メール悪用と、SPF設定を自分で考えてください。</div>
 <textarea class="answer-input" data-q="s4" placeholder="(1) Web悪用：
 (2) メール受信悪用：
 (3) SPF：
 理由："></textarea>
-<div class="selfcheck">
-<label><input type="checkbox"/> A社が実際に修正プログラムを配布している点を使った</label>
-<label><input type="checkbox"/> 外部サービスのパスワード再設定メールを想定した</label>
-<label><input type="checkbox"/> 旧ドメインから正規送信しない前提をSPFへ反映した</label>
-</div>
 <div class="practice-actions"><button class="clear danger" data-q="s4" type="button">回答を消す</button><span class="saved" id="saved-s4"></span></div>
 <details class="solution-details">
 <summary>答え・詳細解説を開く</summary>
 <div class="solution-native">
-<h2>設問4｜旧ドメインを第三者に取られるリスク</h2>
+<h2>設問4｜旧ドメインを第三者に取られるリスク</h2></div>
 <div class="answer"><b>答え</b><br/>(1) 修正プログラムに見せかけたマルウェアをダウンロードさせる。<br/>(2) パスワード再設定メールなどを受け取り、任意のパスワードへ変更してアカウントを乗っ取る。<br/>(3) ア：-all</div><div class="section-subnav"><b>この設問の小問：</b><div class="subtab-row"><a class="subtab" href="#sub-4-1">(1) Web悪用</a><a class="subtab" href="#sub-4-2">(2) メール受信</a><a class="subtab" href="#sub-4-3">(3) SPF</a></div></div><section class="reasoning-pack"><div class="reasoning-title">🧭 解法プロセス｜本文のどこを見る → 何を考える → なぜその答えになる</div><div class="reasoning-item" id="sub-4-1"><h3>設問4(1)｜旧ドメインのWeb悪用</h3><div class="reasoning-steps"><div class="reasoning-step look"><b>① 本文のどこを見る？</b><div>問題冒頭のA社業務で『Webサイトからソフトウェア修正プログラムを配布している』点と、旧ドメインを第三者が取得できるという設定。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step think"><b>② 何を考える？</b><div>単なる『偽サイトを作る』ではなく、A社が実際に旧ドメインで行っていた業務を攻撃者が再現すると何が危険かを考える。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step answer"><b>③ なぜその答え？</b><div>利用者は以前から知っているA社の旧ドメインを信用しやすい。そこで修正プログラムに見せかけたマルウェアを配布すれば、問題文の業務実態に沿った具体的な攻撃になる。</div></div></div><div class="reasoning-key"><b>試験での狙い：</b>問題文の情報を一般知識へ変換するのではなく、問題文の固有条件を根拠として答案までつなぐ。</div></div><div class="reasoning-item" id="sub-4-2"><h3>設問4(2)｜旧メールアドレスによるアカウント乗っ取り</h3><div class="reasoning-steps"><div class="reasoning-step look"><b>① 本文のどこを見る？</b><div>表7の『メール受信』の観点と、外部サービスに旧ドメインのメールアドレスが登録されたまま残る可能性。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step think"><b>② 何を考える？</b><div>ここは攻撃者が『メールを送る』話ではなく、旧ドメイン宛てに届く正規メールを『受信できる』ことの危険性を考える。特にパスワード再設定メールが重要。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step answer"><b>③ なぜその答え？</b><div>攻撃者が旧ドメインを取得してMXを設定すれば、旧アドレス宛てのパスワード再設定メールを受信し、任意のパスワードへ変更して外部サービスのアカウントを奪える。</div></div></div><div class="reasoning-key"><b>試験での狙い：</b>問題文の情報を一般知識へ変換するのではなく、問題文の固有条件を根拠として答案までつなぐ。</div></div><div class="reasoning-item" id="sub-4-3"><h3>設問4(3)｜SPF -all</h3><div class="reasoning-steps"><div class="reasoning-step look"><b>① 本文のどこを見る？</b><div>図5のSPF設定と、『旧ドメインから今後は正規メールを送信しない』という移行後の前提。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step think"><b>② 何を考える？</b><div>SPFは『このドメインを名乗って送ってよい送信元IP』を宣言する。正規送信元が一つもないなら、許可するIPを列挙する必要がない。</div></div><div class="reasoning-arrow">→</div><div class="reasoning-step answer"><b>③ なぜその答え？</b><div>したがって <code>v=spf1 -all</code> の考え方になる。<code>-all</code> はそれ以外を明示的にFailとする。<code>?all</code> はNeutralなので、送信しないドメインの強い意思表示として弱い。</div></div></div><div class="reasoning-key"><b>試験での狙い：</b>問題文の情報を一般知識へ変換するのではなく、問題文の固有条件を根拠として答案までつなぐ。</div></div></section>
 <h3>問題の背景・状況</h3>
 <p>社名変更後に旧ドメインを解約すると、第三者が取得できる可能性があります。旧ドメインは「以前A社が本当に使っていた」ため、顧客や外部サービスから信用されやすいのが危険です。</p>
@@ -703,17 +695,13 @@ z2024._domainkey.z-sha.co.jp</div>
 </div>
 </section><section class="explain-block" data-q="s5" id="exp-s5">
 <div class="practice-box">
+<div class="official-question"><div class="oq-head">IPA公式｜設問5の設問文</div><div class="oq-body"><p><b>設問5</b>　〔Uサービスへの移行の見直し〕について答えよ。</p><p>（1）本文中の下線④について，見直しの内容を具体的に答えよ。</p><p>（2）図8中の下線⑤について，SPFによる認証に失敗する理由及びDKIMによる認証に失敗する理由をそれぞれ，Sサービスへの登録内容とYサービスの仕様を含めて，具体的に答えよ。</p></div></div>
 <div class="practice-intro"><b>設問5に自分で回答</b><br/>Tサービス・Yサービスを使ったとき、SPFとDKIMがどう失敗するかを分けて説明してください。</div>
 <textarea class="answer-input" data-q="s5" placeholder="(1) SPFレコードの見直し：
 
 (2) SPF失敗理由：
 
 (2) DKIM失敗理由："></textarea>
-<div class="selfcheck">
-<label><input type="checkbox"/> SPFは送信元IPの問題として考えた</label>
-<label><input type="checkbox"/> DKIMは署名対象ヘッダーの変更として考えた</label>
-<label><input type="checkbox"/> Subject変更をSPFの理由にしていない</label>
-</div>
 <div class="practice-actions"><button class="clear danger" data-q="s5" type="button">回答を消す</button><span class="saved" id="saved-s5"></span></div>
 <details class="solution-details">
 <summary>答え・詳細解説を開く</summary>
