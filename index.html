@@ -71,6 +71,10 @@ footer{padding:28px 0;color:var(--muted)}
 
 .study-card{border-top:4px solid #2f7d5a!important}
 .study-card .study-badge{display:inline-block;background:#e8f7ef;color:#236445;border-radius:999px;padding:3px 8px;font-size:.72rem;font-weight:900}
+
+.review-entry-card{border-top:4px solid #c2415d!important;background:linear-gradient(180deg,#fff,#fffafb)}
+.review-entry-card .review-badge{display:inline-block;background:#fde7ec;color:#85263d;border-radius:999px;padding:3px 8px;font-size:.72rem;font-weight:900}
+.review-entry-card .qopen{background:#8f2d47}
 </style>
 </head>
 <body>
@@ -204,11 +208,12 @@ footer{padding:28px 0;color:var(--muted)}
 </section>
 <section class="section hidden" id="amSection">
 <div class="section-heading">
-<div><h2>午前Ⅱ｜分類別・連続演習</h2><small>分類別・年度別に絞り込み可能。4択→解答解説→徹底解説に加え、覚えた問題は「済み」で管理できます。</small></div>
+<div><h2>午前Ⅱ｜分類別・連続演習</h2><small>分類別・年度別に絞り込み可能。復習要まとめでは、このチャットで解説した27問を全文で復習できます。4択→解答解説→徹底解説に加え、覚えた問題は「済み」で管理できます。</small></div>
 </div>
 <div class="am-entry-tabs" id="amEntryTabs">
 <button class="am-entry active" data-entry="category">分類別に学ぶ</button>
 <button class="am-entry" data-entry="year">年度別に学ぶ</button>
+<button class="am-entry" data-entry="review">復習要まとめ</button>
 </div>
 <div id="amCategoryArea"><div class="filter-panel show">
 <b>大区分</b>
@@ -356,6 +361,15 @@ footer{padding:28px 0;color:var(--muted)}
 </article>
 </div></div>
 <div class="hidden" id="amYearArea"><article class="card year-card"><div class="meta">令和6年度 秋期｜午前II</div><h3>R6秋 午前II｜21問</h3><p>R6秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R6秋">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和6年度 春期｜午前II</div><h3>R6春 午前II｜19問</h3><p>R6春の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R6春">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和5年度 秋期｜午前II</div><h3>R5秋 午前II｜25問</h3><p>R5秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R5秋">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和5年度 春期｜午前II</div><h3>R5春 午前II｜25問</h3><p>R5春の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R5春">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和4年度 秋期｜午前II</div><h3>R4秋 午前II｜25問</h3><p>R4秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R4秋">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和4年度 春期｜午前II</div><h3>R4春 午前II｜21問</h3><p>R4春の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R4春">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和3年度 秋期｜午前II</div><h3>R3秋 午前II｜21問</h3><p>R3秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R3秋">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和3年度 春期｜午前II</div><h3>R3春 午前II｜25問</h3><p>R3春の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R3春">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和2年度 秋期｜午前II</div><h3>R2秋 午前II｜25問</h3><p>R2秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R2秋">この年度を解く →</a></article><article class="card year-card"><div class="meta">令和元年度 秋期｜午前II</div><h3>R1秋 午前II｜25問</h3><p>R1秋の収録問題をまとめて演習。問題文 → 4択 → 解答解説 → 深掘り。</p><a class="qopen" href="am2_unique_bank.html?year=R1秋">この年度を解く →</a></article></div>
+<div class="hidden" id="amReviewArea">
+<article class="card year-card review-entry-card" data-search="午前Ⅱ 復習要 セキュリティ 過去10回 27問 CSRF DNS VLAN Mirai EDSA XML SQL Kaminsky 証明書 Session Fixation POODLE IPsec NTP ベイジアン">
+<div class="top"><span class="meta">過去10回分｜午前Ⅱ セキュリティ</span> <span class="review-badge">復習要 27問</span></div>
+<h3>平成分過去10回、復習要</h3>
+<p>このチャットに貼り付けた問題文・全選択肢・正解を全問収録し、解説も省略せず掲載。DNS、Web、暗号・PKI、認証、ネットワーク、マルウェアを横断して復習できます。</p>
+<ul class="features"><li>全27問の問題文・4択を全文掲載</li><li>このチャットでの解説全文をそのまま収録</li><li>DNS水責めの追加Q&amp;A、DV/OV/EV補足、XML署名図解も収録</li><li>キーワード検索・分類フィルタ対応</li></ul>
+<a class="qopen" href="am2_review_required_full.html">復習要27問をまとめて復習する →</a>
+</article>
+</div>
 <div class="empty" id="amEmpty">該当する午前Ⅱ問題がありません。</div>
 </section>
 <section class="card section hidden" id="studySection">
@@ -444,6 +458,7 @@ document.querySelectorAll('.am-entry').forEach(b=>b.onclick=()=>{
   const e=b.dataset.entry;
   document.getElementById('amCategoryArea').classList.toggle('hidden',e!=='category');
   document.getElementById('amYearArea').classList.toggle('hidden',e!=='year');
+  document.getElementById('amReviewArea').classList.toggle('hidden',e!=='review');
 });
 </script>
 </body>
